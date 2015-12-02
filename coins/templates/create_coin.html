@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div>
+        <form action="/create_coins/" method="post">
+            {% crispy form %}
+            {% if errors %}
+                <label class="error">{{ errors }} </label>
+            {% endif %}
+        </form>
+    </div>
+{% endblock content %}

@@ -6,15 +6,15 @@ from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Button, Layout
 
-from .models import Coins
+from .models import Coins, CatalogCoins
 
 
 class CoinsForm(forms.ModelForm):
 
     class Meta:
-        model = Coins
-        fields = ("country", "year", "currency", "face_value", "mint", "metal",
-                  "ruler", "number", "circulation", "condition",) 
+        model = CatalogCoins
+        fields = ("country", "currency", "face_value", "metal",
+                  "ruler", "number", "circulation", "description") 
 
     def __init__(self, *args, **kwargs):
         super(CoinsForm, self).__init__(*args, **kwargs)

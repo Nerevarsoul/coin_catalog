@@ -41,6 +41,36 @@
 
     <body>
 
+        <body>
+        <div class="navbar navbar-inverse navbar-static-top">
+            <div class="container">
+                <div class="collapse navbar-collapse" id="responsive-menu">
+                    <ul class="nav navbar-nav">
+                        <li><a href={% url 'index' %}>Main</a></li>
+                        <li><a href="#">Users</a></li>
+                        <li><a href={% url "coins" %}>Catalogue</a></li>
+                        <li class="dropdown">
+                            <a class="navbar-brand dropdown-toggle" data-toggle="dropdown" href = "#">Trades <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">List Trades</a></li>
+                                {% if user.is_authenticated %}
+                                    <li><a href="#">Add Trade</a></li>
+                                    <li><a href="#">My Trade</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                        {% if user.is_authenticated %}
+                            <li><a href="#">Logout</a></li>
+                            <li><a href="#">{{ user.username}}</a></li>
+                        {% else %}
+                            <li><a href="#">Sign in</a></li>
+                            <li><a href="#">Sign up</a></li>
+                        {% endif %}
+                    </ul>  
+                </div>
+            </div>
+        </div>
+
 
         <div class="content">
             {% block content %} {% endblock content %}

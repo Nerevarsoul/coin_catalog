@@ -138,6 +138,11 @@ AUTHENTICATION_BACKENDS = (
 # Разрешаем создавать пользователей через social_auth
 SOCIAL_AUTH_CREATE_USERS = True
 
+LOGIN_REDIRECT_URL = '/index/'
+
+VKONTAKTE_APP_AUTH={'key':'iframe_app_secret_key', 'user_mode': 2, 'id':'iframe_app_id'}
+VKONTAKTE_OAUTH2_EXTRA_SCOPE = ''
+
 # Перечислим pipeline, которые последовательно буду обрабатывать респонс 
 SOCIAL_AUTH_PIPELINE = (
     # Получает по backend и uid инстансы social_user и user

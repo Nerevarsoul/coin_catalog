@@ -3,10 +3,16 @@ from __future__ import unicode_literals
 
 from django.contrib.auth import BACKEND_SESSION_KEY
 from django.contrib.auth.models import AnonymousUser
-from django.core.cache import cache
+from django.http import HttpResponse
+from django.shortcuts import render_to_response
+from django.template.context import RequestContext
 
-from social_auth.backends.contrib.vk import VKOAuth2Backend
+from django.core.cache import cache
+from django.conf import settings
+
+from social_auth.models import UserSocialAuth
 from social_auth.views import complete as social_complete
+from social_auth.backends.contrib.vk import VKOAuth2Backend
 
 
 def is_complete_authentication(request):
@@ -66,3 +72,21 @@ def vkontakte_decorator(func):
         return func(request, *args, **kwargs)
 
     return wrapper
+
+
+@vkontakte_decorator
+def vkontakte_view(request, *args, **kwargs):
+    # If there is a ready response just return it. Not recommended because
+    # pipeline redirects fail the normal workflow here.
+    auth_response = kwargs.get('auth_response')
+    if auth_response:
+        for item in auth_response.items():
+            if item[0] == 'Location' and 'form' in item[1]:
+                return auth_response
+
+    return render_to_response('vkontakte_app.html', {
+        'vk_app_id': settings.VKONTAKTE_APP_AUTH['id']
+                        if hasattr(settings, 'VKONTAKTE_APP_AUTH') else None,
+        'app_scope': ','.join(settings.VKONTAKTE_OAUTH2_EXTRA_SCOPE),
+        'warning': not request.GET.get('user_id')
+    }, RequestContext(request))

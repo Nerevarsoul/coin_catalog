@@ -6,18 +6,13 @@ from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Button, Layout
 
-from .models import Coins, CatalogCoins
+from .models import Coins, CatalogCoins, UserProfile
 
 
-class CoinsForm(forms.ModelForm):
-
-    class Meta:
-        model = CatalogCoins
-        fields = ("country", "currency", "face_value", "metal",
-                  "ruler", "number", "circulation", "description") 
+class CrispyMixin(objects):
 
     def __init__(self, *args, **kwargs):
-        super(CoinsForm, self).__init__(*args, **kwargs)
+        super(CrispyMixin, self).__init__(*args, **kwargs)
         self.helper = FormHelper(self)
         self.helper.help_text_inline = True
         self.helper.html5_required = True
@@ -25,7 +20,25 @@ class CoinsForm(forms.ModelForm):
         self.helper.form_method = 'post'
         self.helper.label_class = 'col-sm-2'
         self.helper.field_class = 'col-sm-4'
-        button = Button('send_button', 'Create')
+        button = Button('send_button', self.button_name)
         button.input_type = 'submit'
         button.field_classes = 'btn btn-success form-control'
         self.helper.add_input(button)
+
+
+class CoinsForm(CrispyMixin, forms.ModelForm):
+
+    button_name = 'Create'
+
+    class Meta:
+        model = CatalogCoins
+        fields = ("country", "currency", "face_value", "metal",
+                  "ruler", "number", "circulation", "description") 
+
+
+class UserProfileForm(CrispyMixin, forms.ModelForm):
+
+    button_name = 'Confirm'
+
+    class Meta:
+        model = UserProfile

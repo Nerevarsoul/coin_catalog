@@ -9,7 +9,7 @@ from crispy_forms.layout import Button, Layout
 from .models import Coins, CatalogCoins, UserProfile
 
 
-class CrispyMixin(objects):
+class CrispyMixin(object):
 
     def __init__(self, *args, **kwargs):
         super(CrispyMixin, self).__init__(*args, **kwargs)
@@ -26,7 +26,7 @@ class CrispyMixin(objects):
         self.helper.add_input(button)
 
 
-class CoinsForm(CrispyMixin, forms.ModelForm):
+class CatalogCoinsForm(CrispyMixin, forms.ModelForm):
 
     button_name = 'Create'
 
@@ -42,3 +42,14 @@ class UserProfileForm(CrispyMixin, forms.ModelForm):
 
     class Meta:
         model = UserProfile
+        exclude = ('user', )
+
+
+class CoinsForm(CrispyMixin, forms.ModelForm):
+
+    button_name = 'Create'
+
+    class Meta:
+        model = Coins
+        fields = ("condition", "year", "mint", "catalog_coin", "available", 
+                  "needful", "changable")

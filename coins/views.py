@@ -10,7 +10,7 @@ from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteVi
 
 from django_tables2 import SingleTableView
 
-from .forms import UserProfileForm, CoinsForm
+from .forms import UserProfileForm, CatalogCoinsForm
 from .models import *
 from .tables import *
 
@@ -31,12 +31,12 @@ class CoinsTableView(SingleTableView):
 class CreateCoinsView(CreateView):
 
 	model = Coins
-	form_class = CoinsForm
+	form_class = CatalogCoinsForm
 	success_url = reverse_lazy("coins")
 	template_name = "create_coin.html"
 
 
-class UpdateUserView(CreateView):
+class UpdateUserView(UpdateView):
 
 	model = UserProfile
 	form_class = UserProfileForm

@@ -17,29 +17,27 @@ def create_country():
         country.save()
 
 
-def create_coins():
+def create_catalog_coins():
 
     nominal_list = [1, 2, 5, 10, 15, 20, 25, 50, 100, 200, 500, 1000]
 
-    series = ['Christmas Series', 'Starbucks', 'Special Edition', 
-              'Regional Series', 'Small card']
+    country = Country.objects.all()
 
-    issued_on = [2001, 2003, 2005, 2009, 2010, 2012]
+    currency_list = ["евро", "франк", "Песо", "Доллар", "Лира", "Крона", "Рупия", "Юань"]
 
-    for card in name_list:
+    metal_list = ["серебро", "никель", "аллюминий", "медь",]
+
+    for i in xrange(100):
         new_country = random.choice(country)
-        new_series = random.choice(series)
-        year = random.choice(issued_on)
-        catalog_codes = str(name_list.index(card))
-        face_picture = open(os.path.join(MEDIA_ROOT, 'cards', card + '.jpg'))
-        reverse_picture = open(os.path.join(MEDIA_ROOT, 'cards', card + '-back.jpg'))
-        new_card = Card(name=card, country=new_country, series=new_series, 
-                        issued_on=year, catalog_codes=catalog_codes, 
-                        face_picture=File(face_picture),
-                        reverse_picture=File(reverse_picture))
-        new_card.save()
-
-
+        nominal = random.choice(nominal_list)
+        currency = random.choice(currency_list)
+        metal = random.choice(metal_list)
+        new_coin = CatalogCoins(country=country,
+                                face_value=nominal, 
+                                currency=currency,
+                                metal=metal,)
+        print new_coin.country, new_coin.face_value. new_coin.currency. new_coin.metal 
+        new_coin.save()
 
 
 if __name__ == "__main__":
@@ -53,4 +51,6 @@ if __name__ == "__main__":
 
     # from mysite.settings import MEDIA_ROOT
 
-    create_country()
+    # create_country()
+
+    create_catalog_coins()

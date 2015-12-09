@@ -6,14 +6,14 @@ from django.db import models
 
 
 COUNTRY_STATUS = (
-    (1, 'NonExist'),
-    (2, 'Exist'),
+    (1, 'Не существующая'),
+    (2, 'Существующая'),
 )
 
 # Create your models here.
 class CatalogCoins(models.Model):
     
-    country = models.ForeignKey(Country)
+    country = models.ForeignKey("Country")
     currency = models.CharField(max_length=50)
     face_value = models.IntegerField()
     metal = models.CharField(max_length=50, blank=True)

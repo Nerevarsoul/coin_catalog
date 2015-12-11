@@ -40,6 +40,31 @@ def create_catalog_coins():
         new_coin.save()
 
 
+def create_users():
+    username_list = ['Lantash', 'Shiori', 'Kaito', 'Mio', 'Mia', 
+                     'Cane', 'Sutter', 'Blazi', 'Kitty', 'Nirtok']
+
+    email_list = ['Lantash@gmail.com', 'Shiori@mail.ru', 'Kaito@yandex.ru', 
+                  'Mio@gmail.com', 'Mia@gmail.com', 'Cane@mail.ru', 
+                  'Sutter@mail.ru', 'Blazi@gmail.com', 'Kitty@mail.ru', 
+                  'Nirtok@yandex.ru']
+
+    password_list = ['1q', '2w', '3e', '4r', '5t', '6y', '7u', '8i', '9o', '0p']
+
+    first_name_list = ['Bob', 'Cristy', 'Maya', 'Alex', 'Rodger', 
+                       'Kei', 'Alice', 'Charlie', 'Donna', 'Luis']
+
+    last_name_list = ['Specter', 'Litt', 'Hardman', 'Pirson', 'Depp', 
+                      'Beckham', 'Ross', 'Zein', 'Truman', 'Stalin']
+
+
+    for i in xrange(10):
+        user = User.objects.create_user(username_list[i], email_list[i], password_list[i])
+        user.last_name = last_name_list[i]
+        user.first_name = first_name_list[i]
+        user.save()
+
+
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
     django.setup()
@@ -54,3 +79,5 @@ if __name__ == "__main__":
     # create_country()
 
     # create_catalog_coins()
+
+    create_users()

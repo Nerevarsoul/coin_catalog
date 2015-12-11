@@ -21,22 +21,22 @@ def create_catalog_coins():
 
     nominal_list = [1, 2, 5, 10, 15, 20, 25, 50, 100, 200, 500, 1000]
 
-    country = Country.objects.all()
+    countrys = Country.objects.all()
 
-    currency_list = ["евро", "франк", "Песо", "Доллар", "Лира", "Крона", "Рупия", "Юань"]
+    currency_list = ("евро", "франк", "Песо", "Доллар", "Лира", "Крона", "Рупия", "Юань")
 
-    metal_list = ["серебро", "никель", "аллюминий", "медь",]
+    metal_list = ("серебро", "никель", "аллюминий", "медь")
 
     for i in xrange(100):
-        new_country = random.choice(country)
+        country = random.choice(countrys)
         nominal = random.choice(nominal_list)
         currency = random.choice(currency_list)
         metal = random.choice(metal_list)
         new_coin = CatalogCoins(country=country,
                                 face_value=nominal, 
                                 currency=currency,
-                                metal=metal,)
-        print new_coin.country, new_coin.face_value. new_coin.currency. new_coin.metal 
+                                metal=metal
+                                )
         new_coin.save()
 
 
@@ -53,4 +53,4 @@ if __name__ == "__main__":
 
     # create_country()
 
-    create_catalog_coins()
+    # create_catalog_coins()

@@ -16,11 +16,11 @@ class CatalogCoins(models.Model):
     country = models.ForeignKey("Country")
     currency = models.CharField(max_length=50)
     face_value = models.IntegerField()
-    metal = models.CharField(max_length=50, blank=True)
-    ruler = models.CharField(max_length=50, blank=True)
-    number = models.CharField(max_length=50, blank=True)
-    circulation = models.IntegerField(blank=True)
-    description = models.TextField(blank=True)
+    metal = models.CharField(max_length=50, blank=True, null=True)
+    ruler = models.CharField(max_length=50, blank=True, null=True)
+    number = models.CharField(max_length=50, blank=True, null=True)
+    circulation = models.IntegerField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
 
     def __unicode__(self):
         return "{} {}".format(self.face_value, self.currency)
@@ -28,15 +28,15 @@ class CatalogCoins(models.Model):
 
 class Coins(models.Model):
 
-    condition = models.CharField(max_length=50, blank=True)
+    condition = models.CharField(max_length=50, blank=True, null=True)
     year = models.IntegerField()
-    mint = models.CharField(max_length=50, blank=True)
+    mint = models.CharField(max_length=50, blank=True, null=True)
     catalog_coin = models.ForeignKey(CatalogCoins)
-    available = models.ForeignKey(User, blank=True, 
+    available = models.ForeignKey(User, blank=True, null=True,
         related_name="user_have")
-    needful = models.ForeignKey(User, blank=True, 
+    needful = models.ForeignKey(User, blank=True, null=True,
         related_name="user_wish")
-    changable = models.ForeignKey(User, blank=True, 
+    changable = models.ForeignKey(User, blank=True, null=True,
         related_name="user_change")
 
     def __unicode__(self):
@@ -55,8 +55,8 @@ class Country(models.Model):
 class UserProfile(models.Model):
     user = models.OneToOneField(User, related_name="profile")
 
-    avatar = models.ImageField(upload_to='profile_images', blank=True)
-    address = models.ForeignKey("Address", blank=True)
+    avatar = models.ImageField(upload_to='profile_images', blank=True, null=True)
+    address = models.ForeignKey("Address", blank=True, null=True)
 
     def __unicode__(self):
         return self.user.username
@@ -64,11 +64,11 @@ class UserProfile(models.Model):
     
 class Address(models.Model):
 
-    country = models.ForeignKey(Country, blank=True)
-    city = models.CharField(max_length=50, blank=True)
-    street = models.CharField(max_length=50, blank=True)
-    building = models.IntegerField(blank=True)
-    index = models.IntegerField(blank=True)
+    country = models.ForeignKey(Country, blank=True, null=True)
+    city = models.CharField(max_length=50, blank=True, null=True)
+    street = models.CharField(max_length=50, blank=True, null=True)
+    building = models.IntegerField(blank=True, null=True)
+    index = models.IntegerField(blank=True, null=True)
 
     def __unicode__(self):
         return "{}, {}".format(self.country, self.city)

@@ -65,6 +65,20 @@ def create_users():
         user.save()
 
 
+def create_coins():
+
+    status_list = ('available', 'needful', 'changable')
+    year = random.randrange(1875, 2015)
+
+    catalog_coins = CatalogCoins.objects.all()
+    users = User.objects.all()
+    for i in range(1000):
+        coin = Coins(catalog_coin=random.choice(catalog_coins),
+                     year=year)
+        setattr(coin, random.choice(status_list), random.choice(users))
+        coin.save()
+
+
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
     django.setup()
@@ -80,4 +94,6 @@ if __name__ == "__main__":
 
     # create_catalog_coins()
 
-    create_users()
+    # create_users()
+
+    # create_coins()

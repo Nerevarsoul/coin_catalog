@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.conf import settings
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
+from django.views.generic import DetailView
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 
@@ -23,9 +24,15 @@ class IndexView(TemplateView):
 
 class CoinsTableView(SingleTableView):
 
-    model = Coins
+    model = CatalogCoins
     table_class = CoinsTable
     template_name = "coins.html"
+
+
+class CatalogCoinsDetailView(DetailView):
+	model = CatalogCoins
+	template_name = "detail_view.html"
+	context_object_name = "coin"
 
 
 class CreateCoinsView(CreateView):

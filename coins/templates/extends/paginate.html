@@ -1,0 +1,27 @@
+{% load staticfiles %}
+
+{% if is_paginated %}
+    <div class="pagination" align="center">
+
+        {% if page_obj.has_previous %}
+            <a href="?page={{page_obj.previous_page_number}}">
+                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+            </a>
+        {% else %}
+            <a href="#"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>/a>
+        {% endif %}
+
+        <form class="input-page form-control" action="&page={{ page }}">
+            <input class="" type="text" name="page" placeholder="{{ page_obj.number }}/{{ page_obj.paginator.num_pages }}" size="10">
+        </form>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{page_obj.next_page_number}}">
+                <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+            </a>
+        {% else %}
+            <a href="#"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>
+        {% endif %}
+
+    </div>
+{% endif %}

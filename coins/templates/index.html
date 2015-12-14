@@ -2,5 +2,74 @@
 {% load staticfiles %}
 
 {% block content%}
-	<h1>Hello word!</h1>
-{% endblock %}
+
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Find a coin your dream.</h1>
+        <p>Exchange coin from people in over 34,000 cities and 192 countries.</p>
+        <a href="#">Learn More</a>
+      </div>
+    </div>
+
+    <div class="neighborhood-guides">
+        <div class="container">
+            <h2>Guides</h2>
+            <p>Not enough coins to complete collection?</p>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <img src="{% static 'img/starbucks_index1.jpg' %}">
+                    </div>
+                    <div class="thumbnail">
+                        <img src="{% static 'img/starbucks_index2.jpg' %}">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <img src="{% static 'img/starbucks_index3.jpg' %}">
+                    </div>
+                    <div class="thumbnail">
+                        <img src="{% static 'img/starbucks_index4.jpg' %}">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <img src="{% static 'img/starbucks_index5.jpg' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="learn-more">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <h3>Users</h3>
+            <p>Communicate with interesting people from around the world.</p>
+            <p><a href="#">Communicate</a></p>
+            <div>
+		<p>List of 10 last users</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h3>Coins</h3>
+            <p>Coins catalogue of all divided into categories.</p>
+            <p><a href={% url "coins" %}>See catalog</a></p>
+            <div>
+                <p>List of 10 last coins</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h3>Exchange</h3>
+            <p>Expand your collection.</p>
+            <p><a href="#">Exchange</a></p>
+            <div>
+                <p>List of 10 last coins</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock content %}	

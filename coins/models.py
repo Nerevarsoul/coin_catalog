@@ -21,6 +21,7 @@ class CatalogCoins(models.Model):
     number = models.CharField(max_length=50, blank=True, null=True)
     circulation = models.IntegerField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
+    catalog_image = models.ManyToManyField(Image)
 
     def __unicode__(self):
         return "{} {}".format(self.face_value, self.currency)
@@ -32,6 +33,7 @@ class Coins(models.Model):
     year = models.IntegerField()
     mint = models.CharField(max_length=50, blank=True, null=True)
     catalog_coin = models.ForeignKey(CatalogCoins)
+    image = models.ManyToManyField(Image)
     available = models.ForeignKey(User, blank=True, null=True,
         related_name="user_have")
     needful = models.ForeignKey(User, blank=True, null=True,
@@ -72,3 +74,8 @@ class Address(models.Model):
 
     def __unicode__(self):
         return "{}, {}".format(self.country, self.city)
+        
+        
+class Image(models.Model):
+    
+    image = models.ImageField(upload_to='coin_images',)

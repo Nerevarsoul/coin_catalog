@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.conf import settings
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 
@@ -22,30 +22,58 @@ class IndexView(TemplateView):
 	template_name = "index.html"
 
 
-class CoinsTableView(SingleTableView):
+# CatalogCoins views
+class CatalogCoinsTableView(SingleTableView):
 
     model = CatalogCoins
     table_class = CoinsTable
     template_name = "coins.html"
+    table_pagination = 20
 
 
 class CatalogCoinsDetailView(DetailView):
-	model = CatalogCoins
-	template_name = "detail_view.html"
-	context_object_name = "coin"
+    model = CatalogCoins
+    template_name = "detail_view.html"
+    context_object_name = "coin"
 
 
-class CreateCoinsView(CreateView):
+class CreateCatalogCoinsView(CreateView):
 
-	model = Coins
-	form_class = CatalogCoinsForm
-	success_url = reverse_lazy("coins")
-	template_name = "create_coin.html"
+    model = Coins
+    form_class = CatalogCoinsForm
+    success_url = reverse_lazy("coins")
+    template_name = "create_coin.html"
+
+
+# users view
+class UserListView(ListView):
+    pass
+
+
+class UserDetailView(DetailView):
+    pass
 
 
 class UpdateUserView(UpdateView):
 
-	model = UserProfile
-	form_class = UserProfileForm
-	success_url = reverse_lazy("index")
-	template_name = "create_coin.html"
+    model = UserProfile
+    form_class = UserProfileForm
+    success_url = reverse_lazy("index")
+    template_name = "create_coin.html"
+	
+	
+# coins view
+class CoinsTableView(SingleTableView):
+    pass
+
+
+class CoinsDetailView(DetailView):
+    pass
+
+
+class CreateCoinsView(CreateView):
+    pass
+
+
+class UpdateCoinsView(UpdateView):
+    pass

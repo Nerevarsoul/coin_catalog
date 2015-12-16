@@ -1,0 +1,13 @@
+{% load coins_extras %}
+
+{% for column in columns %}
+
+    <td class={{ forloop.counter|add_str:"col" }}>
+        {% if order_by == column.0 %}
+            <a class="reload" href="#">{{ column.1 }}</a>
+        {% else %}
+            <a class="reload" href="#">{{ column.1 }}</a>
+        {% endif %}
+    </td>
+
+{% endfor %}

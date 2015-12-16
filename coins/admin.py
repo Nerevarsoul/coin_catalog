@@ -17,7 +17,7 @@ class UserAdmin(UserAdmin):
 
 # Register your models here.
 admin.site.register(Address)
-admin.site.register(CatologCoins)
+admin.site.register(CatalogCoins)
 admin.site.register(Coins)
 admin.site.register(Country)
 admin.site.register(Image)

@@ -1,0 +1,51 @@
+{% load staticfiles %}
+{% load coins_extras %}
+
+
+<table class="table main-table">
+
+    <thead>
+        <tr>
+            <td class="col0"><input class="all-choice" type="checkbox"></td>
+            {% include "extends/head_table.html" %}
+            <td class="collast"></td>
+        </tr>
+    </thead>
+
+    <tbody class="resizable">
+
+    {% for object in object_list %}
+
+        <tr class="{% cycle 'odd' 'even'%}" id={{ object.id }}>
+            <td class="col0"><input class="choice" type="checkbox"></td>
+            {% for column in columns %}
+                {% if column.0 %}
+                    <td class={{ forloop.counter|add_str:"col" }}>
+                        {{ object|get_attr:column.0 }}
+                    </td>
+                {% else %}
+                    <td class={{ forloop.counter|add_str:"col" }}>
+                        {% for ispoln in object|get_set:ispoln_name %}
+                            {% ifequal ispoln.status column.1|change_last_letter:"ь" %}
+                                {{ ispoln.name }}
+                            {% endifequal %}
+                        {% endfor %}
+                    </td>
+                {% endif %}
+            {% endfor %}
+            <td class="collast">
+                <a href="{% url 'story_view' pk=object.id %}">
+                    <img src="{% static 'img/r-default.png' %}">
+                </a>
+            </td>
+        </tr>
+
+    {% empty %}
+
+        <td colspan="{{ columns.length }}">Поиск не дал результатов</td>
+
+    {% endfor %}
+
+    </tbody>
+
+    </table>

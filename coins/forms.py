@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django import forms
 
+from ajax_select.fields import AutoCompleteSelectField, AutoCompleteSelectMultipleField
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Button, Layout
 
@@ -48,6 +49,11 @@ class UserProfileForm(CrispyMixin, forms.ModelForm):
 class CoinsForm(CrispyMixin, forms.ModelForm):
 
     button_name = 'Create'
+    
+    catalog_coin = AutoCompleteSelectField('catalog_coin',
+                                           label="Монета",
+                                           required=False,
+                                           help_text=None)
 
     class Meta:
         model = Coins

@@ -5,7 +5,7 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.template.defaultfilters import slugify
 
-from .models import CatalogCoins
+from .models import CatalogCoins, Country
 
 
 @receiver(pre_save, sender=CatalogCoins)
@@ -14,4 +14,9 @@ def catalog_get_slug(sender, instance, **kwargs):
                                                  instance.currency, 
                                                  instance.circulation, 
                                                  instance.country))
+                 
+                                                 
+@receiver(pre_save, sender=Country)
+def country_get_slug(sender, instance, **kwargs):
+    instance.slug = slugify(instance.name)                                               
                                                  

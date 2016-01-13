@@ -3,9 +3,6 @@ from __future__ import unicode_literals
 
 from django.contrib.auth.models import User
 from django.db import models
-from django.db.models.signals import pre_save
-from django.dispatch import receiver
-from django.template.defaultfilters import slugify
 
 
 COUNTRY_STATUS = (
@@ -31,14 +28,6 @@ class CatalogCoins(models.Model):
         return "{} {}".format(self.face_value, self.currency)
     
     
-@receiver(pre_save, sender=CatalogCoins)
-def catalog_get_slug(sender, instance, **kwargs):
-    instance.slug = slugify("{} {} {} {}".format(instance.face_value, 
-                                                 instance.currency, 
-                                                 instance.circulation, 
-                                                 instance.country)) 
-    
-    
 class Coins(models.Model):
 
     condition = models.CharField(max_length=50, blank=True, null=True)
@@ -61,6 +50,7 @@ class Country(models.Model):
 
     name = models.CharField(max_length=50)
     status = models.IntegerField(choices=COUNTRY_STATUS)
+    slug = models.SlugField(max_length=55)
 
     def __unicode__(self):
         return self.name

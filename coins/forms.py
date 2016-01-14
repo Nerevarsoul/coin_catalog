@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django import forms
 
 from ajax_select.fields import AutoCompleteSelectField, AutoCompleteSelectMultipleField
+from captcha.fields import CaptchaField
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Button, Layout
 
@@ -40,6 +41,7 @@ class CatalogCoinsForm(CrispyMixin, forms.ModelForm):
 class UserProfileForm(CrispyMixin, forms.ModelForm):
 
     button_name = 'Confirm'
+    captcha = CaptchaField()
 
     class Meta:
         model = UserProfile

@@ -10,7 +10,7 @@ urlpatterns = [
     url(r'^catalogue/$', CatalogCoinsTableView.as_view(), name = 'catalogue'),
     url(r'^create_catalog_coins/$', CreateCoinsView.as_view(), name = 'create_catalog_coins'),
     url(r'^update_profile/$', UpdateUserView.as_view(), name = 'update_profile'),
-    url(r'^catalog_coin_detail/(?P<pk>\d+)/$', CatalogCoinsDetailView.as_view(), 
+    url(r'^catalog_coin_detail/(?P<slug>\d+)/$', CatalogCoinsDetailView.as_view(), 
         name = 'catalog_detail_coins'),
     url(r'^vk/', vkontakte_view, name='vk_app'),
     url(r'', include('social_auth.urls')),

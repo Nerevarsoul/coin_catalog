@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 from django.db import models
 
 
@@ -26,6 +27,9 @@ class CatalogCoins(models.Model):
     
     def __unicode__(self):
         return "{} {}".format(self.face_value, self.currency)
+        
+    def get_absolute_url(self):
+        return reverse('catalog_detail_coins', args=[self.slug])
     
     
 class Coins(models.Model):
@@ -54,6 +58,9 @@ class Country(models.Model):
 
     def __unicode__(self):
         return self.name
+        
+    def get_absolute_url(self):
+        return reverse('country_view', args=[self.slug])
 
 
 class UserProfile(models.Model):

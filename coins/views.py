@@ -49,7 +49,7 @@ class CatalogCoinsCountryView(CatalogCoinsTableView):
 	
 	def get_queryset(self):
 		return queryset = super(CatalogCoinsTableView, self).get_queryset().\
-		    filter(country__exact=self.kwargs['country'])
+		    filter(country__exact=Country.objects.get(slug__exact=self.kwargs['country']))
 	
     
 # users view

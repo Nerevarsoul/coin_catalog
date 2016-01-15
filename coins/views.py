@@ -43,8 +43,15 @@ class CreateCatalogCoinsView(CreateView):
     form_class = CatalogCoinsForm
     success_url = reverse_lazy("coins")
     template_name = "create_coin.html"
-
-
+    
+    
+class CatalogCoinsCountryView(CatalogCoinsTableView):
+	
+	def get_queryset(self):
+		return queryset = super(CatalogCoinsTableView, self).get_queryset().\
+		    filter(country__exact=self.kwargs['country'])
+	
+    
 # users view
 class UserListView(ListView):
     pass

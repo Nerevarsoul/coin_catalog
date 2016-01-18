@@ -90,10 +90,10 @@ if __name__ == "__main__":
 
     # from mysite.settings import MEDIA_ROOT
 
-    # create_country()
+    create_country()
 
-    # create_catalog_coins()
+    create_catalog_coins()
 
-    # create_users()
+    create_users()
 
-    # create_coins()
+    create_coins()

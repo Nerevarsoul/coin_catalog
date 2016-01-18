@@ -11,7 +11,13 @@ COUNTRY_STATUS = (
     (2, 'Существующая'),
 )
 
+
 # Create your models here.
+class Image(models.Model):
+
+    image = models.ImageField(upload_to='coin_images',)
+
+
 class CatalogCoins(models.Model):
     
     country = models.ForeignKey("Country")
@@ -83,8 +89,4 @@ class Address(models.Model):
 
     def __unicode__(self):
         return "{}, {}".format(self.country, self.city)
-        
-        
-class Image(models.Model):
-    
-    image = models.ImageField(upload_to='coin_images',)
+

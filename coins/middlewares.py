@@ -13,7 +13,7 @@ class ExampleSocialAuthExceptionMiddleware(SocialAuthExceptionMiddleware):
         if isinstance(exception, AuthAlreadyAssociated):
             return 'Somebody is already using that account!'
         return super(ExampleSocialAuthExceptionMiddleware, self)\
-                        .get_message(request, exception)
+            .get_message(request, exception)
 
     def get_redirect_uri(self, request, exception):
         if request.user.is_authenticated():

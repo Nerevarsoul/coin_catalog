@@ -19,7 +19,7 @@ from .tables import *
 # Create your views here.
 class IndexView(TemplateView):
 
-	template_name = "index.html"
+    template_name = "index.html"
 
 
 # CatalogCoins views
@@ -46,12 +46,13 @@ class CreateCatalogCoinsView(CreateView):
     
     
 class CatalogCoinsCountryView(CatalogCoinsTableView):
-	
-	def get_queryset(self):
-		return queryset = super(CatalogCoinsTableView, self).get_queryset().\
-		    filter(country__exact=Country.objects.get(slug__exact=self.kwargs['country']))
-	
-    
+
+    def get_queryset(self):
+
+        return super(CatalogCoinsTableView, self).get_queryset().\
+            filter(country__exact=Country.objects.get(slug__exact=self.kwargs['country']))
+
+
 # users view
 class UserListView(ListView):
     pass
@@ -67,8 +68,8 @@ class UpdateUserView(UpdateView):
     form_class = UserProfileForm
     success_url = reverse_lazy("index")
     template_name = "create_coin.html"
-	
-	
+
+
 # coins view
 class CoinsTableView(SingleTableView):
     pass

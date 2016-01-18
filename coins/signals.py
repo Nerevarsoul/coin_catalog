@@ -1,4 +1,4 @@
- # -*- coding: UTF-8  -*-
+# -*- coding: UTF-8  -*-
 from __future__ import unicode_literals
 
 from django.db.models.signals import pre_save
@@ -19,4 +19,4 @@ def catalog_get_slug(sender, instance, **kwargs):
 @receiver(pre_save, sender=Country)
 def country_get_slug(sender, instance, **kwargs):
     instance.slug = slugify(instance.name)                                               
-                                                 
+

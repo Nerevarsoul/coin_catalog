@@ -1,5 +1,5 @@
 import django_tables2 as tables
-from .models import Coins, CatalogCoins
+from .models import CatalogCoins
 
 
 class CoinsTable(tables.Table):

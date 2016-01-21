@@ -51,6 +51,17 @@ class CatalogCoinsCountryView(CatalogCoinsTableView):
 
         return super(CatalogCoinsTableView, self).get_queryset().\
             filter(country__exact=Country.objects.get(slug__exact=self.kwargs['country']))
+            
+            
+class CountryListView(ListView):
+    
+    model = Country
+            
+            
+class CountryCreateView(CreateView):
+    
+    model = Country
+    success_url = reverse_lazy("country_list")
 
 
 # users view
@@ -71,17 +82,26 @@ class UpdateUserView(UpdateView):
 
 
 # coins view
-class CoinsTableView(SingleTableView):
-    pass
+class CoinsUserView(SingleTableView):
+    
+    model = Coins
 
 
 class CoinsDetailView(DetailView):
-    pass
+    
+    model = Coins
 
 
 class CreateCoinsView(CreateView):
-    pass
+    
+    model = Coins
 
 
 class UpdateCoinsView(UpdateView):
-    pass
+    
+    model = Coins
+
+
+class CoinsCountryView(CatalogCoinsCountryView):
+    
+    model = Coins

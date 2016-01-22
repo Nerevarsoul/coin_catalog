@@ -18,6 +18,7 @@ Catalogue for the account and the exchange of coins.
 <li>anyjson==0.3.3</li>
 <li>billiard==3.3.0.22</li>
 <li>celery==3.1.19</li>
+<li>coverage==4.0.3</li>
 <li>django-appconf==1.0.1</li>
 <li>django-celery-email==1.1.3</li>
 <li>django-crispy-forms==1.5.2</li>

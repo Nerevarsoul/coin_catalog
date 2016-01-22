@@ -18,7 +18,7 @@ class Image(models.Model):
     image = models.ImageField(upload_to='coin_images',)
 
 
-class CatalogCoins(models.Model):
+class CatalogCoin(models.Model):
     
     country = models.ForeignKey("Country")
     currency = models.CharField(max_length=50)
@@ -38,7 +38,7 @@ class CatalogCoins(models.Model):
         return reverse('catalog_detail_coins', args=[self.slug])
     
     
-class Coins(models.Model):
+class Coin(models.Model):
 
     condition = models.CharField(max_length=50, blank=True, null=True)
     year = models.IntegerField()

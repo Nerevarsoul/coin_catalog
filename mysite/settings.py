@@ -16,7 +16,10 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+import djcelery
+
 from .mysettings import *
+
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -53,6 +56,8 @@ INSTALLED_APPS = (
     'social_auth',
     # http://django-simple-captcha.readthedocs.org/en/latest/usage.html
     'captcha',
+    # https://github.com/pmclanahan/django-celery-email
+    'djcelery_email'
     'coins',
 )
 
@@ -163,3 +168,10 @@ SOCIAL_AUTH_PIPELINE = (
     # Обновляет инстанс user дополнительными данными с бекенда
     'social_auth.backends.pipeline.user.update_user_details'
 )
+
+# django-celery-email
+djcelery.setup_loader()
+
+EMAIL_BACKEND = 'djcelery_email.backends.CeleryEmailBackend'
+
+

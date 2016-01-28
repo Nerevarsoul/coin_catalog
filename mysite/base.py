@@ -30,11 +30,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'ivtl))(#@0&7i*6g*2el@xq)a7y)fabvwikaefvj97tf+ofe9$'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -45,7 +40,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'debug_toolbar',
     # http://django-postman.readthedocs.org/en/latest/index.html
     'postman',
     # http://django-crispy-forms.readthedocs.org/en/latest/index.html

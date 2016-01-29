@@ -66,11 +66,16 @@ class CountryCreateView(CreateView):
 
 # users view
 class UserListView(ListView):
-    pass
+    
+    model = UserProfile
+    
+    def get_queryser(self):
+        return self.model.objects.all().select_related('user', 'address')
 
 
 class UserDetailView(DetailView):
-    pass
+    
+    model = UserProfile
 
 
 class UpdateUserView(UpdateView):
@@ -85,16 +90,34 @@ class UpdateUserView(UpdateView):
 class CoinsUserView(SingleTableView):
     
     model = Coins
+    user = ""
+    
+    def get_context_data(self, **kwargs):
+        context = super(CoinsUserView, self).get_context_data(**kwargs)
+        context["user"] = self.get_user()
+        return context
+    
+    def get_user(self):
+        try:
+            user = self.request.GET["user"]
+        except KeyError:
+            user = self.user
+        return user
+    
+    def get_queryset(self):
+        return self.model.objects.filter(country__exact=self.get_country)
 
 
 class CoinsDetailView(DetailView):
     
     model = Coins
+    form = CoinsForm
 
 
 class CreateCoinsView(CreateView):
     
     model = Coins
+    form = CoinsForm
 
 
 class UpdateCoinsView(UpdateView):
@@ -105,3 +128,19 @@ class UpdateCoinsView(UpdateView):
 class CoinsCountryView(CatalogCoinsCountryView):
     
     model = Coins
+    country = ""
+    
+    def get_context_data(self, **kwargs):
+        context = super(CoinsCountryView, self).get_context_data(**kwargs)
+        context["country"] = self.get_country()
+        return context
+    
+    def get_country(self):
+        try:
+            country = self.request.GET["country"]
+        except KeyError:
+            country = self.country
+        return country
+    
+    def get_queryset(self):
+        return self.model.objects.filter(country__exact=self.get_country)

@@ -10,7 +10,7 @@ from celery import Celery
 
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings.local')
-app = Celery('mysite')
+app = Celery('mysite', backend='amqp', broker='amqp://')
 
 # Using a string here means the worker will not have to
 # pickle the object when using Windows.

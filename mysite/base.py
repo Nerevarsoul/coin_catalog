@@ -16,8 +16,6 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
-import djcelery
-
 from .mysettings import *
 
 
@@ -50,6 +48,8 @@ INSTALLED_APPS = (
     'social_auth',
     # http://django-simple-captcha.readthedocs.org/en/latest/usage.html
     'captcha',
+    # https://django-celery.readthedocs.org/en/2.4/introduction.html
+    "djcelery",
     # https://github.com/pmclanahan/django-celery-email
     'djcelery_email'
     'coins',
@@ -152,9 +152,17 @@ SOCIAL_AUTH_PIPELINE = (
     'social_auth.backends.pipeline.user.update_user_details'
 )
 
-# django-celery-email
-djcelery.setup_loader()
 
 EMAIL_BACKEND = 'djcelery_email.backends.CeleryEmailBackend'
+#CELERYBEAT_SCHEDULER = "djcelery.schedulers.DatabaseScheduler"
+#BROKER_BACKEND = "djkombu.transport.DatabaseTransport"
 
+# django-celery-email
+import djcelery
+djcelery.setup_loader()
 
+## Celery config ##
+
+BROKER_URL = "amqp://guest:guest@localhost:5672//"
+
+## END config ##

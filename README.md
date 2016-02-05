@@ -36,6 +36,7 @@ Catalogue for the account and the exchange of coins.
 <li>sqlparse==0.1.18</li>
 <li>wsgiref==0.1.2</li>
 <li>xlwt</li>
+<li>xlwt-future</li>
 
 # Desigh
 <li>Twitter Bootstrap </li>

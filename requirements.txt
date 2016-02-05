@@ -24,3 +24,5 @@ six==1.10.0
 sqlparse==0.1.18
 unidecode==0.04.18
 wsgiref==0.1.2
+xlwt==1.0.0
+xlwt-future==0.8.0

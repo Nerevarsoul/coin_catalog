@@ -50,8 +50,6 @@ INSTALLED_APPS = (
     'postman',
     # http://django-crispy-forms.readthedocs.org/en/latest/index.html
     'crispy_forms',
-    # http://django-tables2.readthedocs.org/en/latest/pages/tutorial.html
-    'django_tables2',
     # https://github.com/omab/django-social-auth
     'social_auth',
     # http://django-simple-captcha.readthedocs.org/en/latest/usage.html

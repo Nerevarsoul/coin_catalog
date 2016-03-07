@@ -5,7 +5,9 @@ from __future__ import unicode_literals
 import os
 import sys
 import random
+
 import django
+
 
 def create_country():
 
@@ -41,6 +43,7 @@ def create_catalog_coins():
 
 
 def create_users():
+    
     username_list = ['Lantash', 'Shiori', 'Kaito', 'Mio', 'Mia', 
                      'Cane', 'Sutter', 'Blazi', 'Kitty', 'Nirtok']
 

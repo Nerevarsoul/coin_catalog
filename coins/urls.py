@@ -1,3 +1,6 @@
+# -*- coding: UTF-8  -*-
+from __future__ import unicode_literals
+
 from django.conf.urls import include, url
 
 from .views import IndexView, CatalogCoinsTableView, CreateCatalogCoinsView, UpdateUserView,\

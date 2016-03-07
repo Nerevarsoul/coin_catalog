@@ -1,7 +1,30 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-{% load render_table from django_tables2 %}
+
 
 {% block content%}
-	{% render_table table %}
+
+<table>
+	<thead>
+		<tr>
+			<th>Страна</th>
+			<th>Валюта</th>
+			<th>Номинал</th>
+			<th>Метал</th>
+			<th>Правитель</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for coin in coins %}
+			<tr>
+				<td>{{ coin.country }}</td>
+				<td>{{ coin.currency }}</td>
+				<td>{{ coin.face_value }}</td>
+				<td>{{ coin.metal }}</td>
+				<td>{{ coin.ruler }}</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
 {% endblock %}

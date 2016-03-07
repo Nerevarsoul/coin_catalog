@@ -9,11 +9,8 @@ from django.views.generic import DetailView, ListView
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView, DeleteView, FormView, UpdateView
 
-from django_tables2 import SingleTableView
-
 from .forms import CatalogCoinsForm, CoinsForm, UserProfileForm
 from .models import *
-from .tables import *
 
 
 # Create your views here.
@@ -23,12 +20,13 @@ class IndexView(TemplateView):
 
 
 # CatalogCoins views
-class CatalogCoinsTableView(SingleTableView):
+class CatalogCoinsTableView(ListView):
 
     model = CatalogCoin
-    table_class = CoinsTable
     template_name = "coins.html"
-    table_pagination = 20
+    paginate_by = 20
+    context_object_name = "coins"
+    # queryset = CatalogCoin.objects.all()
 
 
 class CatalogCoinsDetailView(DetailView):
@@ -87,7 +85,7 @@ class UpdateUserView(UpdateView):
 
 
 # coins view
-class CoinsUserView(SingleTableView):
+class CoinsUserView(ListView):
     
     model = Coin
     user = ""

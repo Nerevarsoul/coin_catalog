@@ -43,7 +43,7 @@ class Coin(models.Model):
     condition = models.CharField(max_length=50, blank=True, null=True)
     year = models.IntegerField()
     mint = models.CharField(max_length=50, blank=True, null=True)
-    catalog_coin = models.ForeignKey(CatalogCoins)
+    catalog_coin = models.ForeignKey(CatalogCoin)
     image = models.ManyToManyField(Image)
     available = models.ForeignKey(User, blank=True, null=True,
         related_name="user_have")

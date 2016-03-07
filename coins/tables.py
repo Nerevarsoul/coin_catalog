@@ -1,8 +1,8 @@
 import django_tables2 as tables
-from .models import CatalogCoins
+from .models import CatalogCoin
 
 
 class CoinsTable(tables.Table):
     class Meta:
-        model = CatalogCoins
+        model = CatalogCoin
         # attrs = {"class": "paleblue"}

@@ -8,7 +8,7 @@ from captcha.fields import CaptchaField
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Button, Layout
 
-from .models import Coins, CatalogCoins, UserProfile
+from .models import Coin, CatalogCoin, UserProfile
 
 
 class CrispyMixin(object):
@@ -33,7 +33,7 @@ class CatalogCoinsForm(CrispyMixin, forms.ModelForm):
     button_name = 'Create'
 
     class Meta:
-        model = CatalogCoins
+        model = CatalogCoin
         fields = ("country", "currency", "face_value", "metal",
                   "ruler", "number", "circulation", "description") 
 
@@ -58,6 +58,6 @@ class CoinsForm(CrispyMixin, forms.ModelForm):
                                            help_text=None)
 
     class Meta:
-        model = Coins
+        model = Coin
         fields = ("condition", "year", "mint", "catalog_coin", "available", 
                   "needful", "changable")

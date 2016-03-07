@@ -16,7 +16,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
-import djcelery
+# import djcelery
 
 from .mysettings import *
 
@@ -57,7 +57,7 @@ INSTALLED_APPS = (
     # http://django-simple-captcha.readthedocs.org/en/latest/usage.html
     'captcha',
     # https://github.com/pmclanahan/django-celery-email
-    'djcelery_email'
+    'djcelery_email',
     'coins',
 )
 
@@ -170,7 +170,7 @@ SOCIAL_AUTH_PIPELINE = (
 )
 
 # django-celery-email
-djcelery.setup_loader()
+# djcelery.setup_loader()
 
 EMAIL_BACKEND = 'djcelery_email.backends.CeleryEmailBackend'
 

@@ -7,11 +7,11 @@ from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 from django.views.generic import DetailView, ListView
 from django.views.generic.base import TemplateView
-from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
+from django.views.generic.edit import CreateView, DeleteView, FormView, UpdateView
 
 from django_tables2 import SingleTableView
 
-from .forms import UserProfileForm, CatalogCoinsForm
+from .forms import CatalogCoinsForm, CoinsForm, UserProfileForm
 from .models import *
 from .tables import *
 
@@ -25,21 +25,21 @@ class IndexView(TemplateView):
 # CatalogCoins views
 class CatalogCoinsTableView(SingleTableView):
 
-    model = CatalogCoins
+    model = CatalogCoin
     table_class = CoinsTable
     template_name = "coins.html"
     table_pagination = 20
 
 
 class CatalogCoinsDetailView(DetailView):
-    model = CatalogCoins
+    model = CatalogCoin
     template_name = "detail_view.html"
     context_object_name = "coin"
 
 
 class CreateCatalogCoinsView(CreateView):
 
-    model = Coins
+    model = Coin
     form_class = CatalogCoinsForm
     success_url = reverse_lazy("coins")
     template_name = "create_coin.html"
@@ -89,7 +89,7 @@ class UpdateUserView(UpdateView):
 # coins view
 class CoinsUserView(SingleTableView):
     
-    model = Coins
+    model = Coin
     user = ""
     
     def get_context_data(self, **kwargs):
@@ -110,24 +110,24 @@ class CoinsUserView(SingleTableView):
 
 class CoinsDetailView(DetailView):
     
-    model = Coins
+    model = Coin
     form = CoinsForm
 
 
 class CreateCoinsView(CreateView):
     
-    model = Coins
+    model = Coin
     form = CoinsForm
 
 
 class UpdateCoinsView(UpdateView):
     
-    model = Coins
+    model = Coin
 
 
 class CoinsCountryView(CatalogCoinsCountryView):
     
-    model = Coins
+    model = Coin
     country = ""
     
     def get_context_data(self, **kwargs):

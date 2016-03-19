@@ -5,7 +5,7 @@ from django.conf.urls import include, url
 
 from .views import IndexView, CatalogCoinsTableView, CreateCatalogCoinsView, UpdateUserView,\
     CatalogCoinsDetailView, CatalogCoinsCountryView, CoinsCountryView, CreateCoinsView, CoinsDetailView
-from .vk import vkontakte_view
+# from .vk import vkontakte_view
 
 
 urlpatterns = [
@@ -32,6 +32,6 @@ urlpatterns = [
     url(r'^coin_detail/(?P<slug>\d+)/$', CoinsDetailView.as_view(), 
         name='detail_coins'),
     
-    url(r'^vk/', vkontakte_view, name='vk_app'),
-    url(r'', include('social_auth.urls')),
+    # (r'^vk/', vkontakte_view, name='vk_app'),
+    # url(r'', include('social_auth.urls')),
 ]

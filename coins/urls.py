@@ -34,4 +34,5 @@ urlpatterns = [
     
     # (r'^vk/', vkontakte_view, name='vk_app'),
     # url(r'', include('social_auth.urls')),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

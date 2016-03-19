@@ -9,6 +9,12 @@
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 
+import sys
+sys.path.append('/home/projects/django/coin_catalog')
+
+import os
+os.environ['DJANGO_SETTINGS_MODULE'] = 'mysite.settings'
+
 BOT_NAME = 'mybot'
 
 SPIDER_MODULES = ['mybot.spiders']

@@ -9,8 +9,11 @@ from django.views.generic import DetailView, ListView
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView, DeleteView, FormView, UpdateView
 
+from rest_framework import viewsets
+
 from .forms import CatalogCoinsForm, CoinsForm, UserProfileForm
 from .models import *
+from .serializers import CatalogCoinSerializer
 
 
 # Create your views here.
@@ -142,3 +145,9 @@ class CoinsCountryView(CatalogCoinsCountryView):
     
     def get_queryset(self):
         return self.model.objects.filter(country__exact=self.get_country)
+
+
+class CatalogCoinsViewSet(viewsets.ModelViewSet):
+
+    queryset = CatalogCoin.objects.all()
+    serializer_class = CatalogCoinSerializer

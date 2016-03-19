@@ -56,6 +56,8 @@ INSTALLED_APPS = (
     'captcha',
     # https://github.com/pmclanahan/django-celery-email
     'djcelery_email',
+    # http://www.django-rest-framework.org/#installation
+    'rest_framework',
     'coins',
 )
 
@@ -172,4 +174,10 @@ VKONTAKTE_OAUTH2_EXTRA_SCOPE = ''
 
 EMAIL_BACKEND = 'djcelery_email.backends.CeleryEmailBackend'
 
-
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}

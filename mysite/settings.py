@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
     'debug_toolbar',
     # http://django-postman.readthedocs.org/en/latest/index.html
     'postman',
@@ -58,7 +59,9 @@ INSTALLED_APPS = (
     'djcelery_email',
     # http://www.django-rest-framework.org/#installation
     'rest_framework',
-    'accounts'
+
+    'accounts',
+    'core',
     'coins',
 )
 

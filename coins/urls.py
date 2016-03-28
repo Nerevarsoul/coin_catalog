@@ -5,7 +5,7 @@ from django.conf.urls import include, url
 
 from rest_framework import routers
 
-from .views import IndexView, CatalogCoinsTableView, CreateCatalogCoinsView, UpdateUserView,\
+from .views import IndexView, CatalogCoinsTableView, CreateCatalogCoinsView, UpdateUserView, UserListView, \
     CatalogCoinsDetailView, CatalogCoinsCountryView, CoinsCountryView, CreateCoinsView, CoinsDetailView, CatalogCoinsViewSet
 # from .vk import vkontakte_view
 
@@ -26,7 +26,8 @@ urlpatterns = [
     url(r'^catalog_coin_detail/(?P<slug>\d+)/$', CatalogCoinsDetailView.as_view(), 
         name='catalog_detail_coins'),
     
-    # user    
+    # user 
+    url(r'^users_list/$', UserListView.as_view(), name='users_list'),  
     url(r'^update_profile/$', UpdateUserView.as_view(), name='update_profile'),
     
     # coins

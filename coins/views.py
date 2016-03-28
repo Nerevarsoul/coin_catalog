@@ -69,6 +69,8 @@ class CountryCreateView(CreateView):
 class UserListView(ListView):
     
     model = UserProfile
+    template_name = "users.html"
+    context_object_name = "profiles"
     
     def get_queryser(self):
         return self.model.objects.all().select_related('user', 'address')

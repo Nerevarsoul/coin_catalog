@@ -1,0 +1,18 @@
+1. CSS
+	1.1 Sidebar menu
+	1.2 Main page
+	1.3 Catologue table
+2. Autorization
+	2.1 Login page
+	2.2 Registration page
+	2.3 Email with autorization code
+	2.4 Email with change password code
+	2.5 VK autorization
+	2.6 Facebook autorization
+3. Profile
+    3.1 Users page
+    3.2 User page
+    3.3 Profile page
+4. Catalogue coins
+    4.1 Coins page
+    4.2 Adding coin in list

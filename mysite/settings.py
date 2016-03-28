@@ -58,6 +58,7 @@ INSTALLED_APPS = (
     'djcelery_email',
     # http://www.django-rest-framework.org/#installation
     'rest_framework',
+    'accounts'
     'coins',
 )
 

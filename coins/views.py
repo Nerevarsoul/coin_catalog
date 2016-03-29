@@ -11,7 +11,7 @@ from django.views.generic.edit import CreateView, DeleteView, FormView, UpdateVi
 
 from rest_framework import viewsets
 
-from .forms import CatalogCoinsForm, CoinsForm, UserProfileForm
+from .forms import CatalogCoinsForm, CoinsForm
 from .models import *
 from .serializers import CatalogCoinSerializer
 
@@ -63,30 +63,6 @@ class CountryCreateView(CreateView):
     
     model = Country
     success_url = reverse_lazy("country_list")
-
-
-# users view
-class UserListView(ListView):
-    
-    model = UserProfile
-    template_name = "users.html"
-    context_object_name = "profiles"
-    
-    def get_queryser(self):
-        return self.model.objects.all().select_related('user', 'address')
-
-
-class UserDetailView(DetailView):
-    
-    model = UserProfile
-
-
-class UpdateUserView(UpdateView):
-
-    model = UserProfile
-    form_class = UserProfileForm
-    success_url = reverse_lazy("index")
-    template_name = "create_coin.html"
 
 
 # coins view

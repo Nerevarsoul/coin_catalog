@@ -1,9 +1,11 @@
 # -*- coding: UTF-8  -*-
 from __future__ import unicode_literals
 
-from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.db import models
+
+from accounts.models import UserProfile
+from core.models import Country, Image
 
 
 COUNTRY_STATUS = (
@@ -20,7 +22,7 @@ class Image(models.Model):
 
 class CatalogCoin(models.Model):
     
-    country = models.ForeignKey("Country")
+    country = models.ForeignKey(Country)
     currency = models.CharField(max_length=50)
     face_value = models.IntegerField()
     metal = models.CharField(max_length=50, blank=True, null=True)
@@ -45,11 +47,11 @@ class Coin(models.Model):
     mint = models.CharField(max_length=50, blank=True, null=True)
     catalog_coin = models.ForeignKey(CatalogCoin)
     image = models.ManyToManyField(Image)
-    available = models.ForeignKey(User, blank=True, null=True,
+    available = models.ForeignKey(UserProfile, blank=True, null=True,
         related_name="user_have")
-    needful = models.ForeignKey(User, blank=True, null=True,
+    needful = models.ForeignKey(UserProfile, blank=True, null=True,
         related_name="user_wish")
-    changable = models.ForeignKey(User, blank=True, null=True,
+    changable = models.ForeignKey(UserProfile, blank=True, null=True,
         related_name="user_change")
 
     def __unicode__(self):
@@ -70,7 +72,7 @@ class Country(models.Model):
 
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, related_name="profile")
+    user = models.OneToOneField(UserProfile, related_name="profile")
 
     avatar = models.ImageField(upload_to='profile_images', blank=True, null=True)
     address = models.ForeignKey("Address", blank=True, null=True)

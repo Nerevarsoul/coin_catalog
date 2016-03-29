@@ -18,7 +18,7 @@ import os
 
 # import djcelery
 
-from .mysettings import *
+# from .mysettings import *
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -138,8 +138,8 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # https://github.com/omab/django-social-auth/blob/master/doc/backends/vk.rst
 
-VKONTAKTE_APP_ID = VK_APP_ID
-VKONTAKTE_APP_SECRET = VK_API_SECRET
+# VKONTAKTE_APP_ID = VK_APP_ID
+# VKONTAKTE_APP_SECRET = VK_API_SECRET
 
 AUTHENTICATION_BACKENDS = (
     # 'social_auth.backends.contrib.vk.VKOAuth2Backend',

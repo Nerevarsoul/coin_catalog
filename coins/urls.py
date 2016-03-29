@@ -5,7 +5,7 @@ from django.conf.urls import include, url
 
 from rest_framework import routers
 
-from .views import IndexView, CatalogCoinsTableView, CreateCatalogCoinsView, UpdateUserView, UserListView, \
+from .views import IndexView, CatalogCoinsTableView, CreateCatalogCoinsView, \
     CatalogCoinsDetailView, CatalogCoinsCountryView, CoinsCountryView, CreateCoinsView, CoinsDetailView, CatalogCoinsViewSet
 # from .vk import vkontakte_view
 
@@ -26,10 +26,6 @@ urlpatterns = [
     url(r'^catalog_coin_detail/(?P<slug>\d+)/$', CatalogCoinsDetailView.as_view(), 
         name='catalog_detail_coins'),
     
-    # user 
-    url(r'^users_list/$', UserListView.as_view(), name='users_list'),  
-    url(r'^update_profile/$', UpdateUserView.as_view(), name='update_profile'),
-    
     # coins
     # url(r'^coins/$', CoinsTableView.as_view(), name='catalogue'),
     url(r'^coins/(?P<country>\d+)/$', CoinsCountryView.as_view(),
@@ -39,8 +35,6 @@ urlpatterns = [
     url(r'^coin_detail/(?P<slug>\d+)/$', CoinsDetailView.as_view(), 
         name='detail_coins'),
     
-    # (r'^vk/', vkontakte_view, name='vk_app'),
-    # url(r'', include('social_auth.urls')),
     url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

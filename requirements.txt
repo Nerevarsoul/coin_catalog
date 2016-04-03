@@ -1,4 +1,4 @@
-Django==1.9.4
+Django==1.9.5
 Markdown==2.6.5
 Pillow==3.0.0
 Scrapy==1.0.5

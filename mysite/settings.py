@@ -20,6 +20,7 @@ import os
 
 # from .mysettings import *
 
+AUTH_USER_MODEL = 'accounts.User'
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 

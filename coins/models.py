@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.core.urlresolvers import reverse
 from django.db import models
 
-from accounts.models import UserProfile
+from accounts.models import User
 from core.models import Country, Image
 
 
@@ -15,10 +15,6 @@ COUNTRY_STATUS = (
 
 
 # Create your models here.
-class Image(models.Model):
-
-    image = models.ImageField(upload_to='coin_images',)
-
 
 class CatalogCoin(models.Model):
     
@@ -47,32 +43,19 @@ class Coin(models.Model):
     mint = models.CharField(max_length=50, blank=True, null=True)
     catalog_coin = models.ForeignKey(CatalogCoin)
     image = models.ManyToManyField(Image)
-    available = models.ForeignKey(UserProfile, blank=True, null=True,
-        related_name="user_have")
-    needful = models.ForeignKey(UserProfile, blank=True, null=True,
-        related_name="user_wish")
-    changable = models.ForeignKey(UserProfile, blank=True, null=True,
-        related_name="user_change")
+    available = models.ForeignKey(User, blank=True, null=True,
+                                  related_name="user_have")
+    needful = models.ForeignKey(User, blank=True, null=True,
+                                related_name="user_wish")
+    changable = models.ForeignKey(User, blank=True, null=True,
+                                  related_name="user_change")
 
     def __unicode__(self):
         return "{} {}".format(self.catalog_coin, self.year)
 
 
-class Country(models.Model):
-
-    name = models.CharField(max_length=50)
-    status = models.IntegerField(choices=COUNTRY_STATUS)
-    slug = models.SlugField(max_length=55)
-
-    def __unicode__(self):
-        return self.name
-        
-    def get_absolute_url(self):
-        return reverse('country_view', args=[self.slug])
-
-
 class UserProfile(models.Model):
-    user = models.OneToOneField(UserProfile, related_name="profile")
+    user = models.OneToOneField(User, related_name="profile")
 
     avatar = models.ImageField(upload_to='profile_images', blank=True, null=True)
     address = models.ForeignKey("Address", blank=True, null=True)

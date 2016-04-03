@@ -1,20 +1,19 @@
 from __future__ import unicode_literals
 
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 from core.models import Country
 
 
 # Create your models here.
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, related_name="profile")
+class User(AbstractUser):
 
     avatar = models.ImageField(upload_to='profile_images', blank=True, null=True)
     address = models.ForeignKey("Address", blank=True, null=True)
 
     def __unicode__(self):
-        return self.user.username
+        return self.username
 
     
 class Address(models.Model):

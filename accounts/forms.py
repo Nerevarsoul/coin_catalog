@@ -3,16 +3,18 @@ from __future__ import unicode_literals
 
 from django import forms
 
+from captcha.fields import CaptchaField
+
 from core.forms import CrispyMixin
 
-from .models import UserProfile
+from .models import User
 
 
-class UserProfileForm(CrispyMixin, forms.ModelForm):
+class UserForm(CrispyMixin, forms.ModelForm):
 
     button_name = 'Confirm'
     captcha = CaptchaField()
 
     class Meta:
-        model = UserProfile
+        model = User
         exclude = ('user', )

@@ -4,7 +4,6 @@ from __future__ import unicode_literals
 from django import forms
 
 from ajax_select.fields import AutoCompleteSelectField, AutoCompleteSelectMultipleField
-from captcha.fields import CaptchaField
 
 from core.forms import CrispyMixin
 

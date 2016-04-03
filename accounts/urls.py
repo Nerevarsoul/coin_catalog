@@ -7,10 +7,6 @@ from .views import UpdateUserView, UserListView
 # from .vk import vkontakte_view
 
 
-router = routers.DefaultRouter()
-router.register(r'catalog_coins', CatalogCoinsViewSet)
-
-
 urlpatterns = [
     # user 
     url(r'^users_list/$', UserListView.as_view(), name='users_list'),  

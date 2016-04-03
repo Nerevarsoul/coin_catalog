@@ -1,0 +1,24 @@
+{
+  "name": "coin_catalog",
+  "version": "1.0.0",
+  "description": "Catalogue for the account and the exchange of coins.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nerevarsoul/coin_catalog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nerevarsoul/coin_catalog/issues"
+  },
+  "homepage": "https://github.com/Nerevarsoul/coin_catalog#readme",
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "jquery": "^2.2.2",
+    "metismenu": "^2.5.0"
+  }
+}

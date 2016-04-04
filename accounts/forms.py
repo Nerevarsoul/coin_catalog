@@ -10,6 +10,16 @@ from core.forms import CrispyMixin
 from .models import User
 
 
+class LoginForm(CrispyMixin, forms.ModelForm):
+
+    button_name = 'Confirm'
+    captcha = CaptchaField()
+
+    class Meta:
+        model = User
+        fields = ("username", "password")
+
+
 class UserForm(CrispyMixin, forms.ModelForm):
 
     button_name = 'Confirm'
@@ -17,4 +27,3 @@ class UserForm(CrispyMixin, forms.ModelForm):
 
     class Meta:
         model = User
-        exclude = ('user', )

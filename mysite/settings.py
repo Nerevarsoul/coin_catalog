@@ -58,6 +58,8 @@ INSTALLED_APPS = (
     'djcelery_email',
     # http://www.django-rest-framework.org/#installation
     'rest_framework',
+    # http://django-angular.readthedocs.io/en/latest/installation.html
+    'djng',
 
     'accounts',
     'core',

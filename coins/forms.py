@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django import forms
 
 from ajax_select.fields import AutoCompleteSelectField, AutoCompleteSelectMultipleField
+from djng.forms import NgModelFormMixin, NgForm
 
 from core.forms import CrispyMixin
 

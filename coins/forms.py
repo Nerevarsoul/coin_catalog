@@ -4,14 +4,14 @@ from __future__ import unicode_literals
 from django import forms
 
 from ajax_select.fields import AutoCompleteSelectField, AutoCompleteSelectMultipleField
-from djng.forms import NgModelFormMixin, NgForm
+from djng.forms import NgModelFormMixin, NgModelForm
 
 from core.forms import CrispyMixin
 
 from .models import Coin, CatalogCoin
 
 
-class CatalogCoinsForm(CrispyMixin, forms.ModelForm):
+class CatalogCoinsForm(NgModelFormMixin, NgModelForm):
 
     button_name = 'Create'
 

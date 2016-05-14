@@ -4,11 +4,8 @@
 
 {% block content %}
     <div>
-        <form action="/create_coins/" method="post">
+        <form ng-controller="MyFormCtrl" name="contact_form">
             {% crispy form %}
-            {% if errors %}
-                <label class="error">{{ errors }} </label>
-            {% endif %}
         </form>
     </div>
 {% endblock content %}

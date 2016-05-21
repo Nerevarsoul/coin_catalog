@@ -9,6 +9,12 @@ class CrispyMixin(object):
 
     def __init__(self, *args, **kwargs):
         super(CrispyMixin, self).__init__(*args, **kwargs)
+
+        for field in self.fields:
+            self.fields[field].widget.attrs.update({
+                'ng-model': field,
+            })
+
         self.helper = FormHelper(self)
         self.helper.help_text_inline = True
         self.helper.html5_required = True
@@ -20,3 +26,4 @@ class CrispyMixin(object):
         button.input_type = 'submit'
         button.field_classes = 'btn btn-success form-control'
         self.helper.add_input(button)
+

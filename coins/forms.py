@@ -6,12 +6,11 @@ from django import forms
 from ajax_select.fields import AutoCompleteSelectField, AutoCompleteSelectMultipleField
 from djng.forms import NgModelFormMixin, NgModelForm
 
+from .models import Coin, CatalogCoin
 from core.forms import CrispyMixin
 
-from .models import Coin, CatalogCoin
 
-
-class CatalogCoinsForm(NgModelFormMixin, NgModelForm):
+class CatalogCoinsForm(CrispyMixin, forms.ModelForm):
 
     button_name = 'Create'
 
@@ -21,7 +20,7 @@ class CatalogCoinsForm(NgModelFormMixin, NgModelForm):
                   "ruler", "number", "circulation", "description") 
 
 
-class CoinsForm(CrispyMixin, forms.ModelForm):
+class CoinsForm(NgModelFormMixin, NgModelForm):
 
     button_name = 'Create'
     

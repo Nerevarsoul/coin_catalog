@@ -44,6 +44,8 @@ class CreateCatalogCoinsView(CreateView):
     form_class = CatalogCoinsForm
     success_url = reverse_lazy("coins")
     template_name = "create_coin.html"
+
+
     
     
 class CatalogCoinsCountryView(CatalogCoinsTableView):

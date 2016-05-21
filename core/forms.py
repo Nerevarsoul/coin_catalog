@@ -9,4 +9,5 @@ class AngularMixin(object):
         for field in self.fields:
             self.fields[field].widget.attrs.update({
                 'ng-model': field,
+                'class': 'form-control',
             })

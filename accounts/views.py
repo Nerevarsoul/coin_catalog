@@ -1,6 +1,4 @@
 # -*- coding: UTF-8  -*-
-from __future__ import unicode_literals
-
 from django.contrib import auth
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import get_object_or_404, redirect, render_to_response
@@ -29,7 +27,7 @@ def register(request):
             registered = True
             return redirect('index')
         else:
-            print user_form.errors
+            print(user_form.errors)
     else:
         user_form = UserForm()
     return render_to_response('accounts/register.html',

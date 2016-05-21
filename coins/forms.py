@@ -1,16 +1,11 @@
 # -*- coding: UTF-8  -*-
-from __future__ import unicode_literals
-
 from django import forms
 
-from ajax_select.fields import AutoCompleteSelectField, AutoCompleteSelectMultipleField
-from djng.forms import NgModelFormMixin, NgModelForm
-
 from .models import Coin, CatalogCoin
-from core.forms import CrispyMixin
+from core.forms import AngularMixin
 
 
-class CatalogCoinsForm(CrispyMixin, forms.ModelForm):
+class CatalogCoinsForm(AngularMixin, forms.ModelForm):
 
     button_name = 'Create'
 
@@ -20,14 +15,14 @@ class CatalogCoinsForm(CrispyMixin, forms.ModelForm):
                   "ruler", "number", "circulation", "description") 
 
 
-class CoinsForm(NgModelFormMixin, NgModelForm):
+class CoinsForm(AngularMixin, forms.ModelForm):
 
     button_name = 'Create'
     
-    catalog_coin = AutoCompleteSelectField('catalog_coin',
-                                           label="Монета",
-                                           required=False,
-                                           help_text=None)
+    # catalog_coin = AutoCompleteSelectField('catalog_coin',
+    #                                        label="Монета",
+    #                                        required=False,
+    #                                        help_text=None)
 
     class Meta:
         model = Coin

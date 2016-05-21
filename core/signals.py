@@ -1,6 +1,4 @@
 # -*- coding: UTF-8  -*-
-from __future__ import unicode_literals
-
 from unidecode import unidecode
 
 from django.db.models.signals import pre_save

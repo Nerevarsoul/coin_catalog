@@ -1,6 +1,4 @@
 # -*- coding: UTF-8  -*-
-from __future__ import unicode_literals
-
 """
 Django settings for mysite project.
 
@@ -42,20 +40,13 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     
     'debug_toolbar',
-    # http://django-postman.readthedocs.org/en/latest/index.html
-    'postman',
-    # http://django-crispy-forms.readthedocs.org/en/latest/index.html
-    'crispy_forms',
     # https://github.com/omab/django-social-auth
     # 'social_auth',
     # http://django-simple-captcha.readthedocs.org/en/latest/usage.html
     'captcha',
-    # https://github.com/pmclanahan/django-celery-email
-    'djcelery_email',
     # http://www.django-rest-framework.org/#installation
     'rest_framework',
     # http://django-angular.readthedocs.io/en/latest/installation.html
-    'djng',
 
     'accounts',
     'core',
@@ -175,7 +166,7 @@ VKONTAKTE_OAUTH2_EXTRA_SCOPE = ''
 # django-celery-email
 # djcelery.setup_loader()
 
-EMAIL_BACKEND = 'djcelery_email.backends.CeleryEmailBackend'
+# EMAIL_BACKEND = 'djcelery_email.backends.CeleryEmailBackend'
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,

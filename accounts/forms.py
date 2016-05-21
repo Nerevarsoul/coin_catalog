@@ -5,12 +5,10 @@ from django import forms
 
 from captcha.fields import CaptchaField
 
-from core.forms import CrispyMixin
-
 from .models import User
 
 
-class LoginForm(CrispyMixin, forms.ModelForm):
+class LoginForm(forms.ModelForm):
 
     button_name = 'Confirm'
     captcha = CaptchaField()
@@ -20,7 +18,7 @@ class LoginForm(CrispyMixin, forms.ModelForm):
         fields = ("username", "password")
 
 
-class UserForm(CrispyMixin, forms.ModelForm):
+class UserForm(forms.ModelForm):
 
     button_name = 'Confirm'
     captcha = CaptchaField()

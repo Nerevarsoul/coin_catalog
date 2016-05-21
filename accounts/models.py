@@ -14,7 +14,7 @@ class Address(models.Model):
     building = models.IntegerField(blank=True, null=True)
     index = models.IntegerField(blank=True, null=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return "{}, {}".format(self.country, self.city)
 
 
@@ -23,7 +23,7 @@ class User(AbstractUser):
     avatar = models.ForeignKey(Image, blank=True, null=True)
     address = models.ForeignKey(Address, blank=True, null=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.username
 
     

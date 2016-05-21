@@ -27,7 +27,7 @@ class CatalogCoin(models.Model):
     catalog_image = models.ManyToManyField(Image)
     slug = models.SlugField(max_length=150)
     
-    def __unicode__(self):
+    def __str__(self):
         return "{} {}".format(self.face_value, self.currency)
         
     def get_absolute_url(self):
@@ -48,7 +48,7 @@ class Coin(models.Model):
     changable = models.ForeignKey(User, blank=True, null=True,
                                   related_name="user_change")
 
-    def __unicode__(self):
+    def __str__(self):
         return "{} {}".format(self.catalog_coin, self.year)
 
 
@@ -58,18 +58,5 @@ class UserProfile(models.Model):
     avatar = models.ImageField(upload_to='profile_images', blank=True, null=True)
     address = models.ForeignKey("Address", blank=True, null=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.user.username
-
-    
-class Address(models.Model):
-
-    country = models.ForeignKey(Country, blank=True, null=True)
-    city = models.CharField(max_length=50, blank=True, null=True)
-    street = models.CharField(max_length=50, blank=True, null=True)
-    building = models.IntegerField(blank=True, null=True)
-    index = models.IntegerField(blank=True, null=True)
-
-    def __unicode__(self):
-        return "{}, {}".format(self.country, self.city)
-

@@ -21,7 +21,7 @@ class Country(models.Model):
     status = models.IntegerField(choices=COUNTRY_STATUS)
     slug = models.SlugField(max_length=55)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
         
     def get_absolute_url(self):

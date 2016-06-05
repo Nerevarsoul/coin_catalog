@@ -50,13 +50,3 @@ class Coin(models.Model):
 
     def __str__(self):
         return "{} {}".format(self.catalog_coin, self.year)
-
-
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, related_name="profile")
-
-    avatar = models.ImageField(upload_to='profile_images', blank=True, null=True)
-    address = models.ForeignKey("Address", blank=True, null=True)
-
-    def __str__(self):
-        return self.user.username

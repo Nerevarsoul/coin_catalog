@@ -3,6 +3,7 @@
 db.sqlite3
 .idea/
 node_modules/
+prod_static/
 
 static/css/bootstrap-theme.min.css
 static/css/bootstrap.min.css

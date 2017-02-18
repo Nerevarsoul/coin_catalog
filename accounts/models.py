@@ -4,7 +4,6 @@ from django.db import models
 from core.models import Country, Image
 
 
-# Create your models here.
 class Address(models.Model):
 
     country = models.ForeignKey(Country, blank=True, null=True,

@@ -12,10 +12,11 @@ COUNTRY_STATUS = (
 )
 
 
-# Create your models here.
 class AppQuerySet(models.QuerySet):
+
     def delete(self, **kwargs):
         return self.update(is_void=True)
+
 
 class AppManager(models.Manager):
     queryset_class = AppQuerySet

@@ -6,14 +6,6 @@ from accounts.models import User
 from core.models import Country, Image
 
 
-COUNTRY_STATUS = (
-    (1, 'Не существующая'),
-    (2, 'Существующая'),
-)
-
-
-# Create your models here.
-
 class CatalogCoin(models.Model):
     
     country = models.ForeignKey(Country)

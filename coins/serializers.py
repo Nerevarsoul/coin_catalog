@@ -2,9 +2,22 @@ from rest_framework import serializers
 
 from .models import CatalogCoin
 
-# Serializers define the API representation.
-class CatalogCoinSerializer(serializers.HyperlinkedModelSerializer):
 
+class CatalogCoinPreviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = CatalogCoin
-        fields = ('currency', 'face_value')
+        fields = [
+            'id',
+            'face_value',
+            'currency',
+            'slug',
+        ]
+
+
+class CatalogCoinDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CatalogCoin
+        fields = [
+            'face_value',
+            'currency',
+]

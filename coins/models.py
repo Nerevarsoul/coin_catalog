@@ -1,6 +1,7 @@
 # -*- coding: UTF-8  -*-
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.utils import timezone
 
 from accounts.models import User
 from core.models import Country, Image
@@ -18,9 +19,13 @@ class CatalogCoin(models.Model):
     description = models.TextField(blank=True, null=True)
     catalog_image = models.ManyToManyField(Image)
     slug = models.SlugField(max_length=150)
+    created_at = models.DateTimeField(default=timezone.now())
     
     def __str__(self):
         return "{} {}".format(self.face_value, self.currency)
+
+    def __repr__(self):
+        return "CatalogCoin({})".format(self.id)
         
     def get_absolute_url(self):
         return reverse('catalog_detail_coins', args=[self.slug])
@@ -39,6 +44,10 @@ class Coin(models.Model):
                                 related_name="user_wish")
     changable = models.ForeignKey(User, blank=True, null=True,
                                   related_name="user_change")
+    created_at = models.DateTimeField(default=timezone.now())
 
     def __str__(self):
         return "{} {}".format(self.catalog_coin, self.year)
+
+    def __repr__(self):
+        return "Coin({})".format(self.id)

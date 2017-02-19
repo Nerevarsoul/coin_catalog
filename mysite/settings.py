@@ -40,17 +40,13 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     
     'debug_toolbar',
-    # https://github.com/omab/django-social-auth
-    # 'social_auth',
-    # http://django-simple-captcha.readthedocs.org/en/latest/usage.html
-    # 'captcha',
     # http://www.django-rest-framework.org/#installation
     'rest_framework',
-    # http://django-angular.readthedocs.io/en/latest/installation.html
 
     'accounts',
     'core',
     'coins',
+    'api_v0',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -126,49 +122,13 @@ STATICFILES_DIRS = (
 
 AUTH_USER_MODEL = 'accounts.User'
 
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
-
-# https://github.com/omab/django-social-auth/blob/master/doc/backends/vk.rst
-
-# VKONTAKTE_APP_ID = VK_APP_ID
-# VKONTAKTE_APP_SECRET = VK_API_SECRET
 
 AUTHENTICATION_BACKENDS = (
-    # 'social_auth.backends.contrib.vk.VKOAuth2Backend',
     'django.contrib.auth.backends.ModelBackend',
 )
 
-# Разрешаем создавать пользователей через social_auth
-SOCIAL_AUTH_CREATE_USERS = True
-
 LOGIN_REDIRECT_URL = '/index/'
 
-VKONTAKTE_APP_AUTH={'key':'iframe_app_secret_key', 'user_mode': 2, 'id':'iframe_app_id'}
-VKONTAKTE_OAUTH2_EXTRA_SCOPE = ''
-
-# Перечислим pipeline, которые последовательно буду обрабатывать респонс 
-# SOCIAL_AUTH_PIPELINE = (
-    # Получает по backend и uid инстансы social_user и user
-    # 'social_auth.backends.pipeline.social.social_auth_user',
-    # Получает по user.email инстанс пользователя и заменяет собой тот, который получили выше.
-    # Кстати, email выдает только Facebook и GitHub, а Vkontakte и Twitter не выдают
-    # 'social_auth.backends.pipeline.associate.associate_by_email',
-    # Пытается собрать правильный username, на основе уже имеющихся данных
-    # 'social_auth.backends.pipeline.user.get_username',
-    # Создает нового пользователя, если такого еще нет
-    # 'social_auth.backends.pipeline.user.create_user',
-    # Пытается связать аккаунты
-    # 'social_auth.backends.pipeline.social.associate_user',
-    # Получает и обновляет social_user.extra_data
-    # 'social_auth.backends.pipeline.social.load_extra_data',
-    # Обновляет инстанс user дополнительными данными с бекенда
-    # 'social_auth.backends.pipeline.user.update_user_details'
-# )
-
-# django-celery-email
-# djcelery.setup_loader()
-
-# EMAIL_BACKEND = 'djcelery_email.backends.CeleryEmailBackend'
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,

@@ -2,7 +2,6 @@
 from django.core.urlresolvers import reverse_lazy
 from django.conf import settings
 from django.shortcuts import render_to_response
-from django.template.context import RequestContext
 from django.views.generic import DetailView, ListView
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView, DeleteView, FormView, UpdateView

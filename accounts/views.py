@@ -10,7 +10,6 @@ from .forms import LoginForm, UserForm
 from .models import *
 
 
-# Create your views here.
 # users view
 def register(request):
     context = RequestContext(request)

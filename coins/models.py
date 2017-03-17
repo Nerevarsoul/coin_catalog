@@ -1,13 +1,14 @@
-# -*- coding: UTF-8  -*-
 from django.core.urlresolvers import reverse
 from django.db import models
-from django.utils import timezone
+
+from django_fsm import FSMField, transition
 
 from accounts.models import User
+from core.mixins import CreateUpdateMixin
 from core.models import Country, Image
 
 
-class CatalogCoin(models.Model):
+class CatalogCoin(CreateUpdateMixin, models.Model):
     
     country = models.ForeignKey(Country)
     currency = models.CharField(max_length=50)
@@ -19,7 +20,6 @@ class CatalogCoin(models.Model):
     description = models.TextField(blank=True, null=True)
     catalog_image = models.ManyToManyField(Image)
     slug = models.SlugField(max_length=150)
-    created_at = models.DateTimeField(default=timezone.now())
     
     def __str__(self):
         return "{} {}".format(self.face_value, self.currency)
@@ -31,7 +31,7 @@ class CatalogCoin(models.Model):
         return reverse('catalog_detail_coins', args=[self.slug])
     
     
-class Coin(models.Model):
+class Coin(CreateUpdateMixin, models.Model):
 
     condition = models.CharField(max_length=50, blank=True, null=True)
     year = models.IntegerField()
@@ -44,10 +44,24 @@ class Coin(models.Model):
                                 related_name="user_wish")
     changable = models.ForeignKey(User, blank=True, null=True,
                                   related_name="user_change")
-    created_at = models.DateTimeField(default=timezone.now())
 
     def __str__(self):
         return "{} {}".format(self.catalog_coin, self.year)
 
     def __repr__(self):
         return "Coin({})".format(self.id)
+
+
+class Trade(CreateUpdateMixin, models.Model):
+
+    creator = models.ForeignKey(User)
+    partner = models.ForeignKey(User)
+    creator_offer = models.ManyToManyField(Coin)
+    partner_offer = models.ManyToManyField(Coin)
+    state = FSMField(default='new')
+
+    def __str__(self):
+        return "{} {}".format(self.catalog_coin, self.year)
+
+    def __repr__(self):
+        return "Trade({})".format(self.id)

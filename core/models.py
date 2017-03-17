@@ -1,6 +1,3 @@
-# -*- coding: UTF-8  -*-
-from datetime import datetime
-
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import signals

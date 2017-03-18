@@ -20,121 +20,15 @@
 
         <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
 
-        {% block css %} {% endblock %}
-
-        <link rel="stylesheet" type="text/css" href="{% static 'css/metisMenu.min.css' %}">
-
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
-        
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
-
-        <script type="text/javascript" src="{% static 'js/metisMenu.min.js' %}/"></script>
-
-        <script type="text/javascript" src="{% static 'js/angular.min.js' %}/"></script>
-
-        <script>
-            $(document).ready(function(){
-                $('#side-menu').metisMenu();
-            });
-        </script>
+        {% block css %}{% endblock %}
 
     </head>
 
     <body>
 
-     <!--<nav class="navbar-default navbar-static-side" role="navigation">
-            <div class="sidebar-collapse">
-                <ul class="nav metismenu" id="side-menu">
-                    <li class="nav-header">
-                        <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle" src="img/profile_small.jpg" />
-                             </span>
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">David Williams</strong>
-                             </span> <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> </span> </a>
-                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a href="profile.html">Profile</a></li>
-                                <li><a href="contacts.html">Contacts</a></li>
-                                <li><a href="mailbox.html">Mailbox</a></li>
-                                <li class="divider"></li>
-                                <li><a href="login.html">Logout</a></li>
-                            </ul>
-                        </div>
-                        <div class="logo-element">
-                            IN+
-                        </div>
-                    </li>
-                    <li>
-                        <a href="layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">Layouts</span></a>
-                    </li>
-
-                    <li>
-                        <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">Mailbox </span><span class="label label-warning pull-right">16/24</span></a>
-                        <ul class="nav nav-second-level collapse">
-                            <li><a href="mailbox.html">Inbox</a></li>
-                            <li><a href="mail_detail.html">Email view</a></li>
-                            <li><a href="mail_compose.html">Compose email</a></li>
-                            <li><a href="email_template.html">Email templates</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="metrics.html"><i class="fa fa-pie-chart"></i> <span class="nav-label">Metrics</span>  </a>
-                    </li>
-
-                    <li>
-                        <a href="grid_options.html"><i class="fa fa-laptop"></i> <span class="nav-label">Grid options</span></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-table"></i> <span class="nav-label">Tables</span><span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level collapse">
-                            <li><a href="table_basic.html">Static Tables</a></li>
-                            <li><a href="table_data_tables.html">Data Tables</a></li>
-                            <li><a href="table_foo_table.html">Foo Tables</a></li>
-                            <li><a href="jq_grid.html">jqGrid</a></li>
-                        </ul>
-                    </li>
-                </ul>
-
-            </div>
-        </nav> -->
-
-        <div class="navbar navbar-inverse navbar-static-top">
-            <div class="container">
-                <div class="collapse navbar-collapse" id="responsive-menu">
-                    <ul class="nav navbar-nav">
-                        <li><a href="{% url 'index' %}">Main</a></li>
-                        <li><a href="">Users</a></li>
-                        <li><a href="{% url 'catalogue' %}">Catalogue</a></li>
-                        <li class="dropdown">
-                            <a class="navbar-brand dropdown-toggle" data-toggle="dropdown" href = "#">Trades <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">List Trades</a></li>
-                                {% if user.is_authenticated %}
-                                    <li><a href="#">Add Trade</a></li>
-                                    <li><a href="#">My Trade</a></li>
-                                {% endif %}
-                            </ul>
-                        </li>
-                        {% if user.is_authenticated %}
-                            <li><a href="#">Logout</a></li>
-                            <li><a href="#">{{ user.username}}</a></li>
-                        {% else %}
-                            <li><a href="#">Sign in</a></li>
-                            <li><a href="#">Sign up</a></li>
-                        {% endif %}
-                    </ul>  
-                </div>
-            </div>
-        </div>
-
-
         <div class="content">
             {% block content %} {% endblock content %}
         </div>
 
-    
-        
     </body>
 </html>

@@ -17,9 +17,6 @@
   },
   "homepage": "https://github.com/Nerevarsoul/coin_catalog#readme",
   "dependencies": {
-    "angular": "1.5.5",
     "bootstrap": "^3.3.6",
-    "jquery": "^2.2.2",
-    "metismenu": "^2.5.0"
   }
 }

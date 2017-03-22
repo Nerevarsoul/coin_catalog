@@ -54,10 +54,10 @@ class Coin(CreateUpdateMixin, models.Model):
 
 class Trade(CreateUpdateMixin, models.Model):
 
-    creator = models.ForeignKey(User)
-    partner = models.ForeignKey(User)
-    creator_offer = models.ManyToManyField(Coin)
-    partner_offer = models.ManyToManyField(Coin)
+    # creator = models.ForeignKey(User)
+    # partner = models.ForeignKey(User)
+    # creator_offer = models.ManyToManyField(Coin)
+    # partner_offer = models.ManyToManyField(Coin)
     state = FSMField(default='new')
 
     def __str__(self):

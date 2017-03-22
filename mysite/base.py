@@ -29,12 +29,13 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
-    'debug_toolbar',
+
     # http://django-simple-captcha.readthedocs.org/en/latest/usage.html
-    'captcha',
+    # 'captcha',
     # http://www.django-rest-framework.org/#installation
     'rest_framework',
+    # https://github.com/owais/django-webpack-loader
+    'webpack_loader',
 
     'accounts',
     'core',
@@ -66,7 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.core.context_processors.request',
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -97,8 +98,15 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "prod_static/")
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static/'),
+    os.path.join(BASE_DIR, 'assets'),
 )
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'bundles/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+    }
+}
 
 AUTH_USER_MODEL = 'accounts.User'
 

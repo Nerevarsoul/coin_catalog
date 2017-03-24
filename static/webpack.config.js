@@ -13,20 +13,14 @@ module.exports = {
 
     output: {
         //where you want your compiled bundle to be stored
-        path: path.resolve('./assets/bundles/'),
+        path: path.resolve('.'),
         //naming convention webpack should use for your files
-        filename: '[name]-[hash].js',
+        filename: 'app.js',
     },
 
     plugins: [
         //tells webpack where to store data about your bundles.
         new BundleTracker({filename: './webpack-stats.json'}),
-//        //makes jQuery available in every module
-//        new webpack.ProvidePlugin({
-//            $: 'jquery',
-//            jQuery: 'jquery',
-//            'window.jQuery': 'jquery'
-//        })
     ],
 
     module: {

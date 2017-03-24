@@ -35,7 +35,7 @@ INSTALLED_APPS = (
     # http://www.django-rest-framework.org/#installation
     'rest_framework',
     # https://github.com/owais/django-webpack-loader
-    'webpack_loader',
+    # 'webpack_loader',
 
     'accounts',
     'core',
@@ -98,15 +98,15 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "prod_static/")
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'assets'),
+    os.path.join(BASE_DIR, 'static'),
 )
 
-WEBPACK_LOADER = {
-    'DEFAULT': {
-        'BUNDLE_DIR_NAME': 'bundles/',
-        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
-    }
-}
+# WEBPACK_LOADER = {
+#     'DEFAULT': {
+#         'BUNDLE_DIR_NAME': 'bundles/',
+#         'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+#     }
+# }
 
 AUTH_USER_MODEL = 'accounts.User'
 

@@ -33,17 +33,27 @@ class CatalogCoin(CreateUpdateMixin, models.Model):
     
 class Coin(CreateUpdateMixin, models.Model):
 
+    COIN_STATUS = (
+        ('in_collection', 'в коллекции'),
+        ('for_exchange', 'на обмен'),
+        ('in_wishlist', 'в списке желаний'),
+    )
+
+    COIN_MINT = (
+        ('unknown', 'неизвестно'),
+    )
+
+    DEFAULT_STATUS = COIN_STATUS[0][0]
+    DEFAULT_MINT = COIN_MINT[0][0]
+
     condition = models.CharField(max_length=50, blank=True, null=True)
-    year = models.IntegerField()
-    mint = models.CharField(max_length=50, blank=True, null=True)
-    catalog_coin = models.ForeignKey(CatalogCoin)
+    year = models.IntegerField(blank=True, null=True)
+    mint = models.CharField(choices=COIN_MINT, default=DEFAULT_MINT, max_length=20)
+    catalog_coin = models.ForeignKey(CatalogCoin, blank=True, null=True)
     image = models.ManyToManyField(Image)
-    available = models.ForeignKey(User, blank=True, null=True,
-                                  related_name="user_have")
-    needful = models.ForeignKey(User, blank=True, null=True,
-                                related_name="user_wish")
-    changable = models.ForeignKey(User, blank=True, null=True,
-                                  related_name="user_change")
+    owner = models.ForeignKey(User, related_name="coins")
+    status = models.CharField(choices=COIN_STATUS, default=DEFAULT_STATUS, max_length=20)
+    count = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return "{} {}".format(self.catalog_coin, self.year)

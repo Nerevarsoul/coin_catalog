@@ -45,6 +45,9 @@ module.exports = {
         //tells webpack where to look for modules
         modules: ['node_modules'],
         //extensions that should be used to resolve modules
+        alias: {
+          Coin: './assets/js/components/Coin.js',
+        },
         extensions: ['.js', '.jsx']
     }
 }

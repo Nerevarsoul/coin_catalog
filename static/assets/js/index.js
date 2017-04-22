@@ -2,7 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 
-var Coin = require('components/Coin');
+var Coin = require('Coin');
 
 var coins = [
     {

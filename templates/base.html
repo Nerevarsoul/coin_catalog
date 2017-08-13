@@ -9,26 +9,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Coins</title>
 
-
-        <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
-
-        <!-- Optional theme -->
-        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-theme.min.css'%}">
-        
-        <!-- Bootstrap -->
-        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
-
-        <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
-
-        {% block css %}{% endblock %}
-
     </head>
 
     <body>
-
-        <div class="content">
-            {% block content %} {% endblock content %}
-        </div>
-
+        <div id="container"></div>
+        <script type="text/javascript" src={% static "app.js" %}></script>
     </body>
 </html>

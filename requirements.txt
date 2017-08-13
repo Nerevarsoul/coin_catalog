@@ -2,7 +2,10 @@ Django==1.10.6
 django-debug-toolbar==1.7
 djangorestframework==3.6.2
 django-fsm==2.5.0
+django_webpack_loader==0.4.1
 
 Pillow==4.0.0
+
+Scrapy==1.4.0
 
 ipython==5.2.2

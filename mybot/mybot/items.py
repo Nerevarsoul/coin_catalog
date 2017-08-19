@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from scrapy.contrib.djangoitem import DjangoItem
+from scrapy_djangoitem import DjangoItem
 
-from coins.models import CatalogCoin
+#from coins.models import CatalogCoin
 
 
 # Define here the models for your scraped items
@@ -11,6 +11,6 @@ from coins.models import CatalogCoin
 # See documentation in:
 # http://doc.scrapy.org/en/latest/topics/items.html
 
-class EuroCoinsItem(DjangoItem):
+#class EuroCoinsItem(DjangoItem):
 
-    django_model = CatalogCoin
+    #django_model = CatalogCoin

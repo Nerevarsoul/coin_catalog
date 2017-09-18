@@ -1,6 +1,42 @@
+import re
+
 import scrapy
 
-#  from ..items import EuroCoinsItem
+from ..items import EuroCoinsItem
+
+
+NEEDLESS = ('finland', 'san-marino', 'euro-total', 'belgium', 'vatican', 'spain', 'monaco', 'netherlands')
+
+
+class EuroCoinsParser(object):
+    PARAMETER_MAP = {
+        'Страна: ': 'set_country',
+        'Годы выпуска: ': 'set_year',
+        'Номинал': 'set_nominal',
+    }
+
+    def __init__(self, coin, parameters):
+        self.coin = coin
+        self.parameters = parameters
+
+    def parse_parameters(self):
+        for i, parameter in self.parameters:
+            method = self.PARAMETER_MAP.get(parameter)
+            if method:
+                getattr(self, self.PARAMETER_MAP[parameter])(i)
+
+    def set_country(self, i):
+        self.coin.country = self.parameters[i+1]
+
+    def set_year(self, i):
+        digits = [d for d in re.split(' |-', self.parameters[i + 1]) if d.isdigit()]
+        self.coin.year_with = digits[0]
+        self.coin.year_before = digits[1] if len(digits) != 1 else None
+
+    def set_nominal(self, i):
+        nominal = self.parameters[i + 5].split()
+        self.coin.currency = nominal[0]
+        self.coin.value = nominal[1]
 
 
 class EuroCoins(scrapy.Spider):
@@ -10,19 +46,20 @@ class EuroCoins(scrapy.Spider):
         "http://www.euro-coins.info/euro.html",
     ]
 
-    @staticmethod
-    def parse_parameters(parameters):
-        pass
-
     def parse(self, response):
         dds = response.xpath("//dd[contains(@class, 'level1')]")
-        for dd in dds:
-            url = dd.xpath(".//a[contains(@href, 'spain')]").extract()
-            yield scrapy.Request(url, dont_filter=True, callback=self.parse_page)
+        for dd in dds[:1]:
+            urls = dd.xpath(".//a/@href").extract()
+            for url in urls:
+                if url.split('/')[-1].split('.')[0] not in NEEDLESS:
+                    yield scrapy.Request(url, dont_filter=True, callback=self.parse_page)
 
     def parse_page(self, response):
         entries = response.xpath("//div[@class='entry']")
 
         for entry in entries:
+            coin = EuroCoinsItem()
             parameters = entry.select(".//td//text()").extract()
-            self.parse_parameters(parameters)
+            parser = EuroCoinsParser(parameters, coin)
+            parser.parse_parameters()
+            coin.save()

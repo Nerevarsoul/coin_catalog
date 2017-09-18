@@ -9,11 +9,13 @@
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 
-import sys
-sys.path.append('/home/projects/django/coin_catalog')
-
 import os
-os.environ['DJANGO_SETTINGS_MODULE'] = 'mysite.settings'
+import sys
+project_path = os.environ('DJANGO_PATH', '/Users/quirra/projects/coin_catalog')
+sys.path.append(project_path)
+
+# import os
+# os.environ['DJANGO_SETTINGS_MODULE'] = 'mysite.settings'
 
 BOT_NAME = 'mybot'
 

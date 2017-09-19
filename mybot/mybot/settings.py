@@ -11,16 +11,20 @@
 
 import os
 import sys
-project_path = os.environ('DJANGO_PATH', '/Users/quirra/projects/coin_catalog')
+project_path = os.environ.get('DJANGO_PATH', '/Users/quirra/projects/coin_catalog')
 sys.path.append(project_path)
 
 # import os
-# os.environ['DJANGO_SETTINGS_MODULE'] = 'mysite.settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'mysite.local_settings'
 
 BOT_NAME = 'mybot'
 
 SPIDER_MODULES = ['mybot.spiders']
 NEWSPIDER_MODULE = 'mybot.spiders'
+
+
+import django
+django.setup()
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent

@@ -1,3 +1,4 @@
+from django.contrib.postgres.fields import IntegerRangeField
 from django.core.urlresolvers import reverse
 from django.db import models
 
@@ -16,7 +17,7 @@ class CatalogCoin(CreateUpdateMixin, models.Model):
     metal = models.CharField(max_length=50, blank=True, null=True)
     ruler = models.CharField(max_length=50, blank=True, null=True)
     number = models.CharField(max_length=50, blank=True, null=True)
-    circulation = models.IntegerField(blank=True, null=True)
+    circulation = IntegerRangeField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     catalog_image = models.ManyToManyField(Image)
     slug = models.SlugField(max_length=150)

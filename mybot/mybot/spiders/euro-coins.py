@@ -11,7 +11,7 @@ NEEDLESS = ('finland', 'san-marino', 'euro-total', 'belgium', 'vatican', 'spain'
 class EuroCoinsParser(object):
     PARAMETER_MAP = {
         'Страна: ': 'set_country',
-        'Годы выпуска: ': 'set_year',
+        'Годы выпуска: ': 'set_circulation',
         'Номинал': 'set_nominal',
     }
 
@@ -28,15 +28,14 @@ class EuroCoinsParser(object):
     def set_country(self, i):
         self.coin.country = self.parameters[i+1]
 
-    def set_year(self, i):
+    def set_circulation(self, i):
         digits = [d for d in re.split(' |-', self.parameters[i + 1]) if d.isdigit()]
-        self.coin.year_with = digits[0]
-        self.coin.year_before = digits[1] if len(digits) != 1 else None
+        self.coin.circulation = (digits[0], digits[1] if len(digits) != 1 else None)
 
     def set_nominal(self, i):
         nominal = self.parameters[i + 5].split()
         self.coin.currency = nominal[0]
-        self.coin.value = nominal[1]
+        self.coin.face_value = nominal[1]
 
 
 class EuroCoins(scrapy.Spider):

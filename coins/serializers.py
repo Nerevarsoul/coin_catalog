@@ -2,8 +2,10 @@ from rest_framework import serializers
 
 from .models import CatalogCoin
 
+__all__ = ('CatalogCoinListSerializer', 'CatalogCoinSerializer',)
 
-class CatalogCoinPreviewSerializer(serializers.ModelSerializer):
+
+class CatalogCoinListSerializer(serializers.ModelSerializer):
     class Meta:
         model = CatalogCoin
         fields = [
@@ -14,7 +16,7 @@ class CatalogCoinPreviewSerializer(serializers.ModelSerializer):
         ]
 
 
-class CatalogCoinDetailSerializer(serializers.ModelSerializer):
+class CatalogCoinSerializer(serializers.ModelSerializer):
     class Meta:
         model = CatalogCoin
         fields = [

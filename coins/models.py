@@ -4,7 +4,9 @@ from django.db import models
 
 from accounts.models import User
 from core.mixins import CreateUpdateMixin
-from core.models import Country, Image
+from core.models import Image
+
+__all__ = ('CatalogCoin', 'Coin',)
 
 
 class CatalogCoin(CreateUpdateMixin, models.Model):

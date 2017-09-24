@@ -14,9 +14,11 @@ class CatalogCoin(CreateUpdateMixin, models.Model):
     country = models.ForeignKey(Country)
     currency = models.CharField(max_length=50)
     face_value = models.IntegerField()
-    metal = models.CharField(max_length=50, blank=True, null=True)
+    material = models.CharField(max_length=150, blank=True, null=True)
+    weight = models.FloatField(blank=True, null=True)
+    diameter = models.FloatField(blank=True, null=True)
+    thickness = models.FloatField(blank=True, null=True)
     ruler = models.CharField(max_length=50, blank=True, null=True)
-    number = models.CharField(max_length=50, blank=True, null=True)
     circulation = IntegerRangeField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     catalog_image = models.ManyToManyField(Image)
@@ -30,6 +32,10 @@ class CatalogCoin(CreateUpdateMixin, models.Model):
         
     def get_absolute_url(self):
         return reverse('catalog_detail_coins', args=[self.slug])
+
+    @property
+    def par(self):
+        return "{} {}".format(self.face_value, self.currency)
     
     
 class Coin(CreateUpdateMixin, models.Model):

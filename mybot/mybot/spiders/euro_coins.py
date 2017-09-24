@@ -12,7 +12,11 @@ class EuroCoinsParser(object):
     PARAMETER_MAP = {
         'Страна: ': 'set_country',
         'Годы выпуска: ': 'set_circulation',
-        'Номинал': 'set_nominal',
+        'Номинал': 'set_par',
+        'Материал': 'set_material',
+        'Масса': 'set_weight',
+        'Диаметр': 'set_diameter',
+        'Толщина': 'set_thickness',
     }
 
     def __init__(self, coin, parameters):
@@ -20,22 +24,34 @@ class EuroCoinsParser(object):
         self.parameters = parameters
 
     def parse_parameters(self):
-        for i, parameter in self.parameters:
+        for i, parameter in enumerate(self.parameters):
             method = self.PARAMETER_MAP.get(parameter)
             if method:
                 getattr(self, self.PARAMETER_MAP[parameter])(i)
 
     def set_country(self, i):
-        self.coin.country = self.parameters[i+1]
+        self.coin['country'] = self.parameters[i+1]
 
     def set_circulation(self, i):
         digits = [d for d in re.split(' |-', self.parameters[i + 1]) if d.isdigit()]
-        self.coin.circulation = (digits[0], digits[1] if len(digits) != 1 else None)
+        self.coin['circulation'] = (digits[0], digits[1] if len(digits) != 1 else None)
 
-    def set_nominal(self, i):
-        nominal = self.parameters[i + 5].split()
-        self.coin.currency = nominal[0]
-        self.coin.face_value = nominal[1]
+    def set_par(self, i):
+        par = self.parameters[i + 5].split()
+        self.coin['currency'] = par[0]
+        self.coin['face_value'] = par[1]
+
+    def set_material(self, i):
+        self.coin['material'] = self.parameters[i + 5]
+
+    def set_weight(self, i):
+        self.coin['weight'] = self.parameters[i + 5].split()[0]
+
+    def set_diameter(self, i):
+        self.coin['diameter'] = self.parameters[i + 5].split()[0]
+
+    def set_thickness(self, i):
+        self.coin['thickness'] = self.parameters[i + 5].split()[0]
 
 
 class EuroCoins(scrapy.Spider):
@@ -58,7 +74,7 @@ class EuroCoins(scrapy.Spider):
 
         for entry in entries:
             coin = EuroCoinsItem()
-            parameters = entry.select(".//td//text()").extract()
+            parameters = entry.xpath(".//td//text()").extract()
             parser = EuroCoinsParser(parameters, coin)
             parser.parse_parameters()
             coin.save()

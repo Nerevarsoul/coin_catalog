@@ -6,7 +6,7 @@ from django.conf import settings
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'', include('core.urls')),
-    url(r'api/', include('coin.urls')),
+    url(r'api/', include('coins.urls')),
 ]
 
 if settings.DEBUG:

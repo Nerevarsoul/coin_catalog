@@ -11,7 +11,7 @@ __all__ = ('CatalogCoin', 'Coin',)
 
 class CatalogCoin(CreateUpdateMixin, models.Model):
     
-    country = models.ForeignKey(Country)
+    country = models.CharField(max_length=50)
     currency = models.CharField(max_length=50)
     face_value = models.IntegerField()
     material = models.CharField(max_length=150, blank=True, null=True)

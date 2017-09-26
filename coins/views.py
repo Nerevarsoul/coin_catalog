@@ -1,4 +1,3 @@
-# -*- coding: UTF-8  -*-
 from rest_framework.generics import ListCreateAPIView, RetrieveAPIView
 
 from .models import *

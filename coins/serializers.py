@@ -8,18 +8,16 @@ __all__ = ('CatalogCoinListSerializer', 'CatalogCoinSerializer',)
 class CatalogCoinListSerializer(serializers.ModelSerializer):
     class Meta:
         model = CatalogCoin
-        fields = [
-            'id',
+        fields = (
             'face_value',
             'currency',
+            'country',
+            'circulation',
             'slug',
-        ]
+        )
 
 
 class CatalogCoinSerializer(serializers.ModelSerializer):
     class Meta:
         model = CatalogCoin
-        fields = [
-            'face_value',
-            'currency',
-]
+        fields = '__all__'

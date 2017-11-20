@@ -1,7 +1,7 @@
-Django==1.10.6
+Django==1.11.7
 django-debug-toolbar==1.7
-djangorestframework==3.6.2
-django-fsm==2.5.0
+djangorestframework==3.7.3
+django-fsm==2.6.0
 django_webpack_loader==0.4.1
 
 psycopg2==2.7.3.1

@@ -1,3 +1,5 @@
+import uuid
+
 from django.contrib.postgres.fields import IntegerRangeField
 from django.core.urlresolvers import reverse
 from django.db import models
@@ -7,6 +9,20 @@ from core.mixins import CreateUpdateMixin
 from core.models import Image
 
 __all__ = ('CatalogCoin', 'Coin',)
+
+
+class Serie(CreateUpdateMixin, models.Model):
+
+    id = models.UUIDField(primary_ket=True, default=uuid.uuid4, editable=False)
+    country = models.CharField(max_lenght=50)
+    name = models.CharField(max_lenght=250)
+    coin_count = models.IntegerField()
+
+    def __str__(self):
+        return self.name
+
+    def __repr__(self):
+        return 'Serie({})'.format(self.id) 
 
 
 class CatalogCoin(CreateUpdateMixin, models.Model):

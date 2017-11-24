@@ -2,7 +2,7 @@ import re
 
 import scrapy
 
-from ..items import EuroCoinsItem
+from ..items import CoinItem
 
 
 NEEDLESS = ('finland', 'san-marino', 'euro-total', 'belgium', 'vatican', 'spain', 'monaco', 'netherlands')

@@ -1,6 +1,6 @@
 import scrapy
 
-from ..items import EuroCoinsItem
+from ..items import CoinItem, SerieItem
 
 
 class RusCoins(scrapy.Spider):
@@ -16,15 +16,18 @@ class RusCoins(scrapy.Spider):
             series = table.xpath(".//ul[contains(@class, 'tabs')]//li//text()")
             coin_box = table.xpath(".//div[contains(@class, 'box')]")
             for box, i in enumerate(coin_box):
-                seria = series[i].extract().split()
+                seria = SeriaItem()
+                seria['name'] = series[i].extract().split()
+                seria['country'] = 'Россия'
                 coins = box.xpath(".//tr[not(@class)]")
                 for coin in coins:
+                    coin_item = CoinItem() 
                     fields = coin.xpath(".//td//text()")
-                    year = fields[0].extract().split()
-                    name = fields[1].extract().split()
+                    coin_item['year'] = fields[0].extract().split()
+                    coin_item['name'] = fields[1].extract().split()
                 if len(fields) == 4:
-                    count = fields[2].extract().split()
-                    price = fields[3].extract().split()
+                    coin_item['count'] = fields[2].extract().split()
+                    coin_item['price'] = fields[3].extract().split()
                 else:
-                    count = fields[3].extract().split()
+                    coin_item['price'] = fields[3].extract().split()
 

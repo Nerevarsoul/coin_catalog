@@ -8,7 +8,7 @@ from accounts.models import User
 from core.mixins import CreateUpdateMixin
 from core.models import Image
 
-__all__ = ('CatalogCoin', 'Coin',)
+__all__ = ('CatalogCoin', 'Coin', 'Serie',)
 
 
 class Serie(CreateUpdateMixin, models.Model):
@@ -16,7 +16,7 @@ class Serie(CreateUpdateMixin, models.Model):
     id = models.UUIDField(primary_ket=True, default=uuid.uuid4, editable=False)
     country = models.CharField(max_lenght=50)
     name = models.CharField(max_lenght=250)
-    coin_count = models.IntegerField()
+    coin_amount = models.IntegerField()
 
     def __str__(self):
         return self.name
@@ -37,6 +37,7 @@ class CatalogCoin(CreateUpdateMixin, models.Model):
     ruler = models.CharField(max_length=50, blank=True, null=True)
     circulation = IntegerRangeField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
+    serie = models.ForeignKey(Serie, related_name='')
     catalog_image = models.ManyToManyField(Image)
     slug = models.SlugField(max_length=150)
     
@@ -44,14 +45,14 @@ class CatalogCoin(CreateUpdateMixin, models.Model):
         return self.par
 
     def __repr__(self):
-        return "CatalogCoin({})".format(self.id)
+        return 'CatalogCoin({})'.format(self.id)
         
     def get_absolute_url(self):
         return reverse('catalog_detail_coins', args=[self.slug])
 
     @property
     def par(self):
-        return "{} {}".format(self.face_value, self.currency)
+        return '{} {}'.format(self.face_value, self.currency)
     
     
 class Coin(CreateUpdateMixin, models.Model):
@@ -74,12 +75,12 @@ class Coin(CreateUpdateMixin, models.Model):
     mint = models.CharField(max_length=50, blank=True, null=True)
     catalog_coin = models.ForeignKey(CatalogCoin, blank=True, null=True)
     image = models.ManyToManyField(Image)
-    owner = models.ForeignKey(User, related_name="coins")
+    owner = models.ForeignKey(User, related_name='coins')
     status = models.CharField(choices=COIN_STATUS, default=DEFAULT_STATUS, max_length=20)
     count = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
-        return "{} {}".format(self.catalog_coin, self.year)
+        return '{} {}'.format(self.catalog_coin, self.year)
 
     def __repr__(self):
-        return "Coin({})".format(self.id)
+        return 'Coin({})'.format(self.id)

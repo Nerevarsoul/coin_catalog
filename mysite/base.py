@@ -37,7 +37,7 @@ INSTALLED_APPS = (
     # https://github.com/owais/django-webpack-loader
     # 'webpack_loader',
 
-    'accounts',
+    # 'accounts',
     'core',
     'coins',
 )
@@ -108,7 +108,7 @@ STATICFILES_DIRS = (
 #     }
 # }
 
-AUTH_USER_MODEL = 'accounts.User'
+# AUTH_USER_MODEL = 'accounts.User'
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',

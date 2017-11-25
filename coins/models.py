@@ -1,21 +1,19 @@
 import uuid
 
-from django.contrib.postgres.fields import IntegerRangeField
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.db import models
 
-from accounts.models import User
 from core.mixins import CreateUpdateMixin
-from core.models import Image
 
 __all__ = ('CatalogCoin', 'Coin', 'Serie',)
 
 
 class Serie(CreateUpdateMixin, models.Model):
 
-    id = models.UUIDField(primary_ket=True, default=uuid.uuid4, editable=False)
-    country = models.CharField(max_lenght=50)
-    name = models.CharField(max_lenght=250)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    country = models.CharField(max_length=50)
+    name = models.CharField(max_length=250)
     coin_amount = models.IntegerField()
 
     def __str__(self):
@@ -27,6 +25,7 @@ class Serie(CreateUpdateMixin, models.Model):
 
 class CatalogCoin(CreateUpdateMixin, models.Model):
     
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     country = models.CharField(max_length=50)
     currency = models.CharField(max_length=50)
     face_value = models.IntegerField()
@@ -35,24 +34,24 @@ class CatalogCoin(CreateUpdateMixin, models.Model):
     diameter = models.FloatField(blank=True, null=True)
     thickness = models.FloatField(blank=True, null=True)
     ruler = models.CharField(max_length=50, blank=True, null=True)
-    circulation = IntegerRangeField(blank=True, null=True)
+    year = models.IntegerField(blank=True, null=True)
+    count = models.IntegerField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
-    serie = models.ForeignKey(Serie, related_name='')
-    catalog_image = models.ManyToManyField(Image)
-    slug = models.SlugField(max_length=150)
+    serie = models.ForeignKey(Serie, related_name='coins')
+    catalog_image = models.ImageField(upload_to='coin_images',)
     
     def __str__(self):
         return self.par
 
     def __repr__(self):
-        return 'CatalogCoin({})'.format(self.id)
+        return f'CatalogCoin({self.id})'
         
     def get_absolute_url(self):
-        return reverse('catalog_detail_coins', args=[self.slug])
+        return reverse('catalog_detail_coins', args=[self.id])
 
     @property
     def par(self):
-        return '{} {}'.format(self.face_value, self.currency)
+        return f'{self.face_value} {self.currency}'
     
     
 class Coin(CreateUpdateMixin, models.Model):
@@ -70,14 +69,13 @@ class Coin(CreateUpdateMixin, models.Model):
     DEFAULT_STATUS = COIN_STATUS[0][0]
     DEFAULT_CONDITION = COIN_CONDITION[0][0]
 
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     condition = models.CharField(choices=COIN_CONDITION, max_length=50)
-    year = models.IntegerField(blank=True, null=True)
     mint = models.CharField(max_length=50, blank=True, null=True)
     catalog_coin = models.ForeignKey(CatalogCoin, blank=True, null=True)
-    image = models.ManyToManyField(Image)
+    image = models.ImageField(upload_to='coin_images',)
     owner = models.ForeignKey(User, related_name='coins')
     status = models.CharField(choices=COIN_STATUS, default=DEFAULT_STATUS, max_length=20)
-    count = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return '{} {}'.format(self.catalog_coin, self.year)

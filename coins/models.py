@@ -39,6 +39,9 @@ class CatalogCoin(CreateUpdateMixin, models.Model):
     description = models.TextField(blank=True, null=True)
     serie = models.ForeignKey(Serie, related_name='coins')
     catalog_image = models.ImageField(upload_to='coin_images',)
+    price = models.FloatField(blank=True, null=True)
+    mint = models.CharField(max_length=50, blank=True, null=True)
+    theme = models.CharField(max_length=50, blank=True, null=True)
     
     def __str__(self):
         return self.par
@@ -71,7 +74,6 @@ class Coin(CreateUpdateMixin, models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     condition = models.CharField(choices=COIN_CONDITION, max_length=50)
-    mint = models.CharField(max_length=50, blank=True, null=True)
     catalog_coin = models.ForeignKey(CatalogCoin, blank=True, null=True)
     image = models.ImageField(upload_to='coin_images',)
     owner = models.ForeignKey(User, related_name='coins')

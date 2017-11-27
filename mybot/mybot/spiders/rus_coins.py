@@ -16,18 +16,43 @@ class RusCoins(scrapy.Spider):
             series = table.xpath(".//ul[contains(@class, 'tabs')]//li//text()")
             coin_box = table.xpath(".//div[contains(@class, 'box')]")
             for box, i in enumerate(coin_box):
-                seria = SeriaItem()
-                seria['name'] = series[i].extract().split()
-                seria['country'] = 'Россия'
+                self.seria_save(series[i].extract().strip())
                 coins = box.xpath(".//tr[not(@class)]")
-                for coin in coins:
-                    coin_item = CoinItem() 
+                for coin in coins: 
                     fields = coin.xpath(".//td//text()")
-                    coin_item['year'] = fields[0].extract().split()
-                    coin_item['name'] = fields[1].extract().split()
-                if len(fields) == 4:
-                    coin_item['count'] = fields[2].extract().split()
-                    coin_item['price'] = fields[3].extract().split()
-                else:
-                    coin_item['price'] = fields[3].extract().split()
+                    coin_params = []
+                    coin_params.append(seria)
+                    coin_params.append(fields[0].extract().strip())
+                    coin_params.append(fields[1].extract().strip())
+                    if len(fields) == 4:
+                        coin_params.append(fields[2].extract().strip())
+                        coin_params.append(fields[3].extract().strip())
+                    else:
+                        
+                        coin_params.append(fields[2].extract().strip())
+                    if coin_item.get('price') and '/' in coin_item.get('price'):
+                        price = coin_item.get('price').split('/')
+                        coin_item['price'] = price[0]
+                        coin_item['mint'] = 'ММД'
+                        coin_item.save()
+                        coin_item['price'] = price[1]
+                        coin_item['mint'] = 'CПМД'
+                        coin_item.save()
+                    coin_item.save()
+    
+    def save_seria(name):
+        seria = SeriaItem()
+        seria['name'] = name
+        seria['country'] = 'Россия'
+        seria.save()
 
+    def save_coin(seria, year, theme, count=None, price=None, mint=None):
+        coin_item = CoinItem()
+        coin_item['country'] = 'Россия'
+        coin_item['seria'] = seria
+        coin_item['year'] = year
+        coin_item['theme'] = theme
+        coin_item['count'] = count
+        coin_item['price'] = price
+        coin_item['mint'] = mint
+        coin_item.save()

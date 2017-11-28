@@ -1,3 +1,5 @@
+from copy import copy
+
 import scrapy
 
 from ..items import CoinItem, SerieItem
@@ -20,25 +22,25 @@ class RusCoins(scrapy.Spider):
                 coins = box.xpath(".//tr[not(@class)]")
                 for coin in coins: 
                     fields = coin.xpath(".//td//text()")
-                    coin_params = []
-                    coin_params.append(seria)
-                    coin_params.append(fields[0].extract().strip())
-                    coin_params.append(fields[1].extract().strip())
+                    coin_params = {}
+                    coin_params.update({'seria': seria})
+                    coin_params.update({'year': fields[0].extract().strip()})
+                    coin_params.update({'theve': fields[1].extract().strip()})
                     if len(fields) == 4:
-                        coin_params.append(fields[2].extract().strip())
-                        coin_params.append(fields[3].extract().strip())
+                        coin_params.update({'price': fields[2].extract().strip()})
+                        coin_params.update({'count': fields[3].extract().strip()})
                     else:
-                        
-                        coin_params.append(fields[2].extract().strip())
+                        coin_params.update({'price': fields[2].extract().strip()})
                     if coin_item.get('price') and '/' in coin_item.get('price'):
                         price = coin_item.get('price').split('/')
                         coin_item['price'] = price[0]
                         coin_item['mint'] = 'ММД'
-                        coin_item.save()
-                        coin_item['price'] = price[1]
-                        coin_item['mint'] = 'CПМД'
-                        coin_item.save()
-                    coin_item.save()
+                        coin_item1 = copy(coin_item)
+                        coin_item1['price'] = price[1]
+                        coin_item1['mint'] = 'CПМД'
+                        self.save_coin(coin_item1)
+                    self.save_coin(coin_item)
+
     
     @staticmethod
     def save_seria(name):
@@ -47,13 +49,14 @@ class RusCoins(scrapy.Spider):
         seria['country'] = 'Россия'
         seria.save()
 
-    def save_coin(seria, year, theme, count=None, price=None, mint=None):
+    def save_coin(**kwargs):
         coin_item = CoinItem()
         coin_item['country'] = 'Россия'
-        coin_item['seria'] = seria
-        coin_item['year'] = year
-        coin_item['theme'] = theme
-        coin_item['count'] = count
-        coin_item['price'] = price
-        coin_item['mint'] = mint
+        coin_item['seria'] = kwargs.get('seria')
+        coin_item['year'] = kwargs.get('year')
+        coin_item['theme'] = kwargs.get('theme')
+        coin_item['count'] = kwargs.get('count')
+        if kwargs.get('price').isnumber():
+            coin_item['price'] = kwargs.get('price')
+        coin_item['mint'] = kwargs.get('mint')
         coin_item.save()

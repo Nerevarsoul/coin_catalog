@@ -44,11 +44,12 @@ class RusCoins(scrapy.Spider):
     
     @staticmethod
     def save_seria(name):
-        seria = SeriaItem()
+        seria = SerieItem()
         seria['name'] = name
         seria['country'] = 'Россия'
         seria.save()
 
+    @staticmethod
     def save_coin(**kwargs):
         coin_item = CoinItem()
         coin_item['country'] = 'Россия'

@@ -11,10 +11,9 @@
 
 import os
 import sys
-project_path = os.environ.get('DJANGO_PATH', '/Users/quirra/projects/coin_catalog')
+project_path = os.environ.get('DJANGO_PATH', '/home/neri/projects/python/coin_catalog/')
 sys.path.append(project_path)
 
-# import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'mysite.local_settings'
 
 BOT_NAME = 'mybot'

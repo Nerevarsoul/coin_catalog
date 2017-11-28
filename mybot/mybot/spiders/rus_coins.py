@@ -15,8 +15,8 @@ class RusCoins(scrapy.Spider):
         for table in tables:
             series = table.xpath(".//ul[contains(@class, 'tabs')]//li//text()")
             coin_box = table.xpath(".//div[contains(@class, 'box')]")
-            for box, i in enumerate(coin_box):
-                self.seria_save(series[i].extract().strip())
+            for i, box in enumerate(coin_box):
+                self.save_seria(series[i].extract().strip())
                 coins = box.xpath(".//tr[not(@class)]")
                 for coin in coins: 
                     fields = coin.xpath(".//td//text()")
@@ -40,6 +40,7 @@ class RusCoins(scrapy.Spider):
                         coin_item.save()
                     coin_item.save()
     
+    @staticmethod
     def save_seria(name):
         seria = SeriaItem()
         seria['name'] = name

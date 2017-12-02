@@ -21,25 +21,28 @@ class RusCoins(scrapy.Spider):
                 seria = self.save_seria(series[i].extract().strip())
                 coins = box.xpath(".//tr[not(@class)]")
                 for coin in coins: 
-                    fields = coin.xpath(".//td//text()")
-                    coin_params = {}
-                    coin_params.update({'seria': seria})
-                    coin_params.update({'year': fields[0].extract().strip()})
-                    coin_params.update({'theve': fields[1].extract().strip()})
-                    if len(fields) == 4:
-                        coin_params.update({'price': fields[2].extract().strip()})
-                        coin_params.update({'count': fields[3].extract().strip()})
-                    else:
-                        coin_params.update({'price': fields[2].extract().strip()})
-                    if coin_params.get('price') and '/' in coin_params.get('price'):
-                        price = coin_params.get('price').split('/')
-                        coin_params['price'] = price[0]
-                        coin_params['mint'] = 'ММД'
-                        coin_params1 = copy(coin_params)
-                        coin_params1['price'] = price[1]
-                        coin_params1['mint'] = 'CПМД'
-                        self.save_coin(**coin_params1)
-                    self.save_coin(**coin_params)
+                    try:
+                        fields = coin.xpath(".//td//text()")
+                        coin_params = {}
+                        coin_params.update({'seria': seria})
+                        coin_params.update({'year': fields[0].extract().strip()})
+                        coin_params.update({'theme': fields[1].extract().strip()})
+                        if len(fields) == 4:
+                            coin_params.update({'price': fields[2].extract().strip()})
+                            coin_params.update({'count': fields[3].extract().strip()})
+                        else:
+                            coin_params.update({'price': fields[2].extract().strip()})
+                        if coin_params.get('price') and '/' in coin_params.get('price'):
+                            price = coin_params.get('price').split('/')
+                            coin_params['price'] = price[0]
+                            coin_params['mint'] = 'ММД'
+                            coin_params1 = copy(coin_params)
+                            coin_params1['price'] = price[1]
+                            coin_params1['mint'] = 'CПМД'
+                            self.save_coin(**coin_params1)
+                        self.save_coin(**coin_params)
+                    except:
+                        pass
 
     
     @staticmethod
@@ -62,4 +65,7 @@ class RusCoins(scrapy.Spider):
         if kwargs.get('price').isdigit():
             coin_item['price'] = kwargs.get('price')
         coin_item['mint'] = kwargs.get('mint')
-        coin_item.save()
+        try:
+            coin_item.save()
+        except:
+            pass

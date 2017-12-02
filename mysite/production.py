@@ -2,9 +2,9 @@ from .base import *
 from .secret import *
 
 
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases

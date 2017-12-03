@@ -1,7 +1,7 @@
 import uuid
 
 from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db import models
 
 from core.mixins import CreateUpdateMixin
@@ -37,7 +37,15 @@ class CatalogCoin(CreateUpdateMixin, models.Model):
     year = models.IntegerField(blank=True, null=True)
     count = models.IntegerField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
-    serie = models.ForeignKey(Serie, related_name='coins', blank=True, null=True)
+    
+    serie = models.ForeignKey(
+        Serie,
+        on_delete=models.DO_NOTHING, 
+        related_name='coins', 
+        blank=True, 
+        null=True
+    )
+    
     catalog_image = models.ImageField(upload_to='coin_images', blank=True, null=True)
     price = models.FloatField(blank=True, null=True)
     mint = models.CharField(max_length=50, blank=True, null=True)
@@ -74,9 +82,23 @@ class Coin(CreateUpdateMixin, models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     condition = models.CharField(choices=COIN_CONDITION, max_length=50)
-    catalog_coin = models.ForeignKey(CatalogCoin, blank=True, null=True)
+    
+    catalog_coin = models.ForeignKey(
+        CatalogCoin,
+        related_name='real_coins',
+        on_delete=models.CASCADE, 
+        blank=True, 
+        null=True
+    )
+    
     image = models.ImageField(upload_to='coin_images',)
-    owner = models.ForeignKey(User, related_name='coins')
+
+    owner = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE, 
+        related_name='coins'
+    )
+    
     status = models.CharField(choices=COIN_STATUS, default=DEFAULT_STATUS, max_length=20)
 
     def __str__(self):

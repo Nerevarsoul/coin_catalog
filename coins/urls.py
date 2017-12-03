@@ -1,4 +1,4 @@
-from django.conf.urls import include, url
+from django.urls import path
 
 from .views import *
 
@@ -6,8 +6,15 @@ from .views import *
 urlpatterns = [
 
     # catalogue
-    url(r'^catalogue/$', CatalogueCoinCreateListView.as_view(), name='catalogue'),
-    url(r'^catalogue/(?P<slug>\d+)/$', CatalogueCoinDetailView.as_view(),
-        name='catalogue_detail_coins'),
-
+    path(
+        'catalogue/',
+        CatalogueCoinCreateListView.as_view(),
+        name='catalogue'
+    ),
+    path(
+        'catalogue/<slug:slug>/',
+        CatalogueCoinDetailView.as_view(),
+        name='catalogue_detail_coins'
+    ),
 ]
+

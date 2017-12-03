@@ -1,16 +1,16 @@
-from django.conf.urls import include, url
+from django.urls import include, path
 from django.contrib import admin
 from django.conf import settings
 
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
-    # url(r'', include('core.urls')),
-    url(r'api/', include('coins.urls')),
+    path('admin/', admin.site.urls),
+    # path(r'', include('core.urls')),
+    path('api/', include('coins.urls')),
 ]
 
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns += [
-        url(r'^__debug__/', include(debug_toolbar.urls)),
+        path('__debug__/', include(debug_toolbar.urls)),
     ]

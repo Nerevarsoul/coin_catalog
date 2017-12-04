@@ -8,13 +8,7 @@ __all__ = ('CatalogCoinListSerializer', 'CatalogCoinSerializer',)
 class CatalogCoinListSerializer(serializers.ModelSerializer):
     class Meta:
         model = CatalogCoin
-        fields = (
-            'face_value',
-            'currency',
-            'country',
-            'circulation',
-            'slug',
-        )
+        fields = ('id', 'face_value', 'currency', 'year', 'theme', 'country', 'serie', 'mint', 'material',)
 
 
 class CatalogCoinSerializer(serializers.ModelSerializer):

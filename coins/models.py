@@ -11,10 +11,20 @@ __all__ = ('CatalogCoin', 'Coin', 'Serie',)
 
 class Serie(CreateUpdateMixin, models.Model):
 
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    country = models.CharField(max_length=50)
-    name = models.CharField(max_length=250)
-    coin_amount = models.IntegerField(blank=True, null=True)
+    id = models.UUIDField(
+        primary_key=True, 
+        default=uuid.uuid4, 
+        editable=False
+    )
+    country = models.CharField(
+        max_length=50
+    )
+    name = models.CharField(
+        max_length=250
+    )
+    coin_amount = models.IntegerField(
+        blank=True, null=True
+    )
 
     def __str__(self):
         return self.name
@@ -25,19 +35,52 @@ class Serie(CreateUpdateMixin, models.Model):
 
 class CatalogCoin(CreateUpdateMixin, models.Model):
     
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    country = models.CharField(max_length=50)
-    currency = models.CharField(max_length=50)
+    id = models.UUIDField(
+        primary_key=True, 
+        default=uuid.uuid4, 
+        editable=False
+    )
+    country = models.CharField(
+        max_length=50
+    )
+    currency = models.CharField(
+        max_length=50
+    )
     face_value = models.IntegerField()
-    material = models.CharField(max_length=150, blank=True, null=True)
-    weight = models.FloatField(blank=True, null=True)
-    diameter = models.FloatField(blank=True, null=True)
-    thickness = models.FloatField(blank=True, null=True)
-    ruler = models.CharField(max_length=50, blank=True, null=True)
-    year = models.IntegerField(blank=True, null=True)
-    count = models.IntegerField(blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
-    
+    material = models.CharField(
+        max_length=150, 
+        blank=True, 
+        null=True
+    )
+    weight = models.FloatField(
+        blank=True, 
+        null=True
+    )
+    diameter = models.FloatField(
+        blank=True, 
+        null=True
+    )
+    thickness = models.FloatField(
+        blank=True, 
+        null=True
+    )
+    ruler = models.CharField(
+        max_length=50, 
+        blank=True, 
+        null=True
+    )
+    year = models.IntegerField(
+        blank=True, 
+        null=True
+    )
+    count = models.IntegerField(
+        blank=True, 
+        null=True
+    )
+    description = models.TextField(
+        blank=True, 
+        null=True
+    )
     serie = models.ForeignKey(
         Serie,
         on_delete=models.DO_NOTHING, 
@@ -45,11 +88,25 @@ class CatalogCoin(CreateUpdateMixin, models.Model):
         blank=True, 
         null=True
     )
-    
-    catalog_image = models.ImageField(upload_to='coin_images', blank=True, null=True)
-    price = models.FloatField(blank=True, null=True)
-    mint = models.CharField(max_length=50, blank=True, null=True)
-    theme = models.CharField(max_length=50, blank=True, null=True)
+    catalog_image = models.ImageField(
+        upload_to='coin_images', 
+        blank=True, 
+        null=True
+    )
+    price = models.FloatField(
+        blank=True, 
+        null=True
+    )
+    mint = models.CharField(
+        max_length=50, 
+        blank=True, 
+        null=True
+    )
+    theme = models.CharField(
+        max_length=50, 
+        blank=True, 
+        null=True
+    )
     
     def __str__(self):
         return self.par
@@ -80,9 +137,15 @@ class Coin(CreateUpdateMixin, models.Model):
     DEFAULT_STATUS = COIN_STATUS[0][0]
     DEFAULT_CONDITION = COIN_CONDITION[0][0]
 
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    condition = models.CharField(choices=COIN_CONDITION, max_length=50)
-    
+    id = models.UUIDField(
+        primary_key=True, 
+        default=uuid.uuid4, 
+        editable=False
+    )
+    condition = models.CharField(
+        choices=COIN_CONDITION, 
+        max_length=50
+    )
     catalog_coin = models.ForeignKey(
         CatalogCoin,
         related_name='real_coins',
@@ -90,16 +153,19 @@ class Coin(CreateUpdateMixin, models.Model):
         blank=True, 
         null=True
     )
-    
-    image = models.ImageField(upload_to='coin_images',)
-
+    image = models.ImageField(
+        upload_to='coin_images',
+    )
     owner = models.ForeignKey(
         User,
         on_delete=models.CASCADE, 
         related_name='coins'
     )
-    
-    status = models.CharField(choices=COIN_STATUS, default=DEFAULT_STATUS, max_length=20)
+    status = models.CharField(
+        choices=COIN_STATUS, 
+        default=DEFAULT_STATUS, 
+        max_length=20
+    )
 
     def __str__(self):
         return '{} {}'.format(self.catalog_coin, self.year)

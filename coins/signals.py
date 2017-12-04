@@ -8,8 +8,8 @@ from django.template.defaultfilters import slugify
 from .models import CatalogCoin
 
 
-@receiver(pre_save, sender=CatalogCoin)
-def catalog_get_slug(sender, instance, **kwargs):
-    instance.slug = slugify("{} {} {} {} {}".format(instance.face_value,
-                                                    unidecode(instance.currency),
-                                                    unidecode(instance.country.name)))
+@receiver(post_save, sender=CatalogCoin)
+def catalog_get_slug(sender, instance, created, **kwargs):
+    if instance.serie and created:
+    	instance.serie.amount += 1
+    	instance.serie.save()

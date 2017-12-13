@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'rest_framework',
     # https://github.com/owais/django-webpack-loader
     # 'webpack_loader',
+    'django_rq',
 
     # 'accounts',
     'core',
@@ -120,3 +121,14 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+
+RQ_QUEUES = {
+    'default': {
+        'HOST': '172.17.0.2',
+        'PORT': 6379,
+        'DB': 0,
+        'PASSWORD': '',
+        'DEFAULT_TIMEOUT': 360,
+    }
+}
+

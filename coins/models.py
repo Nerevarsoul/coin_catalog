@@ -13,14 +13,14 @@ class Serie(CreateUpdateMixin, models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     country = models.CharField(max_length=50)
-    name = models.CharField(max_length=250)
+    name = models.CharField(max_length=250, unique=True)
     coin_amount = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.name
 
     def __repr__(self):
-        return 'Serie({})'.format(self.id) 
+        return f'Serie({self.id})'
 
 
 class CatalogCoin(CreateUpdateMixin, models.Model):
@@ -80,7 +80,11 @@ class Coin(CreateUpdateMixin, models.Model):
     DEFAULT_STATUS = COIN_STATUS[0][0]
     DEFAULT_CONDITION = COIN_CONDITION[0][0]
 
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False
+    )
     condition = models.CharField(choices=COIN_CONDITION, max_length=50)
     
     catalog_coin = models.ForeignKey(
@@ -99,10 +103,14 @@ class Coin(CreateUpdateMixin, models.Model):
         related_name='coins'
     )
     
-    status = models.CharField(choices=COIN_STATUS, default=DEFAULT_STATUS, max_length=20)
+    status = models.CharField(
+        choices=COIN_STATUS, 
+        default=DEFAULT_STATUS,
+        max_length=20
+    )
 
     def __str__(self):
-        return '{} {}'.format(self.catalog_coin, self.year)
+        return f'{self.catalog_coin} {self.year}'
 
     def __repr__(self):
-        return 'Coin({})'.format(self.id)
+        return f'Coin({self.id})'

@@ -1,6 +1,6 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveAPIView
 
-from core.views import RelatedMixin
+from core.views import RelatedMixin, GetListOrCreateSerializerMixin
 
 from .models import *
 from .serializers import *

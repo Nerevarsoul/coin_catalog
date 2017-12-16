@@ -15,3 +15,6 @@ static/js/angular.min.js
 static/js/jquery.min.js
 static/js/bootstrap.min.js
 static/js/metisMenu.min.js
+
+static/app.js
+

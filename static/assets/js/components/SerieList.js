@@ -9,12 +9,14 @@ export default class SerieList extends React.Component {
     }
 
     getSeries() {
-        fetch('http://185.12.95.205:8000/api/series').then(res => {
-            console.log(res.json());
-            if (res) {
-                this.setState({ series: res });
-            }
-         });
+        fetch('http://185.12.95.205:8000/api/series')
+            .then(res => res.json())
+            .then(res => {
+                console.log(res);
+                if (res) {
+                    this.setState({ series: res });
+                }
+            });
     }
 
     render() {

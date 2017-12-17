@@ -1,18 +1,19 @@
-var React = require('react')
+let React = require('react')
 
 
-var Coin = React.createClass ({
-    getDefaultProps: function () {
+class Coin extends React.Component {
+    getDefaultProps() {
         return {
             year: 1982,
             name: '5 копеек',
             mint: 'g'
         };
-    },
-    render: function() {
-        var name = this.props.name;
-        var year = this.props.year;
-        var mint = this.props.mint;
+    }
+
+    render() {
+        let name = this.props.name;
+        let year = this.props.year;
+        let mint = this.props.mint;
         return (
             <div>
                 <h3>{ name } { year }</h3>
@@ -20,6 +21,6 @@ var Coin = React.createClass ({
             </div>
         )
     }
-})
+}
 
 module.exports = Coin;

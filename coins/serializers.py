@@ -8,7 +8,7 @@ __all__ = ('CatalogCoinListSerializer', 'CatalogCoinSerializer', 'SerieListSeria
 class SerieListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Serie
-        fields = ('id', 'name')
+        fields = ('name',)
 
 
 class CatalogCoinListSerializer(serializers.ModelSerializer):
@@ -16,7 +16,7 @@ class CatalogCoinListSerializer(serializers.ModelSerializer):
         model = CatalogCoin
         fields = ('id', 'face_value', 'currency', 'country', 'year', 'theme', 'mint', 'serie',)
 
-        serie = serializers.SlugRelatedField(slug_field='name', read_only=True)
+    serie = serializers.SlugRelatedField(slug_field='name', read_only=True)
 
 
 class CatalogCoinSerializer(serializers.ModelSerializer):

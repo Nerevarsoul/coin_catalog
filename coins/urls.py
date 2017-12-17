@@ -16,5 +16,10 @@ urlpatterns = [
         CatalogueCoinDetailView.as_view(),
         name='catalogue_detail_coins'
     ),
+    path(
+        'series/',
+        SerieCreateListView.as_view(),
+        name='serie_list'
+    ),
 ]
 

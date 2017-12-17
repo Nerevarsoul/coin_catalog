@@ -17,4 +17,6 @@ static/js/bootstrap.min.js
 static/js/metisMenu.min.js
 
 static/app.js
+static/webpack-stats.json
+static/package-lock.json
 

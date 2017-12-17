@@ -12,9 +12,9 @@ class RelatedMixin(object):
     def get_queryset(self):
         qs = super().get_queryset()
         if self.list_select_related:
-            qs = qs.select_related(*list_select_related)
+            qs = qs.select_related(*self.list_select_related)
         if self.list_prefetch_related:
-            qs = qs.prefetch_related(*list_prefetch_related)
+            qs = qs.prefetch_related(*self.list_prefetch_related)
         return qs
 
 
@@ -24,7 +24,7 @@ class GetListOrCreateSerializerMixin(object):
     
 
     def get_serializer_class(self):
-        if self.method == 'GET':
-            return serializer_class 
-        return serializer_class_for_create
+        if self.request.method == 'GET':
+            return self.serializer_class 
+        return self.serializer_class_for_create
 

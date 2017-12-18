@@ -23,7 +23,9 @@ export default class SerieList extends React.Component {
         console.log(this.series);
         return (
             <div>
-                <p>{ this.state.series[0]['name'] }</p>
+                {this.state.series.map((serie, index) => 
+                    <p key={index}> {serie['name']} </p>
+                )}
             </div>
         )
     }

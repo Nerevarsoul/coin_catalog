@@ -1,8 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import SerieList from './components/SerieList';
+import Root from './containers/root';
 
-
-ReactDOM.render(<SerieList />, document.getElementById('container'))
+ReactDOM.render(
+  <div>
+    <p>Hello</p>
+    //<Root/>
+  </div>,
+  document.getElementById('container')
+);
 

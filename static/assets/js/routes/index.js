@@ -1,9 +1,12 @@
-import Route from 'react-router/es/Route';
+import React from 'react';
+import { Route } from 'react-router-dom';
 
-import SerieList from '../components/SerieList';
+//import SerieList from '../components/SerieList';
+import Test from '../components/Test';
 
-export default (
-  <Route path='/' component={ SerieList }>
+const routes = () => (
+  <Route path='/' component={ Test }>
   </Route>
 )
 
+export default routes

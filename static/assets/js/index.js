@@ -5,8 +5,7 @@ import Root from './containers/root';
 
 ReactDOM.render(
   <div>
-    <p>Hello</p>
-    //<Root/>
+    <Root/>
   </div>,
   document.getElementById('container')
 );

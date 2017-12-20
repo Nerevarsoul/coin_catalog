@@ -1,16 +1,17 @@
 import React from 'react';
-import Provider from 'react-redux/es/components/Provider'
+import { BrowserRouter, Route } from 'react-router-dom'
+import Router from 'react-router/es/Router';
+//import Provider from 'react-redux/es/components/Provider';
 
 import routes from '../routes'
 
 function Root() {
   return (
-    <div>Hello!</div>
-    //<Provider>
-      //<Router
-        //routes={ routes }
-      ///>
-    //</Provider>
+    <BrowserRouter>
+    <div>
+      <Route path='/' component={ routes }/>
+    </div>
+    </BrowserRouter>
   )
 }
 

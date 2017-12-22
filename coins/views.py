@@ -1,6 +1,6 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveAPIView
 
-from core.views import RelatedMixin, GetListOrCreateSerializerMixin
+from core.views import GetListOrCreateSerializerMixin
 
 from .models import *
 from .serializers import *
@@ -14,11 +14,10 @@ class SerieCreateListView(GetListOrCreateSerializerMixin, ListCreateAPIView):
     serializer_class_for_create = ''
 
 
-class CatalogueCoinCreateListView(RelatedMixin, GetListOrCreateSerializerMixin, ListCreateAPIView):
-    queryset = CatalogCoin.objects.all()
+class CatalogueCoinCreateListView(GetListOrCreateSerializerMixin, ListCreateAPIView):
+    queryset = CatalogCoin.objects.list()
     serializer_class = CatalogCoinListSerializer
     serializer_class_for_create = CatalogCoinSerializer
-    list_select_related = ('serie',)
 
 
 class CatalogueCoinDetailView(RetrieveAPIView):

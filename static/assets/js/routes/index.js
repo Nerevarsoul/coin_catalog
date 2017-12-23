@@ -1,12 +1,25 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 //import SerieList from '../components/SerieList';
 import Test from '../components/Test';
+import SerieCoins from '../containers/SerieCoins'; 
 
-const routes = () => (
-  <Route path='/' component={ Test }>
-  </Route>
-)
+export const routes = [
+    { path: '/test',
+      component: Test
+    },
+    { path: '/series',
+      component: SerieCoins
+    }
+]
 
-export default routes
+export const RouteWithSubRoutes = (route) => (
+    <Route path={route.path} render={props => (
+      // pass the sub-routes down to keep nesting
+      <route.component {...props} routes={route.routes}/>
+    )}/>
+  )
+
+
+

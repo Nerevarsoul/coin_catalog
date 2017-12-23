@@ -6,8 +6,8 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('django-rq/', include('django_rq.urls')),
-    path(r'index/', include('core.urls')),
     path('api/', include('coins.urls')),
+    path('', include('core.urls')),
 ]
 
 if settings.DEBUG:

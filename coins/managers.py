@@ -1,10 +1,14 @@
 from django.db import models
 
+__all__ = ('CatalogCoinManager',)
+
 
 class CatalogCoinQuerySet(models.QuerySet):
 
     def list(self):
-        return self.select_related('serie').only('id', 'face_value', 'currency', 'country', 'year', 'theme', 'mint', 'serie__name')
+        return self.select_related('serie').only(
+            'id', 'face_value', 'currency', 'country', 'year', 'theme', 'mint', 'serie__name',
+        )
 
 
 class CatalogCoinManager(models.Manager):

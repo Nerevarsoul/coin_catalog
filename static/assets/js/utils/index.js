@@ -1,10 +1,14 @@
 import 'whatwg-fetch';
 
-let apiUrl = 'http://185.12.95.205:8000/api'
+let apiUrl = 'http://185.12.95.205:8000/api/'
 
-apiCall(endpoint) {
+function apiCall(endpoint) {
   fetch(`${apiUrl}${endpoint}`)
-  .then(res => res.json())
-  .then(res => return res)
+    .then(res => res.json())
 }
+
+export const fetchSeries = () => (
+  fetch(`${apiUrl}series/`)
+    .then(res => res.json())
+);
 

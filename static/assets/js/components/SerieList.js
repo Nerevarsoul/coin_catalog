@@ -1,33 +1,28 @@
-import React from 'react'
-import 'whatwg-fetch';
+import React from 'react';
+
+import { fetchSeries } from '../utils';
 
 export default class SerieList extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {series: [{'name': 'work!'}]};
-        this.getSeries();
-    }
+  constructor(props) {
+    super(props);
+    this.state = {series: []};
+    this.getSeries();
+  }
 
-    getSeries() {
-        fetch('http://185.12.95.205:8000/api/series')
-            .then(res => res.json())
-            .then(res => {
-                console.log(res);
-                if (res) {
-                    this.setState({ series: res });
-                }
-            });
-    }
+  getSeries() {
+    fetchSeries().then(
+      res => this.setState({ series: res })
+    )
+  }
 
-    render() {
-        console.log(this.series);
-        return (
-            <div>
-                {this.state.series.map((serie, index) => 
-                    <p key={index}> {serie['name']} </p>
-                )}
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        {this.state.series.map((serie, index) => 
+           <p key={index}> {serie['name']} </p>
+        )}
+      </div>
+    )
+  }
 }
 

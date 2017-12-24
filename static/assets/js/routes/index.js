@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-//import SerieList from '../components/SerieList';
+import SerieList from '../components/SerieList';
 import Test from '../components/Test';
 import SerieCoins from '../containers/SerieCoins'; 
 
@@ -10,7 +10,7 @@ export const routes = [
       component: Test
     },
     { path: '/series',
-      component: SerieCoins
+      component: SerieList
     }
 ]
 

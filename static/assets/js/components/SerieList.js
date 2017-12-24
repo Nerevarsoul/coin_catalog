@@ -10,7 +10,10 @@ export default class SerieList extends React.Component {
     return (
       <div>
         {this.props.series.map((serie, index) => 
-           <p key={index}> {serie['name']} </p>
+           <li key={index} 
+               onClick={ () => this.props.func(serie['name']) }> 
+             {serie['name']} 
+           </li>
         )}
       </div>
     )

@@ -1,13 +1,14 @@
 import React from 'react';
 //import { connect } from 'react-redux'
 import SerieList from '../components/SerieList';
-import { fetchSeries } from '../utils';
+import { fetchSeries, fetchCatalogCoins } from '../utils';
 
 
 export default class SerieCoins extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {series: []};
+    this.state = {series: [], coins: []};
+    this.loadCatalogueBySerie = this.loadCatalogueBySerie.bind(this)
   }
 
   componentDidMount() {
@@ -16,9 +17,15 @@ export default class SerieCoins extends React.Component {
     )
   }
 
+  loadCatalogueBySerie(serie) {
+    fetchCatalogCoins(serie).then(
+      res => this.setState({ coins: res })
+    ) 
+  }
+
   render() {
     return (
-      <SerieList series={ this.state.series }></SerieList>
+      <SerieList series={ this.state.series } func={ this.loadCatalogueBySerie }></SerieList>
     )
   }
 

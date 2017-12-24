@@ -12,3 +12,9 @@ export const fetchSeries = () => (
     .then(res => res.json())
 );
 
+export const fetchCatalogCoins = (serie) => (
+  fetch(`${apiUrl}catalogue?serie=${serie}`)
+    .then(res => res.json())
+);
+
+

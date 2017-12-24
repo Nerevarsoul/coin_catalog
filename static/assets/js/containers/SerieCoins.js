@@ -1,12 +1,26 @@
 import React from 'react';
 //import { connect } from 'react-redux'
-//import { SerieList } from '../components/SerieList'
+import SerieList from '../components/SerieList';
+import { fetchSeries } from '../utils';
 
-const SerieCoins = () => (
-  <div>
-    <h2>Series!</h2>
-  </div>
-)
 
-export default SerieCoins
+export default class SerieCoins extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {series: []};
+  }
+
+  componentDidMount() {
+    fetchSeries().then(
+      res => this.setState({ series: res })
+    )
+  }
+
+  render() {
+    return (
+      <SerieList series={ this.state.series }></SerieList>
+    )
+  }
+
+}
 

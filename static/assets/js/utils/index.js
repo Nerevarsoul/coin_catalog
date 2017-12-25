@@ -13,7 +13,7 @@ export const fetchSeries = () => (
 );
 
 export const fetchCatalogCoins = (serie) => (
-  fetch(`${apiUrl}catalogue?serie=${serie}`)
+  fetch(`${apiUrl}catalogue?serie__name=${serie}`)
     .then(res => res.json())
 );
 

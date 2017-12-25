@@ -21,6 +21,7 @@ class CatalogueCoinCreateListView(GetListOrCreateSerializerMixin, ListCreateAPIV
     serializer_class = CatalogCoinListSerializer
     serializer_class_for_create = CatalogCoinSerializer
     filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('serie__name',)
 
 
 class CatalogueCoinDetailView(RetrieveAPIView):

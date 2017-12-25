@@ -3,6 +3,7 @@ django-debug-toolbar==1.7
 djangorestframework==3.7.3
 django-fsm==2.6.0
 django_webpack_loader==0.4.1
+djangorestframework-filters==0.10.2
 
 django_rq==1.0.1
 

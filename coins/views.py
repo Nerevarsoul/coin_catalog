@@ -1,5 +1,7 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveAPIView
 
+from django_filters.rest_framework import DjangoFilterBackend
+
 from core.views import GetListOrCreateSerializerMixin
 
 from .models import *
@@ -18,6 +20,7 @@ class CatalogueCoinCreateListView(GetListOrCreateSerializerMixin, ListCreateAPIV
     queryset = CatalogCoin.objects.list()
     serializer_class = CatalogCoinListSerializer
     serializer_class_for_create = CatalogCoinSerializer
+    filter_backends = (DjangoFilterBackend,)
 
 
 class CatalogueCoinDetailView(RetrieveAPIView):

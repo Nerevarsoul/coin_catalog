@@ -1,6 +1,7 @@
 import React from 'react';
 //import { connect } from 'react-redux'
 import SerieList from '../components/SerieList';
+import CoinsList from '../components/CoinsList';
 import { fetchSeries, fetchCatalogCoins } from '../utils';
 
 
@@ -25,9 +26,11 @@ export default class SerieCoins extends React.Component {
 
   render() {
     return (
-      <SerieList series={ this.state.series } func={ this.loadCatalogueBySerie }></SerieList>
+      <div>
+        <SerieList series={ this.state.series } func={ this.loadCatalogueBySerie }></SerieList>
+        <CoinsList coins= { this.state.coins }></CoinsList>
+      </div>
     )
   }
-
 }
 

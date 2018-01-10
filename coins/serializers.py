@@ -1,8 +1,11 @@
 from rest_framework import serializers
 
-from .models import CatalogCoin, Serie
+from .models import Coin, CatalogCoin, Serie
 
-__all__ = ('CatalogCoinListSerializer', 'CatalogCoinSerializer', 'SerieListSerializer',)
+__all__ = (
+    'CatalogCoinListSerializer', 'CatalogCoinSerializer', 'SerieListSerializer', 'CoinListSerializer',
+    'CoinSerializer',
+)
 
 
 class SerieListSerializer(serializers.ModelSerializer):
@@ -22,5 +25,19 @@ class CatalogCoinListSerializer(serializers.ModelSerializer):
 class CatalogCoinSerializer(serializers.ModelSerializer):
     class Meta:
         model = CatalogCoin
+        fields = '__all__'
+
+
+class CoinListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Coin
+        fields = ('id', 'catalog_coin', 'owner',)
+
+    catalog_coin = CatalogCoinListSerializer()
+
+
+class CoinSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Coin
         fields = '__all__'
 

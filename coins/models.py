@@ -111,6 +111,7 @@ class CatalogCoin(CreateUpdateMixin, models.Model):
     )
     
     objects = CatalogCoinManager()
+    
     def __str__(self):
         return self.par
 

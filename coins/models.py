@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.db import models
 
 from core.mixins import CreateUpdateMixin
-from .managers import CatalogCoinManager
+from .managers import *
 
 __all__ = ('CatalogCoin', 'Coin', 'Serie',)
 
@@ -170,6 +170,8 @@ class Coin(CreateUpdateMixin, models.Model):
         default=DEFAULT_STATUS,
         max_length=20
     )
+
+    objects = CoinManager()
 
     def __str__(self):
         return f'{self.catalog_coin} {self.year}'

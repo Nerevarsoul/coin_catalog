@@ -5,11 +5,15 @@ from .views import *
 
 urlpatterns = [
 
-    # catalogue
     path(
         'catalogue/',
         CatalogueCoinCreateListView.as_view(),
         name='catalogue'
+    ),
+    path(
+        'coins/',
+        CoinCreateListView.as_view(),
+        name='coins'
     ),
     path(
         'catalogue/<slug:slug>/',

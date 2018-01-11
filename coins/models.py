@@ -174,7 +174,7 @@ class Coin(CreateUpdateMixin, models.Model):
     objects = CoinManager()
 
     def __str__(self):
-        return f'{self.catalog_coin} {self.year}'
+        return f'{self.catalog_coin}'
 
     def __repr__(self):
         return f'Coin({self.id})'

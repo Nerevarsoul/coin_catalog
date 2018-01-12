@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     # https://github.com/owais/django-webpack-loader
     # 'webpack_loader',
     'django_rq',
+    'mptt,
 
     # 'accounts',
     'core',

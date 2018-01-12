@@ -4,13 +4,17 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.db import models
 
+from mptt.models import MPTTModel, TreeForeignKey
+
 from core.mixins import CreateUpdateMixin
 from .managers import *
 
 __all__ = ('CatalogCoin', 'Coin', 'Serie',)
 
 
-class Serie(CreateUpdateMixin, models.Model):
+class Serie(CreateUpdateMixin, MPTTModel):
+    class MPTTMeta:
+        order_insertion_by = ['name']
 
     id = models.UUIDField(
         primary_key=True, 
@@ -27,6 +31,7 @@ class Serie(CreateUpdateMixin, models.Model):
     coin_amount = models.IntegerField(
         blank=True, null=True
     )
+    parent = TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True)
 
     def __str__(self):
         return self.name

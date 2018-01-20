@@ -12,6 +12,7 @@ class CatalogCoinAdmin(admin.ModelAdmin):
 class CoinAdmin(admin.ModelAdmin):
     list_display = ('catalog_coin', 'get_theme', 'get_serie', 'owner', 'status',)
     list_select_related = ('catalog_coin', 'owner', 'catalog_coin__serie',)
+    list_filter = (('catalog_coin__serie', admin.RelatedOnlyFieldListFilter), 'status',)
 
     def get_theme(self, instance):
         return instance.catalog_coin.theme

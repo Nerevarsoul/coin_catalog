@@ -31,7 +31,9 @@ class Serie(CreateUpdateMixin, MPTTModel):
     coin_amount = models.IntegerField(
         blank=True, null=True
     )
-    parent = TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True)
+    parent = TreeForeignKey(
+        'self', null=True, blank=True, 
+        related_name='children', db_index=True, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return self.name

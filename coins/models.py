@@ -130,7 +130,7 @@ class CatalogCoin(CreateUpdateMixin, models.Model):
 
     @property
     def par(self):
-        return f'{self.face_value} {self.currency}'
+        return f'{self.face_value} {self.currency} {self.theme}'
     
     
 class Coin(CreateUpdateMixin, models.Model):
@@ -155,7 +155,8 @@ class Coin(CreateUpdateMixin, models.Model):
     )
     condition = models.CharField(
         choices=COIN_CONDITION, 
-        max_length=50
+        max_length=50,
+        default=DEFAULT_CONDITION
     )
     catalog_coin = models.ForeignKey(
         CatalogCoin,
@@ -166,6 +167,8 @@ class Coin(CreateUpdateMixin, models.Model):
     )
     image = models.ImageField(
         upload_to='coin_images',
+        blank=True,
+        null=True
     )
     owner = models.ForeignKey(
         User,

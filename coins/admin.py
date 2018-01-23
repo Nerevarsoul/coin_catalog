@@ -1,5 +1,6 @@
 from django.contrib import admin
 
+from mptt.admin import MPTTModelAdmin
 
 from .models import *
 
@@ -20,7 +21,7 @@ class CoinAdmin(admin.ModelAdmin):
 
 
 # Register your models here.
-admin.site.register(Serie)
+admin.site.register(Serie, MPTTModelAdmin)
 admin.site.register(CatalogCoin, CatalogCoinAdmin)
 admin.site.register(Coin, CoinAdmin)
 

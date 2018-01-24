@@ -2,7 +2,7 @@ from .base import *
 from .secret import *
 
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -15,5 +15,11 @@ DATABASES = {
         'HOST': DATABASE_HOST,
         'PORT': '5432',
     }
+}
+
+INSTALLED_APPS += ('debug_toolbar',)
+
+DEBUG_TOOLBAR_CONFIG = {
+    'SHOW_TOOLBAR_CALLBACK': lambda x: True,
 }
 

@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Provider from 'react-redux/es/components/Provider';
 
-import Root from './containers/root';
+import Root from './components/Root';
+
 
 ReactDOM.render(
-  <div>
+  <Provider store={store}>
     <Root/>
-  </div>,
+  </Provider>,
   document.getElementById('container')
 );
 

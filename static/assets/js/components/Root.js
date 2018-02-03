@@ -9,7 +9,7 @@ const Root = () => (
       <div>
         <li><Link to='/test'>Test</Link></li>
         <li><Link to='/series'>Series</Link></li>
-
+        <li><Link to='/coins'>Coins</Link></li>
       {routes.map((route, index) => (
           <Route
             key={index}

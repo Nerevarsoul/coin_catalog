@@ -7,11 +7,10 @@ import { fetchSeries } from '../utils';
 import { SELECT_SERIE, REQUEST_COINS, RECEIVE_COINS } from '../actions/coins';
 
 
-export default class SerieCoins extends React.Component {
+class UserCoins extends React.Component {
   constructor(props) {
     super(props);
     this.state = {series: [], coins: [], selectedSerie: null};
-    this.loadCatalogueBySerie = this.loadCatalogueBySerie.bind(this)
   }
 
   componentDidMount() {
@@ -34,7 +33,7 @@ export default class SerieCoins extends React.Component {
   render() {
     return (
       <div>
-        <SerieList selectedSerie={ selectedSerie } series={ this.state.series } func={ this.SelectSerie }></SerieList>
+        <SerieList selectedSerie={ this.state.selectedSerie } series={ this.state.series } func={ this.SelectSerie }></SerieList>
         <CoinsList coins={ this.state.coins }></CoinsList>
       </div>
     )
@@ -42,7 +41,7 @@ export default class SerieCoins extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { selectedSerie } = state
+  const { selectedSerie, coinsBySerie } = state
   const {
     isFetching,
     lastUpdated,
@@ -60,4 +59,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(SerieCoins)
+export default connect(mapStateToProps)(UserCoins)

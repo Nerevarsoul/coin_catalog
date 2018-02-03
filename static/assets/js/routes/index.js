@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 
 import Test from '../components/Test';
 import SerieCoins from '../containers/SerieCoins'; 
+import UserCoins from '../containers/UserCoins';
 
 export const routes = [
   { path: '/test',
@@ -10,6 +11,10 @@ export const routes = [
   },
   { path: '/series',
     component: SerieCoins
+  },
+  {
+    path: '/coins',
+    component: UserCoins
   }
 ]
 

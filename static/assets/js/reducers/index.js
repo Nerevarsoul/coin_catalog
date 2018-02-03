@@ -29,7 +29,7 @@ function coins (
         isFetching: true,
         didInvalidate: false
       })
-    case RRECEIVE_COINS:
+    case RECEIVE_COINS:
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,
@@ -43,8 +43,8 @@ function coins (
 
 function coinsBySerie(state = {}, action) {
   switch (action.type) {
-    case RECEIVE_POSTS:
-    case REQUEST_POSTS:
+    case RECEIVE_COINS:
+    case REQUEST_COINS:
       return Object.assign({}, state, {
         [action.serie]: coins(state[action.serie], action)
       })

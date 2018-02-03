@@ -32,14 +32,11 @@ INSTALLED_APPS = (
 
     # http://django-simple-captcha.readthedocs.org/en/latest/usage.html
     # 'captcha',
-    # http://www.django-rest-framework.org/#installation
     'rest_framework',
-    # https://github.com/owais/django-webpack-loader
-    # 'webpack_loader',
     'django_rq',
     'mptt',
 
-    # 'accounts',
+    'accounts',
     'core',
     'coins',
 )
@@ -109,7 +106,7 @@ STATICFILES_DIRS = (
 #     }
 # }
 
-# AUTH_USER_MODEL = 'accounts.User'
+AUTH_USER_MODEL = 'accounts.User'
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',

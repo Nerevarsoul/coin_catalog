@@ -1,11 +1,12 @@
 import uuid
 
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.urls import reverse
 from django.db import models
 
 from mptt.models import MPTTModel, TreeForeignKey
 
+from accounts.models import User
 from core.mixins import CreateUpdateMixin
 from .managers import *
 

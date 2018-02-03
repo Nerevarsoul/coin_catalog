@@ -1,8 +1,8 @@
 import { getCoins } from '../utils';
 
-export const REQUEST_COINS = 'REQUEST_COINS'
-export const RECEIVE_COINS = 'RECEIVE_COINS'
-export const SELECT_SERIE = 'SELECT_SERIE'
+export const REQUEST_COINS = 'REQUEST_COINS';
+export const RECEIVE_COINS = 'RECEIVE_COINS';
+export const SELECT_SERIE = 'SELECT_SERIE';
 
 
 export function selectSerie(serie) {

@@ -1,9 +1,9 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
 import {
   SELECT_SERIE,
   REQUEST_COINS,
   RECEIVE_COINS
-} from '../actions/coins'
+} from '../actions/coins';
 
 
 function selectedSerie(state = 'reactjs', action) {

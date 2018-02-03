@@ -1,5 +1,5 @@
 import React from 'react';
-//import { connect } from 'react-redux'
+
 import SerieList from '../components/SerieList';
 import CoinsList from '../components/CoinsList';
 import { fetchSeries, fetchCatalogCoins } from '../utils';

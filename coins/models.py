@@ -1,6 +1,5 @@
 import uuid
 
-# from django.contrib.auth.models import User
 from django.urls import reverse
 from django.db import models
 
@@ -173,7 +172,7 @@ class Coin(CreateUpdateMixin, models.Model):
     )
     owner = models.ForeignKey(
         User,
-        on_delete=models.CASCADE, 
+        on_delete=models.CASCADE,
         related_name='coins'
     )
     status = models.CharField(

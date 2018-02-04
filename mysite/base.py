@@ -34,6 +34,7 @@ INSTALLED_APPS = (
     # 'captcha',
     'rest_framework',
     'django_rq',
+    'scheduler',
     'mptt',
 
     'accounts',

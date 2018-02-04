@@ -20,10 +20,11 @@ function requestCoins(serie) {
 }
 
 function receiveCoins(serie, json) {
+  console.log(json);
   return {
     type: RECEIVE_COINS,
     serie,
-    coins: json.data.children.map(child => child.data),
+    coins: json.data,
     receivedAt: Date.now()
   }
 }
@@ -37,7 +38,8 @@ function fetchCoins(serie) {
 }
 
 function shouldFetchCoins(state, serie) {
-  const coins = state.coins[serie]
+  console.log(state);
+  const coins = state.coins
   if (!coins) {
     return true
   } else if (coins.isFetching) {

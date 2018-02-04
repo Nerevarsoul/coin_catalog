@@ -6,7 +6,7 @@ import {
 } from '../actions/coins';
 
 
-function selectedSerie(state = 'reactjs', action) {
+function selectedSerie(state = null, action) {
   switch (action.type) {
     case SELECT_SERIE:
       return action.serie

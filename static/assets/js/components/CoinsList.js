@@ -10,10 +10,12 @@ export default class CoinsList extends React.Component {
     return (
       <table>
         <thead>
-          <th>Номинал</th>
-          <th>Год</th>
-          <th>Тема</th>
-          <th>Монетный двор</th>
+          <tr>
+            <th>Номинал</th>
+            <th>Год</th>
+            <th>Тема</th>
+            <th>Монетный двор</th>
+          </tr>
         </thead>
         <tbody>
           {this.props.coins.map((coin, index) => 

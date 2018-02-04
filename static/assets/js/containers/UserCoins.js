@@ -4,13 +4,14 @@ import { connect } from 'react-redux';
 import SerieList from '../components/SerieList';
 import CoinsList from '../components/CoinsList';
 import { fetchSeries } from '../utils';
-import { SELECT_SERIE, REQUEST_COINS, RECEIVE_COINS } from '../actions/coins';
+import { fetchCoinsIfNeeded } from '../actions/coins';
 
 
 class UserCoins extends React.Component {
   constructor(props) {
     super(props);
     this.state = {series: [], coins: [], selectedSerie: null};
+    this.SelectSerie = this.SelectSerie.bind(this);
   }
 
   componentDidMount() {
@@ -21,13 +22,18 @@ class UserCoins extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.selectedSerie !== prevProps.selectedSerie) {
-      const { dispatch, selectedSerie } = this.props
-      dispatch(fetchCoinsIfNeeded(selectedSerie))
+      const { dispatch, selectedSerie } = this.props;
+      dispatch(fetchCoinsIfNeeded(selectedSerie));
     }
   }
 
-  SelectSerie(selectedSerie) {
-    this.setState({ selectedSerie })
+  SelectSerie(serie) {
+    if (this.props.selectedSerie !== serie) {
+      console.log(serie);
+      this.setState({ selectedSerie: serie });
+      const { dispatch, selectedSerie } = this.props;
+      dispatch(fetchCoinsIfNeeded(serie));
+    }
   }
 
   render() {
@@ -41,7 +47,7 @@ class UserCoins extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { selectedSerie, coinsBySerie } = state
+  const { selectedSerie, coinsBySerie } = state;
   const {
     isFetching,
     lastUpdated,

@@ -1,11 +1,10 @@
-from .base import *
-# from .secret import *
+from .settings import *
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS += (
     'debug_toolbar',

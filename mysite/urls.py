@@ -1,4 +1,4 @@
-from django.urls import include, path
+from django.urls import include, path, re_path
 from django.contrib import admin
 from django.conf import settings
 
@@ -7,7 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('django-rq/', include('django_rq.urls')),
     path('api/', include('coins.urls')),
-    path('', include('core.urls')),
+    re_path('.*', include('core.urls')),
 ]
 
 if settings.DEBUG:

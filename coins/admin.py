@@ -24,4 +24,3 @@ class CoinAdmin(admin.ModelAdmin):
 admin.site.register(Serie, MPTTModelAdmin)
 admin.site.register(CatalogCoin, CatalogCoinAdmin)
 admin.site.register(Coin, CoinAdmin)
-

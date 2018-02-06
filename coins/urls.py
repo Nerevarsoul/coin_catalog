@@ -26,4 +26,3 @@ urlpatterns = [
         name='serie_list'
     ),
 ]
-

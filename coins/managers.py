@@ -36,4 +36,3 @@ class CoinManager(models.Manager):
 
     def list(self):
         return self.get_queryset().list()
-

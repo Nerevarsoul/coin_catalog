@@ -5,6 +5,10 @@ from mptt.admin import MPTTModelAdmin
 from .models import *
 
 
+class SerieAdmin(MPTTModelAdmin):
+    list_display = ('name', 'country', 'coin_amount',)
+
+
 class CatalogCoinAdmin(admin.ModelAdmin):
     list_display = ('face_value', 'currency', 'year', 'serie',)
     list_select_related = ('serie',)  
@@ -21,7 +25,7 @@ class CoinAdmin(admin.ModelAdmin):
 
 
 # Register your models here.
-admin.site.register(Serie, MPTTModelAdmin)
+admin.site.register(Serie, SerieAdmin)
 admin.site.register(CatalogCoin, CatalogCoinAdmin)
 admin.site.register(Coin, CoinAdmin)
 

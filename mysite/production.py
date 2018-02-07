@@ -1,4 +1,4 @@
-from .base import *
+from .settings import *
 from .secret import *
 
 
@@ -16,4 +16,3 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-

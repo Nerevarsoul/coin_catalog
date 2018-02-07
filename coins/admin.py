@@ -28,4 +28,3 @@ class CoinAdmin(admin.ModelAdmin):
 admin.site.register(Serie, SerieAdmin)
 admin.site.register(CatalogCoin, CatalogCoinAdmin)
 admin.site.register(Coin, CoinAdmin)
-

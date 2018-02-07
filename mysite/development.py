@@ -1,4 +1,4 @@
-from .base import *
+from .settings import *
 from .secret import *
 
 
@@ -22,4 +22,3 @@ INSTALLED_APPS += ('debug_toolbar',)
 DEBUG_TOOLBAR_CONFIG = {
     'SHOW_TOOLBAR_CALLBACK': lambda x: True,
 }
-

@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-export default const UserCoinsList = ({ coins }) => (
+const UserCoinsList = ({ coins }) => (
   <table>
     <thead>
       <tr>
@@ -12,7 +12,7 @@ export default const UserCoinsList = ({ coins }) => (
       </tr>
     </thead>
     <tbody>
-      {this.props.coins.map((coin, index) =>
+      {coins.map((coin, index) =>
         <tr key={index}>
           <td>{ `${coin['catalog_coin']['face_value']} ${coin['catalog_coin']['currency']}` }</td>
           <td>{ coin['catalog_coin']['year']  }</td>
@@ -23,3 +23,5 @@ export default const UserCoinsList = ({ coins }) => (
     </tbody>
   </table>
 )
+
+export default UserCoinsList

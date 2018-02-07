@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import SerieList from '../components/SerieList';
-import CoinsList from '../components/CoinsList';
+import UserCoinsList from '../components/UserCoinsList';
 import { fetchSeries } from '../utils';
 import { fetchCoinsIfNeeded } from '../actions/coins';
 
@@ -40,7 +40,7 @@ class UserCoins extends React.Component {
     return (
       <div>
         <SerieList selectedSerie={ this.state.selectedSerie } series={ this.state.series } func={ this.SelectSerie }></SerieList>
-        <CoinsList coins={ this.state.coins }></CoinsList>
+        <UserCoinsList coins={ this.state.coins }></UserCoinsList>
       </div>
     )
   }

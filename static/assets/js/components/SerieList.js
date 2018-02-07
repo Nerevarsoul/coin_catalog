@@ -1,13 +1,15 @@
 import React from 'react';
 
 
-export default const SerieList = ({ series, func }) => (
+const SerieList = ({ series, func }) => (
   <div>
-    {this.props.series.map((serie, index) =>
+    {series.map((serie, index) =>
        <li key={index}
-           onClick={ () => this.props.func(serie['name']) }>
+           onClick={ () => func(serie['name']) }>
          {serie['name']}
        </li>
     )}
   </div>
 )
+
+export default SerieList

@@ -18,6 +18,6 @@ export const fetchCatalogCoins = (serie) => (
 );
 
 export const getCoins = (serie, owner='d3698ffc-abc3-49b2-ac91-77f5273ccc2a') => (
-  fetch(`${apiUrl}coins?serie__name=${serie}&owner=${owner}`)
+  fetch(`${apiUrl}coins?catalog_coin__serie__name=${serie}&owner=${owner}`)
     .then(res => res.json())
 );

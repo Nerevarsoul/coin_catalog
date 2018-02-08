@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 from pathlib import Path
 
-BASE_DIR = Path.cwd()
+BASE_DIR = Path(__file__).parents[2]
 
 
 # Quick-start development settings - unsuitable for production

@@ -46,7 +46,7 @@ function coinsBySerie(state = {}, action) {
     case RECEIVE_COINS:
     case REQUEST_COINS:
       return Object.assign({}, state, {
-        [action.serie]: coins(state[action.serie], action)
+        coins: coins(state[action.serie], action)
       })
     default:
       return state

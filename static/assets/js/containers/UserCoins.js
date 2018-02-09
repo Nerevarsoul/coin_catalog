@@ -29,7 +29,6 @@ class UserCoins extends React.Component {
 
   SelectSerie(serie) {
     if (this.props.selectedSerie !== serie) {
-      console.log(serie);
       this.setState({ selectedSerie: serie });
       const { dispatch, selectedSerie } = this.props;
       dispatch(fetchCoinsIfNeeded(serie));
@@ -37,28 +36,28 @@ class UserCoins extends React.Component {
   }
 
   render() {
+    const { serie, coins, isFetching, lastUpdated } = this.props
     return (
       <div>
         <SerieList selectedSerie={ this.state.selectedSerie } series={ this.state.series } func={ this.SelectSerie }></SerieList>
-        <UserCoinsList coins={ this.state.coins }></UserCoinsList>
+        <UserCoinsList coins={ coins }></UserCoinsList>
       </div>
     )
   }
 }
 
 function mapStateToProps(state) {
-  const { selectedSerie, coinsBySerie } = state;
+  const { serie, coinsBySerie } = state;
   const {
     isFetching,
     lastUpdated,
-    items: coins
-  } = coinsBySerie[selectedSerie] || {
+    coins: coins
+  } = coinsBySerie['coins'] || {
     isFetching: true,
-    items: []
+    coins: []
   }
-
   return {
-    selectedSerie,
+    serie,
     coins,
     isFetching,
     lastUpdated

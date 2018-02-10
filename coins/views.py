@@ -4,6 +4,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 from core.views import GetListOrCreateSerializerMixin
 
+from .filters import *
 from .models import *
 from .serializers import *
 
@@ -14,6 +15,7 @@ class SerieCreateListView(GetListOrCreateSerializerMixin, ListCreateAPIView):
     queryset = Serie.objects.all().only('name')
     serializer_class = SerieListSerializer
     serializer_class_for_create = ''
+    filter_class = ListingSerieFilter 
 
 
 class CatalogueCoinCreateListView(GetListOrCreateSerializerMixin, ListCreateAPIView):

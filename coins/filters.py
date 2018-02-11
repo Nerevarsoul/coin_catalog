@@ -5,18 +5,21 @@ from .models import Coin, Serie
 __ALL__ = ('ListingSerieFilter',)
 
 
-def filter_owner(queryset, value):
-    if not value:
-        return queryset
-
-    queryset = queryset.filter(
-        id__in=Coin.objects.filter(owner=value).select_related('catalog_coin__serie').
-            values_list('catalog_coin__serie__id', flat=True).distinct()
-    )
-    return queryset
-
-
 class ListingSerieFilter(filters.FilterSet):
 
-    owner = filters.CharFilter(action=filter_owner)
+    owner = filters.CharFilter(method='filter_by_owner')
+
+    class Meta:
+        model = Serie
+        fields = ['name']
+
+    def filter_by_owner(self, qs, name, value):
+        if not value:
+            return qs
+
+        qs = qs.filter(
+            id__in=Coin.objects.filter(owner=value).select_related('catalog_coin__serie').
+                values_list('catalog_coin__serie__id', flat=True).distinct()
+        )
+        return qs
 

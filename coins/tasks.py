@@ -1,6 +1,8 @@
-from django_rq import job
+from django_rq import job, get_scheduler
 
 from .models import *
+
+__all__ = ('check_serie_amount',)
 
 
 @job
@@ -11,4 +13,4 @@ def check_serie_amount():
         if catalog_coin_amount != serie.coin_amount:
             serie.coin_amount = catalog_coin_amount
             serie.save()
-check_serie_amount.delay()
+

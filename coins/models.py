@@ -3,16 +3,16 @@ import uuid
 from django.urls import reverse
 from django.db import models
 
+from model_utils.models import TimeStampedModel
 from mptt.models import MPTTModel, TreeForeignKey
 
 from accounts.models import User
-from core.mixins import CreateUpdateMixin
 from .managers import *
 
 __all__ = ('CatalogCoin', 'Coin', 'Serie',)
 
 
-class Serie(CreateUpdateMixin, MPTTModel):
+class Serie(TimeStampedModel, MPTTModel):
     class MPTTMeta:
         order_insertion_by = ['name']
 
@@ -42,7 +42,7 @@ class Serie(CreateUpdateMixin, MPTTModel):
         return f'Serie({self.id})'
 
 
-class CatalogCoin(CreateUpdateMixin, models.Model):
+class CatalogCoin(TimeStampedModel):
     
     id = models.UUIDField(
         primary_key=True, 
@@ -133,7 +133,7 @@ class CatalogCoin(CreateUpdateMixin, models.Model):
         return f'{self.face_value} {self.currency} {self.theme}'
     
     
-class Coin(CreateUpdateMixin, models.Model):
+class Coin(TimeStampedModel):
 
     COIN_STATUS = (
         ('in_collection', 'в коллекции'),

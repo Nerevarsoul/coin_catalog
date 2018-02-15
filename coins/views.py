@@ -12,7 +12,7 @@ __all__ = ('CatalogueCoinCreateListView', 'CatalogueCoinDetailView', 'SerieCreat
 
 
 class SerieCreateListView(GetListOrCreateSerializerMixin, ListCreateAPIView):
-    queryset = Serie.objects.all().only('name')
+    queryset = Serie.objects.all().only('name', 'level', 'tree_id')
     serializer_class = SerieListSerializer
     serializer_class_for_create = ''
     filter_class = ListingSerieFilter 

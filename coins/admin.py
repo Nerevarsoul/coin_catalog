@@ -6,7 +6,7 @@ from .models import *
 
 
 class SerieAdmin(MPTTModelAdmin):
-    list_display = ('name', 'country', 'coin_amount',)
+    list_display = ('name', 'country', 'coin_amount', 'level', 'tree_id',)
 
 
 class CatalogCoinAdmin(admin.ModelAdmin):

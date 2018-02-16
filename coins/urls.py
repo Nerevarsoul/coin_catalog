@@ -1,6 +1,12 @@
-from django.urls import path
+from django.urls import path, include
+
+from rest_framework.routers import DefaultRouter
 
 from .views import *
+
+
+router = DefaultRouter()
+router.register(r'series', SerieViewSet)
 
 
 urlpatterns = [
@@ -20,9 +26,5 @@ urlpatterns = [
         CatalogueCoinDetailView.as_view(),
         name='catalogue_detail_coins'
     ),
-    path(
-        'series',
-        SerieCreateListView.as_view(),
-        name='serie_list'
-    ),
+    path(r'', include(router.urls))
 ]

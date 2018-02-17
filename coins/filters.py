@@ -22,4 +22,3 @@ class ListingSerieFilter(filters.FilterSet):
                 values_list('catalog_coin__serie__id', flat=True).distinct()
         )
         return qs
-

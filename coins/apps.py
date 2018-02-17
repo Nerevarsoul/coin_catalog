@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from django.apps import AppConfig
 
 import django_rq
@@ -18,4 +16,3 @@ class CoinsConfig(AppConfig):
             job.delete()
 
         scheduler.cron('0 2 * * *', check_serie_amount) 
-

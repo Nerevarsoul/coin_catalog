@@ -1,14 +1,12 @@
 from django.db import models
-
 from django.utils.translation import ugettext_lazy as _
 
-from django-rq-scheduler import BaseJob
-from model_utils.models import TimeStampedModel
+from scheduler.models import BaseJob
 
 from core.mixins import ErrorMixin
 
 
-class SpiderJob(ErrorMixin, TimeStampedModel, BaseJob):
+class SpiderJob(ErrorMixin, BaseJob):
     class Meta:
         verbose_name = _('Spider Job')
         verbose_name_plural = _('Spider Jobs')

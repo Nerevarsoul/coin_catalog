@@ -14,6 +14,11 @@ class SpiderJob(ErrorMixin, BaseJob):
         ordering = ('name',)
 
     result = models.PositiveIntegerField(default=0)
+    spider = models.ForeignKey(
+        Spider,
+        on_delete=models.DO_NOTHING,
+        related_name='jobs'
+    )
 
 
 class Spider(TimeStampedModel):
@@ -27,3 +32,6 @@ class Spider(TimeStampedModel):
     url = models.URLField()
     period = models.CharField(max_length=20)
     spider_name = models.CharField(max_length=50)
+
+    def run(self):
+        SpiderJob.objects.create(spider=self)

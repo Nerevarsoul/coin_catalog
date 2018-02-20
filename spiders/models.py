@@ -5,6 +5,7 @@ from scheduler.models import BaseJob
 from model_utils.models import TimeStampedModel
 
 from core.mixins import ErrorMixin
+from .mybot import spiders
 
 
 class SpiderJob(ErrorMixin, BaseJob):

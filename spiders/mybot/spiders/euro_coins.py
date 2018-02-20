@@ -73,7 +73,7 @@ class EuroCoins(scrapy.Spider):
         entries = response.xpath("//div[@class='entry']")
 
         for entry in entries:
-            coin = EuroCoinsItem()
+            coin = CoinItem()
             parameters = entry.xpath(".//td//text()").extract()
             parser = EuroCoinsParser(parameters, coin)
             parser.parse_parameters()

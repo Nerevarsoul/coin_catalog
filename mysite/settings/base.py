@@ -31,12 +31,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # http://django-simple-captcha.readthedocs.org/en/latest/usage.html
-    # 'captcha',
     'rest_framework',
     'django_rq',
     'scheduler',
     'mptt',
+    'social_django',
 
     'accounts',
     'core',
@@ -105,5 +104,8 @@ STATICFILES_DIRS = (
 AUTH_USER_MODEL = 'accounts.User'
 
 AUTHENTICATION_BACKENDS = (
+    'social_core.backends.vk.VKAppOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
+
+SOCIAL_AUTH_POSTGRES_JSONFIELD = True

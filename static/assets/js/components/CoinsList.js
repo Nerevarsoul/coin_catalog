@@ -1,27 +1,28 @@
 import React from 'react';
+import { Table } from 'semantic-ui-react';
 
 
 const CoinsList = ({ coins }) => (
-  <table>
-    <thead>
-      <tr>
-        <th>Номинал</th>
-        <th>Год</th>
-        <th>Тема</th>
-        <th>Монетный двор</th>
-      </tr>
-    </thead>
-    <tbody>
+  <Table celled>
+    <Table.Header>
+      <Table.Row>
+        <Table.HeaderCell>Номинал</Table.HeaderCell>
+        <Table.HeaderCell>Год</Table.HeaderCell>
+        <Table.HeaderCell>Тема</Table.HeaderCell>
+        <Table.HeaderCell>Монетный двор</Table.HeaderCell>
+      </Table.Row>
+    </Table.Header>
+    <Table.Body>
       {coins.map((coin, index) =>
-        <tr key={index}>
-          <td>{ `${coin['face_value']} ${coin['currency']}` }</td>
-          <td>{ coin['year']  }</td>
-          <td> { coin['theme']  } </td>
-          <td> { coin['mint']  }  </td>
-        </tr>
+        <Table.Row key={index}>
+          <Table.Cell>{ `${coin['face_value']} ${coin['currency']}` }</Table.Cell>
+          <Table.Cell>{ coin['year']  }</Table.Cell>
+          <Table.Cell> { coin['theme']  } </Table.Cell>
+          <Table.Cell> { coin['mint']  }  </Table.Cell>
+        </Table.Row>
       )}
-    </tbody>
-  </table>
+    </Table.Body>
+  </Table>
 )
 
 export default CoinsList

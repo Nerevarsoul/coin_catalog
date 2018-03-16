@@ -15,7 +15,7 @@ const Root = () => (
                 <Menu.Item link><Link to='/test'>Test</Link></Menu.Item>
                 <Menu.Item link><Link to='/series'>Series</Link></Menu.Item>
                 <Menu.Item link><Link to='/coins'>Coins</Link></Menu.Item>
-              <Menu/>
+              </Menu>
             </Grid.Column>
             <Grid.Column width={13}>
               {routes.map((route, index) => (
@@ -26,7 +26,7 @@ const Root = () => (
                   />
                 ))}
             </Grid.Column>
-          <Grid.Row>
+          </Grid.Row>
         </Grid>
       </Container>
     </BrowserRouter>

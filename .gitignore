@@ -20,3 +20,6 @@ static/app.js
 static/webpack-stats.json
 static/package-lock.json
 
+static/fonts/
+static/images/
+

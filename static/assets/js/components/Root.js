@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
-import { Container } from 'semantic-ui-react';
+import { Container, Menu } from 'semantic-ui-react';
 
 import { routes, RouteWithSubRoutes } from '../routes';
 
@@ -8,9 +8,11 @@ import { routes, RouteWithSubRoutes } from '../routes';
 const Root = () => (
     <BrowserRouter>
       <Container>
-        <li><Link to='/test'>Test</Link></li>
-        <li><Link to='/series'>Series</Link></li>
-        <li><Link to='/coins'>Coins</Link></li>
+        <Menu pointing vertical>
+          <Menu.Item link><Link to='/test'>Test</Link></Menu.Item>
+          <Menu.Item link><Link to='/series'>Series</Link></Menu.Item>
+          <Menu.Item link><Link to='/coins'>Coins</Link></Menu.Item>
+        <Menu/>
       {routes.map((route, index) => (
           <Route
             key={index}

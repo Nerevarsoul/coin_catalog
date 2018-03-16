@@ -3,7 +3,7 @@ import { Table } from 'semantic-ui-react';
 
 
 const UserCoinsList = ({ coins }) => (
-  <Table celled>
+  <Table celled padded>
     <Table.Header>
       <Table.Row>
         <Table.HeaderCell>Номинал</Table.HeaderCell>

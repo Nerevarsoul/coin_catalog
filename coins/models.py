@@ -116,6 +116,11 @@ class CatalogCoin(TimeStampedModel):
         blank=True, 
         null=True
     )
+    crause_number = models.CharField(
+        max_length=10,
+        blank=True,
+        null=True
+    )
     
     objects = CatalogCoinManager()
     
@@ -139,6 +144,7 @@ class Coin(TimeStampedModel):
         ('in_collection', 'в коллекции'),
         ('for_exchange', 'на обмен'),
         ('in_wishlist', 'в списке желаний'),
+        ('in_storage', 'в запаснике'), 
     )
 
     COIN_CONDITION = (

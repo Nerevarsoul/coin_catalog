@@ -16,7 +16,7 @@ class SpiderJob(ErrorMixin, BaseJob):
 
     result = models.PositiveIntegerField(default=0)
     spider = models.ForeignKey(
-        Spider,
+        'Spider',
         on_delete=models.DO_NOTHING,
         related_name='jobs'
     )

@@ -135,7 +135,10 @@ class CatalogCoin(TimeStampedModel):
 
     @property
     def par(self):
-        return f'{self.face_value} {self.currency} {self.theme}'
+        if self.theme:
+            return f'{self.face_value} {self.currency} {self.year} {self.theme}'
+        else:
+            return f'{self.face_value} {self.currency} {self.year}'
     
     
 class Coin(TimeStampedModel):

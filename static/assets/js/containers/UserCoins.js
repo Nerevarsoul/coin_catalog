@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Header } from 'semantic-ui-react';
 
 import SerieList from '../components/SerieList';
 import UserCoinsList from '../components/UserCoinsList';
@@ -40,6 +41,7 @@ class UserCoins extends React.Component {
     return (
       <div>
         <SerieList selectedSerie={ this.state.selectedSerie } series={ this.state.series } func={ this.SelectSerie }></SerieList>
+        <Header as='h2'> { this.state.selectedSerie } </Header>
         <UserCoinsList coins={ coins }></UserCoinsList>
       </div>
     )

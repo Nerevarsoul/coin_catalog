@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Header } from 'semantic-ui-react';
+import { Header, Grid } from 'semantic-ui-react';
 
 import SerieList from '../components/SerieList';
+import StatusList from '../components/StatusList';
 import UserCoinsList from '../components/UserCoinsList';
 import { fetchSeries } from '../utils';
 import { fetchCoinsIfNeeded } from '../actions/coins';
@@ -11,8 +12,9 @@ import { fetchCoinsIfNeeded } from '../actions/coins';
 class UserCoins extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {series: [], coins: [], selectedSerie: null};
-    this.SelectSerie = this.SelectSerie.bind(this);
+    this.state = {series: [], coins: [], selectedSerie: null, selectedStatus: null};
+    this.selectStatus = this.selectStatus.bind(this);
+    this.selectSerie = this.selectSerie.bind(this);
   }
 
   componentDidMount() {
@@ -28,11 +30,19 @@ class UserCoins extends React.Component {
     }
   }
 
-  SelectSerie(serie) {
+  selectSerie(serie) {
     if (this.props.selectedSerie !== serie) {
       this.setState({ selectedSerie: serie });
       const { dispatch, selectedSerie } = this.props;
-      dispatch(fetchCoinsIfNeeded(serie));
+      dispatch(fetchCoinsIfNeeded(serie, this.state.SelectedStatus));
+    }
+  }
+
+  selectStatus(stat) {
+    if (this.props.selectedStatus !== stat) {
+      this.setState({ selectedStatus: stat });
+      const { dispatch, selectedStatus } = this.props;
+      dispatch(fetchCoinsIfNeeded(this.state.selectedSerie, stat));
     }
   }
 
@@ -40,7 +50,16 @@ class UserCoins extends React.Component {
     const { serie, coins, isFetching, lastUpdated } = this.props
     return (
       <div>
-        <SerieList selectedSerie={ this.state.selectedSerie } series={ this.state.series } func={ this.SelectSerie }></SerieList>
+        <Grid columns={2} divided>
+          <Grid.Row>
+            <Grid.Column>  
+              <SerieList selectedSerie={ this.state.selectedSerie } series={ this.state.series } func={ this.selectSerie }></SerieList>
+            </Grid.Column>
+            <Grid.Column>
+              <StatusList func={ this.selectStatus }></StatusList>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
         <Header as='h2'> { this.state.selectedSerie } </Header>
         <UserCoinsList coins={ coins }></UserCoinsList>
       </div>

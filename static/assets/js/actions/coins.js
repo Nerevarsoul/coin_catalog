@@ -12,7 +12,7 @@ export function selectSerie(serie) {
   }
 }
 
-function requestCoins(serie) {
+function requestCoins(serie, stat) {
   return {
     type: REQUEST_COINS,
     serie
@@ -28,10 +28,10 @@ function receiveCoins(serie, json) {
   }
 }
 
-function fetchCoins(serie) {
+function fetchCoins(serie, stat) {
   return dispatch => {
-    dispatch(requestCoins(serie))
-    return getCoins(serie)
+    dispatch(requestCoins(serie, stat))
+    return getCoins(serie, stat)
       .then(json => dispatch(receiveCoins(serie, json)))
   }
 }
@@ -47,10 +47,10 @@ function shouldFetchCoins(state, serie) {
   }
 }
 
-export function fetchCoinsIfNeeded(serie) {
+export function fetchCoinsIfNeeded(serie, stat) {
   return (dispatch, getState) => {
     if (shouldFetchCoins(getState(), serie)) {
-      return dispatch(fetchCoins(serie))
+      return dispatch(fetchCoins(serie, stat))
     }
   }
 }

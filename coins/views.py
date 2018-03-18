@@ -35,4 +35,5 @@ class CoinCreateListView(GetListOrCreateSerializerMixin, ListCreateAPIView):
     serializer_class = CoinListSerializer
     serializer_class_for_create = CoinSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('catalog_coin__serie__name', 'owner',)
+    filter_fields = ('catalog_coin__serie__name', 'owner', 'status',)
+

@@ -1,17 +1,18 @@
 import re
+import unicodedata
 
 import scrapy
 
 from ..items import CoinItem
 
 
-NEEDLESS = ('finland', 'san-marino', 'euro-total', 'belgium', 'vatican', 'spain', 'monaco', 'netherlands')
+NEEDLESS = ('finland', 'san-marino', 'euro-total', 'belgium', 'vatican', 'spain', 'monaco', 'netherlands', 'total',)
 
 
 class EuroCoinsParser(object):
     PARAMETER_MAP = {
-        'Страна: ': 'set_country',
-        'Годы выпуска: ': 'set_circulation',
+        'Страна:': 'set_country',
+        'Годы выпуска:': 'set_year',
         'Номинал': 'set_par',
         'Материал': 'set_material',
         'Масса': 'set_weight',
@@ -21,8 +22,12 @@ class EuroCoinsParser(object):
 
     def __init__(self, coin, parameters):
         self.coin = coin
-        self.parameters = parameters
+        self.parameters = self.normilize_parameters(parameters)
 
+    @staticmethod
+    def normilize_parameters(parameters):
+        return [unicodedata.normalize("NFKD", p.strip()) for p in parameters]
+    
     def parse_parameters(self):
         for i, parameter in enumerate(self.parameters):
             method = self.PARAMETER_MAP.get(parameter)
@@ -32,9 +37,11 @@ class EuroCoinsParser(object):
     def set_country(self, i):
         self.coin['country'] = self.parameters[i+1]
 
-    def set_circulation(self, i):
+    def set_year(self, i):
+        print(self.parameters[i + 1])
         digits = [d for d in re.split(' |-', self.parameters[i + 1]) if d.isdigit()]
-        self.coin['circulation'] = (digits[0], digits[1] if len(digits) != 1 else None)
+        print(digits)
+        self.coin['year'] = (digits[0], digits[1] if len(digits) != 1 else digits[0])
 
     def set_par(self, i):
         par = self.parameters[i + 5].split()
@@ -65,16 +72,20 @@ class EuroCoins(scrapy.Spider):
         dds = response.xpath("//dd[contains(@class, 'level1')]")
         for dd in dds[:1]:
             urls = dd.xpath(".//a/@href").extract()
-            for url in urls:
+            for url in urls[:2]:
                 if url.split('/')[-1].split('.')[0] not in NEEDLESS:
                     yield scrapy.Request(url, dont_filter=True, callback=self.parse_page)
 
     def parse_page(self, response):
         entries = response.xpath("//div[@class='entry']")
 
+        print(len(entries))
         for entry in entries:
             coin = CoinItem()
             parameters = entry.xpath(".//td//text()").extract()
-            parser = EuroCoinsParser(parameters, coin)
+            parser = EuroCoinsParser(coin, parameters)
+            print(parser.parameters)
             parser.parse_parameters()
-            coin.save()
+            coin['serie'] = '0261600c-5202-425b-b516-6171464a6960'
+            print(coin)
+            # coin.save()

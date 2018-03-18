@@ -31,7 +31,7 @@ class CatalogCoinSerializer(serializers.ModelSerializer):
 class CoinListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Coin
-        fields = ('id', 'catalog_coin', 'owner',)
+        fields = ('id', 'catalog_coin', 'owner', 'status',)
 
     catalog_coin = CatalogCoinListSerializer()
 

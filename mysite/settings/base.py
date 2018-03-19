@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'scheduler',
     'mptt',
     'social_django',
+    'dynamic_raw_id',
 
     'accounts',
     'core',

@@ -32,10 +32,11 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'rest_framework.authtoken',
+    'social_django',
     'django_rq',
     'scheduler',
     'mptt',
-    'social_django',
     'dynamic_raw_id',
 
     'accounts',

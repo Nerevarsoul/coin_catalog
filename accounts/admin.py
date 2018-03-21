@@ -1,11 +1,14 @@
 from django.contrib import admin
-# from django.contrib.auth.models import User as DjangoUser
+from rest_framework.authtoken.models import Token
 
 from .models import *
 
 
+@admin.register(User)
 class UserAdmin(admin.ModelAdmin):
     pass
 
-# admin.site.unregister(DjangoUser)
-admin.site.register(User, UserAdmin)
+
+@admin.register(Token)
+class TokenAdmin(admin.ModelAdmin):
+    pass

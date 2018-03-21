@@ -1,14 +1,8 @@
-# -*- coding: UTF-8  -*-
-from django.conf.urls import include, url
-
-import views
-
-# from .vk import vkontakte_view
+from django.urls import include, path
+from rest_framework.authtoken import views
 
 
 urlpatterns = [
-    # user
-    
-    # (r'^vk/', vkontakte_view, name='vk_app'),
-    # url(r'', include('social_auth.urls')),
+    path('', include('social_django.urls', namespace='social')),
+    path(r'^api-token-auth/', views.obtain_auth_token)
 ]

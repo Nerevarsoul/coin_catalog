@@ -1,3 +1,6 @@
+import logging
+
+from django.conf import settings
 from django.http import HttpResponse
 from django.views.decorators.cache import never_cache
 from django.utils.decorators import method_decorator
@@ -14,6 +17,17 @@ from social_core.utils import get_strategy, parse_qs, user_is_authenticated
 from social_django.utils import psa, STORAGE
 
 from .serializers import UserTokenSerializer, OAuth2InputSerializer
+
+l = logging.getLogger(__name__)
+
+
+REDIRECT_URI = getattr(settings, 'REST_SOCIAL_OAUTH_REDIRECT_URI', '/')
+DOMAIN_FROM_ORIGIN = getattr(settings, 'REST_SOCIAL_DOMAIN_FROM_ORIGIN', True)
+LOG_AUTH_EXCEPTIONS = getattr(settings, 'REST_SOCIAL_LOG_AUTH_EXCEPTIONS', True)
+
+
+def load_strategy(request=None):
+    return get_strategy('rest_social_auth.strategy.DRFStrategy', STORAGE, request)
 
 
 @psa(REDIRECT_URI, load_strategy=load_strategy)
@@ -83,4 +97,3 @@ class BaseSocialAuthView(GenericAPIView):
         auth_data will be used used as request_data in strategy
         """
         request.auth_data = auth_data
-

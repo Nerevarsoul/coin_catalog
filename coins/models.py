@@ -34,6 +34,9 @@ class Serie(TimeStampedModel, MPTTModel):
     parent = TreeForeignKey(
         'self', null=True, blank=True, 
         related_name='children', db_index=True, on_delete=models.DO_NOTHING)
+    is_active = models.BooleanField(
+        default=True
+    )
 
     def __str__(self):
         return self.name
@@ -117,6 +120,11 @@ class CatalogCoin(TimeStampedModel):
         null=True
     )
     crause_number = models.CharField(
+        max_length=10,
+        blank=True,
+        null=True
+    )
+    my_number = models.CharField(
         max_length=10,
         blank=True,
         null=True

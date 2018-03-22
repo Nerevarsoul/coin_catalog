@@ -6,9 +6,6 @@ import scrapy
 from ..items import CoinItem
 
 
-NEEDLESS = ('finland', 'san-marino', 'euro-total', 'belgium', 'vatican', 'spain', 'monaco', 'netherlands', 'total',)
-
-
 class EuroCoinsParser(object):
     PARAMETER_MAP = {
         'Страна:': 'set_country',
@@ -61,20 +58,28 @@ class EuroCoinsParser(object):
         self.coin['thickness'] = self.parameters[i + 5].split()[0]
 
 
-class EuroCoins(scrapy.Spider):
-    name = "eurocoins"
+class BaseEuro(scrapy.Spider):
     allowed_domains = ["http://www.euro-coins.info/"]
-    start_urls = [
-        "http://www.euro-coins.info/euro.html",
-    ]
+    NEEDLESS = []
 
     def parse(self, response):
         dds = response.xpath("//dd[contains(@class, 'level1')]")
         for dd in dds[:1]:
             urls = dd.xpath(".//a/@href").extract()
             for url in urls[:2]:
-                if url.split('/')[-1].split('.')[0] not in NEEDLESS:
+                if url.split('/')[-1].split('.')[0] not in self.NEEDLESS:
                     yield scrapy.Request(url, dont_filter=True, callback=self.parse_page)
+
+
+class EuroCoins(BaseEuro):
+    name = "eurocoins"
+    allowed_domains = ["http://www.euro-coins.info/"]
+    start_urls = [
+        "http://www.euro-coins.info/euro.html",
+    ]
+    NEEDLESS = (
+        'finland', 'san-marino', 'euro-total', 'belgium', 'vatican', 'spain', 'monaco', 'netherlands', 'total',
+    )
 
     def parse_page(self, response):
         entries = response.xpath("//div[@class='entry']")
@@ -89,3 +94,16 @@ class EuroCoins(scrapy.Spider):
             coin['serie'] = '0261600c-5202-425b-b516-6171464a6960'
             print(coin)
             # coin.save()
+
+
+class EuroCoinsMintage(BaseEuro):
+    name = 'eurocoinsmintage'
+    start_urls = [
+        'https://www.euro-coins.info/info/mintage.html',
+    ]
+
+    def parse_page(self, response):
+        entries = response.xpath("//table[@class='entry']//tr[@class='total']")
+
+        for entry in entries:
+            pass

@@ -85,7 +85,7 @@ class CatalogCoin(TimeStampedModel):
         blank=True, 
         null=True
     )
-    count = models.IntegerField(
+    mintage = models.IntegerField(
         blank=True, 
         null=True
     )

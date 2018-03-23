@@ -102,8 +102,34 @@ class EuroCoinsMintage(BaseEuro):
         'https://www.euro-coins.info/info/mintage.html',
     ]
 
+    VALUE = ('1', '2', '5', '10', '20', '50', '1', '2', '2', '2', '2',)
+    CENTS = 'евроцентов'
+    EURO = 'евро'
+    CURRENCY = ('евроцент', 'евроцента', CENTS, CENTS, CENTS, CENTS, EURO, EURO, EURO, EURO)
+
     def parse_page(self, response):
-        entries = response.xpath("//table[@class='entry']//tr[@class='total']")
+        country = response.xpath("//dt[contains(@class, 'active')]//div//text()").extract()[0]
+        entries = response.xpath("//table[@class='mintage']//tr[@class='total']")
 
         for entry in entries:
-            pass
+            offset = 1
+            themes = entry.xpath(".//td//abbr/@title").extract()
+            row = entry.xpath(".//td//text()").extract()
+            year = int(row[0])
+            mint = row[1]
+            for i, mintage in enumerate(row[2:]):
+                mintage = ''.join(mintage.split('.'))
+                if mintage.isdigit():
+                    coin = CoinItem(
+                        year=year, country=country, mint=mint, face_value=self.VALUE[i], currency=self.CURRENCY[i]
+                    )
+                    if i > 7:
+                        coin['themes'] = themes[offset]
+                        offset += 1
+                    if coin['currency'] == self.EURO:
+                        coin['material'] = 'биметалл'
+                    print(coin)
+                elif i > 7:
+                    offset += 1
+
+

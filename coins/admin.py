@@ -28,18 +28,14 @@ class CoinAdmin(DynamicRawIDMixin, admin.ModelAdmin):
     ordering = ('catalog_coin__theme',)
     dynamic_raw_id_fields = ('catalog_coin',)
 
-    @staticmethod
-    def get_serie(instance):
+    def get_serie(self, instance):
         return instance.catalog_coin.serie.name
 
-    @staticmethod
-    def get_mint(instance):
+    def get_mint(self, instance):
         return instance.catalog_coin.mint
 
-    @staticmethod
-    def get_year(instance):
+    def get_year(self, instance):
         return instance.catalog_coin.year
 
-    @staticmethod
-    def get_country(instance):
+    def get_country(self, instance):
         return instance.catalog_coin.country

@@ -60,12 +60,11 @@ class EuroCoinsParser(object):
 
 class BaseEuro(scrapy.Spider):
     allowed_domains = ["http://www.euro-coins.info/"]
-    NEEDLESS = ['total']
 
     def parse(self, response):
         dd = response.xpath("//dd[contains(@class, 'active')]")[0]
         urls = dd.xpath(".//a/@href").extract()
-        for url in urls[:1]:
+        for url in urls:
             yield scrapy.Request(url, dont_filter=True, callback=self.parse_page)
 
     def parse_page(self, response):
@@ -85,16 +84,13 @@ class EuroCoins(BaseEuro):
     def parse_page(self, response):
         entries = response.xpath("//div[@class='entry']")
 
-        print(len(entries))
         for entry in entries:
             coin = CoinItem()
             parameters = entry.xpath(".//td//text()").extract()
             parser = EuroCoinsParser(coin, parameters)
-            print(parser.parameters)
             parser.parse_parameters()
             coin['serie'] = '0261600c-5202-425b-b516-6171464a6960'
-            print(coin)
-            # coin.save()
+            coin.save()
 
 
 class EuroCoinsMintage(BaseEuro):
@@ -106,7 +102,7 @@ class EuroCoinsMintage(BaseEuro):
     VALUE = (1, 2, 5, 10, 20, 50, 1, 2, 2, 2, 2,)
     CENTS = 'евроцентов'
     EURO = 'евро'
-    CURRENCY = ('евроцент', 'евроцента', CENTS, CENTS, CENTS, CENTS, EURO, EURO, EURO, EURO, EURO,)
+    CURRENCY = ('евроцент', 'евроцента', CENTS, CENTS, CENTS, CENTS, EURO, EURO, EURO, EURO, EURO)
     SERIE = 'ad7279ee-57ba-4fe9-a9af-3caca31acdfc'
     COMMEMORATIVE_SERIE = 'a30d8bc8-e242-4764-9386-635aa3c7d750'
     EURO_SERIE = 'd65bec1c-65d5-4be4-81bf-fd6c490d6620'
@@ -126,6 +122,13 @@ class EuroCoinsMintage(BaseEuro):
             offset = 1
             themes = entry.xpath(".//td//abbr/@title").extract()
             row = entry.xpath(".//td//text()").extract()
+            for sign in ('\n', '1', '2', '\xa0',): 
+                try:
+                    row.remove(sign)
+                except ValueError:
+                    pass
+            if '*' in row[0]:
+                continue
             year = int(row[0])
             mint = row[1]
             for i, mintage in enumerate(row[2:]):
@@ -136,14 +139,20 @@ class EuroCoinsMintage(BaseEuro):
                         currency=self.CURRENCY[i], mintage=int(mintage)
                     )
                     if i > 7:
-                        coin['theme'] = themes[offset]
-                        offset += 1
+                        try:
+                            coin['theme'] = themes[offset]
+                            offset += 1
+                        except IndexError:
+                            coin['theme'] = themes[offset-1]
                         if i != 10:
                             coin['serie'] = self.COMMEMORATIVE_SERIE
                         else:
-                            coin['serie'] = self.serie_map[coin['year']]
+                            try:
+                                coin['serie'] = self.serie_map[coin['year']]
+                            except KeyError:
+                                coin['serie'] = self.COMMEMORATIVE_SERIE
                     else:
                         coin['serie'] = self.SERIE
                     if coin['currency'] == self.EURO:
                         coin['material'] = 'биметалл'
-                    print(coin)
+                    coin.save()

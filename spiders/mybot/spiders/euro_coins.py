@@ -60,15 +60,13 @@ class EuroCoinsParser(object):
 
 class BaseEuro(scrapy.Spider):
     allowed_domains = ["http://www.euro-coins.info/"]
-    NEEDLESS = []
+    NEEDLESS = ['total']
 
     def parse(self, response):
-        dds = response.xpath("//dd[contains(@class, 'level1')]")
-        for dd in dds[:1]:
-            urls = dd.xpath(".//a/@href").extract()
-            for url in urls[:2]:
-                if url.split('/')[-1].split('.')[0] not in self.NEEDLESS:
-                    yield scrapy.Request(url, dont_filter=True, callback=self.parse_page)
+        dd = response.xpath("//dd[contains(@class, 'active')]")[0]
+        urls = dd.xpath(".//a/@href").extract()
+        for url in urls[:1]:
+            yield scrapy.Request(url, dont_filter=True, callback=self.parse_page)
 
 
 class EuroCoins(BaseEuro):
@@ -105,7 +103,7 @@ class EuroCoinsMintage(BaseEuro):
     VALUE = ('1', '2', '5', '10', '20', '50', '1', '2', '2', '2', '2',)
     CENTS = 'евроцентов'
     EURO = 'евро'
-    CURRENCY = ('евроцент', 'евроцента', CENTS, CENTS, CENTS, CENTS, EURO, EURO, EURO, EURO)
+    CURRENCY = ('евроцент', 'евроцента', CENTS, CENTS, CENTS, CENTS, EURO, EURO, EURO, EURO, EURO,)
 
     def parse_page(self, response):
         country = response.xpath("//dt[contains(@class, 'active')]//div//text()").extract()[0]
@@ -124,12 +122,9 @@ class EuroCoinsMintage(BaseEuro):
                         year=year, country=country, mint=mint, face_value=self.VALUE[i], currency=self.CURRENCY[i]
                     )
                     if i > 7:
-                        coin['themes'] = themes[offset]
+                        coin['theme'] = themes[offset]
                         offset += 1
                     if coin['currency'] == self.EURO:
                         coin['material'] = 'биметалл'
                     print(coin)
-                elif i > 7:
-                    offset += 1
-
 

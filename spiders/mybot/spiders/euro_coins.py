@@ -68,6 +68,9 @@ class BaseEuro(scrapy.Spider):
         for url in urls[:1]:
             yield scrapy.Request(url, dont_filter=True, callback=self.parse_page)
 
+    def parse_page(self, response):
+        pass
+
 
 class EuroCoins(BaseEuro):
     name = "eurocoins"
@@ -100,10 +103,20 @@ class EuroCoinsMintage(BaseEuro):
         'https://www.euro-coins.info/info/mintage.html',
     ]
 
-    VALUE = ('1', '2', '5', '10', '20', '50', '1', '2', '2', '2', '2',)
+    VALUE = (1, 2, 5, 10, 20, 50, 1, 2, 2, 2, 2,)
     CENTS = 'евроцентов'
     EURO = 'евро'
     CURRENCY = ('евроцент', 'евроцента', CENTS, CENTS, CENTS, CENTS, EURO, EURO, EURO, EURO, EURO,)
+    SERIE = 'ad7279ee-57ba-4fe9-a9af-3caca31acdfc'
+    COMMEMORATIVE_SERIE = 'a30d8bc8-e242-4764-9386-635aa3c7d750'
+    EURO_SERIE = 'd65bec1c-65d5-4be4-81bf-fd6c490d6620'
+    ROME_SERIE = 'b4b3e1fa-4846-4b2d-8ff6-6453525a2830'
+    FLAG_SERIE = '745b1f74-1710-460e-9cfb-14cd38c0acfe'
+    ALLIANCE_SERIE = 'e914f8e9-ca18-4224-9228-8dd494a1f16e'
+
+    @property
+    def serie_map(self):
+        return {2007: self.ROME_SERIE, 2009: self.ALLIANCE_SERIE, 2012: self.EURO_SERIE, 2015: self.FLAG_SERIE}
 
     def parse_page(self, response):
         country = response.xpath("//dt[contains(@class, 'active')]//div//text()").extract()[0]
@@ -119,12 +132,18 @@ class EuroCoinsMintage(BaseEuro):
                 mintage = ''.join(mintage.split('.'))
                 if mintage.isdigit():
                     coin = CoinItem(
-                        year=year, country=country, mint=mint, face_value=self.VALUE[i], currency=self.CURRENCY[i]
+                        year=year, country=country, mint=mint, face_value=self.VALUE[i],
+                        currency=self.CURRENCY[i], mintage=int(mintage)
                     )
                     if i > 7:
                         coin['theme'] = themes[offset]
                         offset += 1
+                        if i != 10:
+                            coin['serie'] = self.COMMEMORATIVE_SERIE
+                        else:
+                            coin['serie'] = self.serie_map[coin['year']]
+                    else:
+                        coin['serie'] = self.SERIE
                     if coin['currency'] == self.EURO:
                         coin['material'] = 'биметалл'
                     print(coin)
-

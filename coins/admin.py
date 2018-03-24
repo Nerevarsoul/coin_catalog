@@ -24,7 +24,7 @@ class CatalogCoinAdmin(DynamicRawIDMixin, admin.ModelAdmin):
 class CoinAdmin(DynamicRawIDMixin, admin.ModelAdmin):
     list_display = ('catalog_coin', 'get_serie', 'get_country', 'owner', 'get_year', 'status', 'get_mint',)
     list_select_related = ('catalog_coin', 'owner', 'catalog_coin__serie',)
-    list_filter = (('catalog_coin__serie', admin.RelatedOnlyFieldListFilter), 'status', 'get_country', 'get_year',)
+    list_filter = (('catalog_coin__serie', admin.RelatedOnlyFieldListFilter), 'status',)
     ordering = ('catalog_coin__theme',)
     dynamic_raw_id_fields = ('catalog_coin',)
 

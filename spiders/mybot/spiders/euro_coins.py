@@ -128,7 +128,7 @@ class EuroCoinsMintage(BaseEuro):
                 except ValueError:
                     pass
             year = int(row[0])
-            if ''.join(row[0].split('.')).isdigit:
+            if ''.join(row[1].split('.')).isdigit():
                 last_index = 9
                 mint = ''
             else:

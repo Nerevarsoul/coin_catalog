@@ -16,7 +16,7 @@ class SerieAdmin(MPTTModelAdmin):
 class CatalogCoinAdmin(DynamicRawIDMixin, admin.ModelAdmin):
     list_display = ('face_value', 'currency', 'year', 'serie', 'mint',)
     list_select_related = ('serie',)
-    list_filter = (('serie', admin.RelatedOnlyFieldListFilter), 'year')
+    list_filter = (('serie', admin.RelatedOnlyFieldListFilter), 'year', 'country',)
     dynamic_raw_id_fields = ('serie',)  
 
 

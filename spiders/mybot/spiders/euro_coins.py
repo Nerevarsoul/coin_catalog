@@ -103,18 +103,16 @@ class EuroCoinsMintage(BaseEuro):
     CENTS = 'евроцентов'
     EURO = 'евро'
     CURRENCY = ('евроцент', 'евроцента', CENTS, CENTS, CENTS, CENTS, EURO, EURO, EURO, EURO, EURO)
-    SERIE = Serie.objects.get('ad7279ee-57ba-4fe9-a9af-3caca31acdfc')
-    COMMEMORATIVE_SERIE = Serie.objects.get('a30d8bc8-e242-4764-9386-635aa3c7d750')
-    EURO_SERIE = Serie.objects.get('d65bec1c-65d5-4be4-81bf-fd6c490d6620')
-    ROME_SERIE = Serie.objects.get('b4b3e1fa-4846-4b2d-8ff6-6453525a2830')
-    FLAG_SERIE = Serie.objects.get('745b1f74-1710-460e-9cfb-14cd38c0acfe')
-    ALLIANCE_SERIE = Serie.objects.get('e914f8e9-ca18-4224-9228-8dd494a1f16e')
-
-    @property
-    def serie_map(self):
-        return {2007: self.ROME_SERIE, 2009: self.ALLIANCE_SERIE, 2012: self.EURO_SERIE, 2015: self.FLAG_SERIE}
 
     def parse_page(self, response):
+        SERIE = Serie.objects.get('ad7279ee-57ba-4fe9-a9af-3caca31acdfc')
+        COMMEMORATIVE_SERIE = Serie.objects.get('a30d8bc8-e242-4764-9386-635aa3c7d750')
+        EURO_SERIE = Serie.objects.get('d65bec1c-65d5-4be4-81bf-fd6c490d6620')
+        ROME_SERIE = Serie.objects.get('b4b3e1fa-4846-4b2d-8ff6-6453525a2830')
+        FLAG_SERIE = Serie.objects.get('745b1f74-1710-460e-9cfb-14cd38c0acfe')
+        ALLIANCE_SERIE = Serie.objects.get('e914f8e9-ca18-4224-9228-8dd494a1f16e')
+        SERIE_MAP = {2007: ROME_SERIE, 2009: ALLIANCE_SERIE, 2012: EURO_SERIE, 2015: FLAG_SERIE}
+
         country = response.xpath("//dt[contains(@class, 'active')]//div//text()").extract()[0]
         entries = response.xpath("//table[@class='mintage']//tr[@class='total']")
 
@@ -145,14 +143,14 @@ class EuroCoinsMintage(BaseEuro):
                         except IndexError:
                             coin['theme'] = themes[offset-1]
                         if i != 10:
-                            coin['serie'] = self.COMMEMORATIVE_SERIE
+                            coin['serie'] = COMMEMORATIVE_SERIE
                         else:
                             try:
-                                coin['serie'] = self.serie_map[coin['year']]
+                                coin['serie'] = SERIE_MAP[coin['year']]
                             except KeyError:
-                                coin['serie'] = self.COMMEMORATIVE_SERIE
+                                coin['serie'] = COMMEMORATIVE_SERIE
                     else:
-                        coin['serie'] = self.SERIE
+                        coin['serie'] = SERIE
                     if coin['currency'] == self.EURO:
                         coin['material'] = 'биметалл'
                     coin.save()

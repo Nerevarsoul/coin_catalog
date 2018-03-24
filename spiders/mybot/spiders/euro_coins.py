@@ -3,7 +3,7 @@ import unicodedata
 
 import scrapy
 
-from ..items import CoinItem
+from ..items import CoinItem, Serie
 
 
 class EuroCoinsParser(object):
@@ -103,12 +103,12 @@ class EuroCoinsMintage(BaseEuro):
     CENTS = 'евроцентов'
     EURO = 'евро'
     CURRENCY = ('евроцент', 'евроцента', CENTS, CENTS, CENTS, CENTS, EURO, EURO, EURO, EURO, EURO)
-    SERIE = 'ad7279ee-57ba-4fe9-a9af-3caca31acdfc'
-    COMMEMORATIVE_SERIE = 'a30d8bc8-e242-4764-9386-635aa3c7d750'
-    EURO_SERIE = 'd65bec1c-65d5-4be4-81bf-fd6c490d6620'
-    ROME_SERIE = 'b4b3e1fa-4846-4b2d-8ff6-6453525a2830'
-    FLAG_SERIE = '745b1f74-1710-460e-9cfb-14cd38c0acfe'
-    ALLIANCE_SERIE = 'e914f8e9-ca18-4224-9228-8dd494a1f16e'
+    SERIE = Serie.objects.get('ad7279ee-57ba-4fe9-a9af-3caca31acdfc')
+    COMMEMORATIVE_SERIE = Serie.objects.get('a30d8bc8-e242-4764-9386-635aa3c7d750')
+    EURO_SERIE = Serie.objects.get('d65bec1c-65d5-4be4-81bf-fd6c490d6620')
+    ROME_SERIE = Serie.objects.get('b4b3e1fa-4846-4b2d-8ff6-6453525a2830')
+    FLAG_SERIE = Serie.objects.get('745b1f74-1710-460e-9cfb-14cd38c0acfe')
+    ALLIANCE_SERIE = Serie.objects.get('e914f8e9-ca18-4224-9228-8dd494a1f16e')
 
     @property
     def serie_map(self):
@@ -122,13 +122,13 @@ class EuroCoinsMintage(BaseEuro):
             offset = 1
             themes = entry.xpath(".//td//abbr/@title").extract()
             row = entry.xpath(".//td//text()").extract()
-            for sign in ('\n', '1', '2', '\xa0',): 
+            if '*' in row[0]:
+                continue
+            for sign in ('\n', '1', '2', '\xa0',):
                 try:
                     row.remove(sign)
                 except ValueError:
                     pass
-            if '*' in row[0]:
-                continue
             year = int(row[0])
             mint = row[1]
             for i, mintage in enumerate(row[2:]):

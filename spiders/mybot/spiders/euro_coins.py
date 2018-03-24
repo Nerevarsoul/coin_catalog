@@ -128,7 +128,12 @@ class EuroCoinsMintage(BaseEuro):
                 except ValueError:
                     pass
             year = int(row[0])
-            mint = row[1]
+            if ''.join(row[0].split('.')).isdigit:
+                last_index = 9
+                mint = ''
+            else:
+                last_index = 10
+                mint = row[1]
             for i, mintage in enumerate(row[2:]):
                 mintage = ''.join(mintage.split('.'))
                 if mintage.isdigit():
@@ -142,7 +147,7 @@ class EuroCoinsMintage(BaseEuro):
                             offset += 1
                         except IndexError:
                             coin['theme'] = themes[offset-1]
-                        if i != 10:
+                        if i != last_index:
                             coin['serie'] = COMMEMORATIVE_SERIE
                         else:
                             try:

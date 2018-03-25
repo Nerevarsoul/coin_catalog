@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
 from scrapy_djangoitem import DjangoItem
@@ -12,4 +11,3 @@ class CoinItem(DjangoItem):
 
 class SerieItem(DjangoItem):
     django_model = Serie
-

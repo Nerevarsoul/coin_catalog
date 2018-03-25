@@ -1,21 +1,22 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import Test from '../components/Test';
+import Auth from '../components/Auth';
 import SerieCoins from '../containers/SerieCoins'; 
 import UserCoins from '../containers/UserCoins';
 
 export const routes = [
-  { path: '/test',
-    component: Test
-  },
-  { path: '/series',
+  { path: '/catalogue',
     component: SerieCoins
   },
   {
     path: '/coins',
     component: UserCoins
-  }
+  },
+  {
+    path: '/auth',
+    component: Auth
+  },
 ]
 
 export const RouteWithSubRoutes = (route) => (

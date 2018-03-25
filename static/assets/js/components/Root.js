@@ -13,10 +13,10 @@ const Root = () => (
             <Grid.Column width={3}>
               <Menu vertical>
                 <Menu.Item link><Link to='/test'>Регистрация</Link></Menu.Item>
-                <Menu.Item link><Link to='/test'>Войти</Link></Menu.Item>
+                <Menu.Item link><Link to='/auth'>Войти</Link></Menu.Item>
                 <Menu.Item link><Link to='/test'>Мой кабинет</Link></Menu.Item>
-                <Menu.Item link><Link to='/test'>Test</Link></Menu.Item>
                 <Menu.Item link><Link to='/series'>Каталог</Link></Menu.Item>
+                <Menu.Item link><Link to='/coins'>Обменник</Link></Menu.Item
                 <Menu.Item link>
                     Монеты
                     <Menu.Menu>

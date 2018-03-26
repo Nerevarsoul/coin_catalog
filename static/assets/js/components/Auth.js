@@ -2,6 +2,8 @@ import React from 'react';
 import { Input } from 'semantic-ui-react';
 
 
+
+
 export default class AuthComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -18,6 +20,7 @@ export default class AuthComponent extends React.Component {
   handleSubmit(event) {
     alert('A name was submitted: ' + this.state.value);
     event.preventDefault();
+
   }
 
   render() {

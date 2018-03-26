@@ -100,6 +100,11 @@ class CatalogCoin(TimeStampedModel):
         blank=True, 
         null=True
     )
+    series = models.ManyToManyField(
+        Serie,
+        on_delete=models.DO_NOTHING,
+        related_name='series_coins',
+    )
     catalog_image = models.ImageField(
         upload_to='coin_images', 
         blank=True, 
@@ -160,6 +165,9 @@ class Coin(TimeStampedModel):
 
     COIN_CONDITION = (
         ('unknown', 'неизвестно'),
+        ('proof', 'proof'),
+        ('BU', 'BU'),
+        ('UNC', 'UNC'),
     )
 
     DEFAULT_STATUS = COIN_STATUS[0][0]
@@ -196,6 +204,11 @@ class Coin(TimeStampedModel):
         choices=COIN_STATUS, 
         default=DEFAULT_STATUS,
         max_length=20
+    )
+    source = models.CharField(
+        max_length=250,
+        blank=True,
+        null=True
     )
 
     objects = CoinManager()

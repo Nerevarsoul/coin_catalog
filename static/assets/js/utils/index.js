@@ -1,6 +1,11 @@
 import 'whatwg-fetch';
 
-let apiUrl = 'http://185.12.95.205:8000/api/'
+let apiUrl = 'http://185.12.95.205:8000/api/';
+
+export const getToken = () => localStorage.getItem('Token')
+export const setToken = (value) => localStorage.setItem('Token', value)
+export const removeToken = () => localStorage.removeItem('Token');
+
 
 function getUrl(serie, stat, owner) {
   let url = `${apiUrl}coins?catalog_coin__serie__name=${serie}&owner=${owner}`
@@ -36,3 +41,25 @@ export const authPost = (body) => (
     body: data
   }).then(res => res.json())
 )
+
+export const headers = function () {
+  let headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json; charset=utf-8'
+  }
+
+  const token = getToken()
+  if (token) {
+    headers['Authorization'] = `Token ${token}`
+  }
+
+  return headers
+}
+
+export function getQueryString(params) {
+  const esc = encodeURIComponent
+  return Object.keys(params)
+    .filter(key => !!params[key])
+    .map(key => esc(key) + '=' + esc(params[key]))
+    .join('&')
+}

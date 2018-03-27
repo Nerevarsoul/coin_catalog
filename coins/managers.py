@@ -1,6 +1,6 @@
 from django.db import models
 
-__all__ = ('CatalogCoinManager', 'CoinManager')
+__all__ = ('CatalogCoinManager', 'CoinManager', 'SeriesManager',)
 
 
 class CatalogCoinQuerySet(models.QuerySet):
@@ -33,6 +33,21 @@ class CoinManager(models.Manager):
 
     def get_queryset(self):
         return CoinQuerySet(self.model, using=self._db)
+
+    def list(self):
+        return self.get_queryset().list()
+
+
+class SeriesQuerySet(models.QuerySet):
+
+    def list(self):
+        return self.only('name', 'level', 'tree_id', 'is_active',)
+
+
+class SeriesManager(models.Manager):
+
+    def get_queryset(self):
+        return SeriesQuerySet(self.model, using=self._db)
 
     def list(self):
         return self.get_queryset().list()

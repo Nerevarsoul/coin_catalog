@@ -2,10 +2,10 @@ import rest_framework_filters as filters
 
 from .models import Coin, Serie
  
-__ALL__ = ('ListingSerieFilter',)
+__ALL__ = ('ListingSeriesFilter',)
 
 
-class ListingSerieFilter(filters.FilterSet):
+class ListingSeriesFilter(filters.FilterSet):
 
     owner = filters.CharFilter(method='filter_by_owner')
 

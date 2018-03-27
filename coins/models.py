@@ -38,11 +38,13 @@ class Serie(TimeStampedModel, MPTTModel):
         default=True
     )
 
+    objects = SeriesManager()
+
     def __str__(self):
         return self.name
 
     def __repr__(self):
-        return f'Serie({self.id})'
+        return f'Series({self.id})'
 
 
 class CatalogCoin(TimeStampedModel):

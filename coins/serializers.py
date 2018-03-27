@@ -3,12 +3,12 @@ from rest_framework import serializers
 from .models import Coin, CatalogCoin, Serie
 
 __all__ = (
-    'CatalogCoinListSerializer', 'CatalogCoinSerializer', 'SerieListSerializer', 'CoinListSerializer',
+    'CatalogCoinListSerializer', 'CatalogCoinSerializer', 'SeriesListSerializer', 'CoinListSerializer',
     'CoinSerializer',
 )
 
 
-class SerieListSerializer(serializers.ModelSerializer):
+class SeriesListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Serie
         fields = ('name',)

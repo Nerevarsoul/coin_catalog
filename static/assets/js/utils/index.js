@@ -7,20 +7,7 @@ export const setToken = (value) => localStorage.setItem('Token', value)
 export const removeToken = () => localStorage.removeItem('Token');
 
 
-function getUrl(serie, stat, owner) {
-  let url = `${apiUrl}coins?catalog_coin__serie__name=${serie}&owner=${owner}`
-  if (stat) {
-    url = url + `&status=${stat}`
-  }
-  return url
-}
-
-function apiCall(endpoint) {
-  fetch(`${API_URL}${endpoint}`)
-    .then(res => res.json())
-}
-
-export const callApi = function(endPoint, method='GET', payload=null) {
+export const callApi = function(endPoint, method='GET', payload=null, params=null) {
   const options = {
     method: method.toUpperCase(),
     headers: headers,
@@ -31,31 +18,15 @@ export const callApi = function(endPoint, method='GET', payload=null) {
     cache: 'no-cache'
   }
 
-  return fetch(${API_URL}/${endPoint}, options)
+  let url = `${API_URL}/${endPoint}`
+
+  if (params) {
+    url = url + getQueryString(params)
+  }
+
+  return fetch(url, options)
     .then(res => res.json())
 }
-
-export const fetchSeries = () => (
-  fetch(`${apiUrl}series/`)
-    .then(res => res.json())
-);
-
-export const fetchCatalogCoins = (serie) => (
-  fetch(`${apiUrl}catalogue?serie__name=${serie}`)
-    .then(res => res.json())
-);
-
-export const getCoins = (serie, stat, owner='d3698ffc-abc3-49b2-ac91-77f5273ccc2a') => (
-  fetch(getUrl(serie, stat, owner))
-    .then(res => res.json())
-);
-
-export const authPost = (body) => (
-  fetch(`${apiUrl}auth/api-token-auth/`, {
-    method: 'POST',
-    body: data
-  }).then(res => res.json())
-)
 
 export const headers = function () {
   let headers = {

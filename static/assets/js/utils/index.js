@@ -1,6 +1,6 @@
 import 'whatwg-fetch';
 
-let apiUrl = 'http://185.12.95.205:8000/api/';
+const API_URL = 'http://185.12.95.205:8000/api/';
 
 export const getToken = () => localStorage.getItem('Token')
 export const setToken = (value) => localStorage.setItem('Token', value)
@@ -16,7 +16,22 @@ function getUrl(serie, stat, owner) {
 }
 
 function apiCall(endpoint) {
-  fetch(`${apiUrl}${endpoint}`)
+  fetch(`${API_URL}${endpoint}`)
+    .then(res => res.json())
+}
+
+export const callApi = function(endPoint, method='GET', payload=null) {
+  const options = {
+    method: method.toUpperCase(),
+    headers: headers,
+    body: payload ? JSON.stringify(payload) : undefined,
+    credentials: 'same-origin',
+    mode: 'same-origin',
+    redirect: 'follow',
+    cache: 'no-cache'
+  }
+
+  return fetch(${API_URL}/${endPoint}, options)
     .then(res => res.json())
 }
 

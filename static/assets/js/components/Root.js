@@ -12,19 +12,23 @@ const Root = () => (
           <Grid.Row>
             <Grid.Column width={3}>
               <Menu vertical>
-                <Menu.Item link><Link to='/test'>Регистрация</Link></Menu.Item>
-                <Menu.Item link><Link to='/auth'>Войти</Link></Menu.Item>
+                <Menu.Item link>
+                  <Menu.Menu>
+                    <Menu.Item link><Link to='/registration'>Регистрация</Link></Menu.Item>
+                    <Menu.Item link><Link to='/auth'>Войти</Link></Menu.Item>
+                  </Menu.Menu>
+                </Menu.Item>
                 <Menu.Item link><Link to='/test'>Мой кабинет</Link></Menu.Item>
-                <Menu.Item link><Link to='/series'>Каталог</Link></Menu.Item>
-                <Menu.Item link><Link to='/coins'>Обменник</Link></Menu.Item
                 <Menu.Item link>
                     Монеты
                     <Menu.Menu>
+                      <Menu.Item link><Link to='/series'>Каталог</Link></Menu.Item>
+                      <Menu.Item link><Link to='/coins'>Обменник</Link></Menu.Item>
                       <Menu.Item link><Link to='/coins'>Монеты на обмен</Link></Menu.Item>
                       <Menu.Item link><Link to='/coins'>Монеты в поиске</Link></Menu.Item>
                     </Menu.Menu>
                 </Menu.Item>
-                <Menu.Item link><Link to='/test'>Пользователи</Link></Menu.Item>
+                <Menu.Item link><Link to='/users'>Пользователи</Link></Menu.Item>
               </Menu>
             </Grid.Column>
             <Grid.Column width={13}>
@@ -43,4 +47,3 @@ const Root = () => (
 )
 
 export default Root
-

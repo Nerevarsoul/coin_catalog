@@ -4,7 +4,7 @@ from ..items import CoinItem, SerieItem
 
 
 class StateQuaterCoins(scrapy.Spider):
-    name = "statequater"
+    name = "state_quater"
     allowed_domains = ["http://collection-coin.ru"]
     start_urls = [
         'http://collection-coin.ru/monety-ssha/25-czentov-shtaty-i-territorii-ssha.html',
@@ -13,7 +13,7 @@ class StateQuaterCoins(scrapy.Spider):
     def parse(self, response):
         series = SerieItem(name='25 центов штаты и территории США', is_active=False, country='США')
         table = response.xpath("//table(@class, 'st2')")
-        rows = table.xpath("//tr")
+        rows = table.xpath(".//tr")
         for row in rows:
             items = row.xpath(".//td//a/@title").extract()
             for item in items:
@@ -23,3 +23,24 @@ class StateQuaterCoins(scrapy.Spider):
                     currency='центов', theme=data[0].strip(), serie=series
                 )
                 print(coin)
+
+
+class ParkQuaterCoins(scrapy.Spider):
+    name = "park_quater"
+    allowed_domains = ["http://collection-coin.ru"]
+    start_urls = [
+        'http://collection-coin.ru/monety-ssha/spisok-25-czentov-prekrasnaya-amerika.html',
+    ]
+
+    def parse(self, response):
+        series = SerieItem(name='25 центов Прекрасная Америка', is_active=True, country='США')
+        table = response.xpath("//table(@class, 'st')")
+        rows = table.xpath(".//tr")
+        for row in rows:
+            params = row.xpath(".//td").extract()
+            title = params[2] + ' ' + row.xpath(".//td//a/@title").extract()
+            coin = CoinItem(
+                year=int(params[0]), country='США', face_value=25,
+                currency='центов', theme=title, serie=series
+            )
+            print(coin)

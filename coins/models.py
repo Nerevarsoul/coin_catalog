@@ -55,6 +55,7 @@ class CatalogCoin(TimeStampedModel):
         editable=False
     )
     country = models.CharField(
+        help_text='Страна выпуска',
         max_length=50
     )
     currency = models.CharField(
@@ -62,36 +63,44 @@ class CatalogCoin(TimeStampedModel):
     )
     face_value = models.IntegerField()
     material = models.CharField(
+        help_text='Материал изготовления',
         max_length=150, 
         blank=True, 
         null=True
     )
     weight = models.FloatField(
+        help_text='Вес',
         blank=True, 
         null=True
     )
     diameter = models.FloatField(
+        help_text='Диаметр',
         blank=True, 
         null=True
     )
     thickness = models.FloatField(
+        help_text='Толщина',
         blank=True, 
         null=True
     )
     ruler = models.CharField(
+        help_text='Правитель изображенный на монете',
         max_length=50, 
         blank=True, 
         null=True
     )
     year = models.IntegerField(
+        help_text='Год выпуска',
         blank=True, 
         null=True
     )
     mintage = models.IntegerField(
+        help_text='Тираж',
         blank=True, 
         null=True
     )
     description = models.TextField(
+        help_text='Описание',
         blank=True, 
         null=True
     )
@@ -117,6 +126,7 @@ class CatalogCoin(TimeStampedModel):
         null=True
     )
     mint = models.CharField(
+        help_text='Монетный двор',
         max_length=50, 
         blank=True, 
         null=True
@@ -127,6 +137,7 @@ class CatalogCoin(TimeStampedModel):
         null=True
     )
     crause_number = models.CharField(
+        help_text='Номер по каталогу Краузе',
         max_length=10,
         blank=True,
         null=True
@@ -135,6 +146,10 @@ class CatalogCoin(TimeStampedModel):
         max_length=10,
         blank=True,
         null=True
+    )
+    is_issued = models.BooleanField(
+        help_text='Выпущена или запланирована',
+        default=True
     )
     
     objects = CatalogCoinManager()

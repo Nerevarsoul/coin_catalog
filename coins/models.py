@@ -113,7 +113,6 @@ class CatalogCoin(TimeStampedModel):
     )
     series = models.ManyToManyField(
         Serie,
-        on_delete=models.DO_NOTHING,
         related_name='series_coins',
     )
     catalog_image = models.ImageField(

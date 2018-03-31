@@ -14,7 +14,7 @@ class User(AbstractUser):
         editable=False
     )
     avatar = models.ForeignKey(Image, on_delete=models.CASCADE, blank=True, null=True)
-    friends = models.ManyToManyField('User', on_delete=models.DO_NOTHING, blank=True, null=True)
+    friends = models.ManyToManyField('User', blank=True)
     look_collection_only_friends = models.BooleanField(default=False)
     look_exchange_only_user = models.BooleanField(default=False)
 

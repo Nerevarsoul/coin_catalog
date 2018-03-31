@@ -43,8 +43,11 @@ class ParkQuaterCoins(scrapy.Spider):
             params = row.xpath(".//td//text()").extract()
             if len(params) == 4:
                 index = 2
-                year = int(params[0])    
-            title = params[index] + ': ' + row.xpath(".//td//a/@title").extract()[0]
+                year = int(params[0])
+            try:
+                title = params[index] + ': ' + row.xpath(".//td//a/@title").extract()[0]
+            except IndexError:
+                title = params[index] + ': ' + params[-1].split('(')[1][:-1]
             coin = CoinItem(
                 year=year, country='США', face_value=25,
                 currency='центов', theme=title, serie=series

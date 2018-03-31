@@ -37,11 +37,16 @@ class ParkQuaterCoins(scrapy.Spider):
         series = SerieItem(name='25 центов Прекрасная Америка', is_active=True, country='США')
         table = response.xpath("//table[@class='st']")[0]
         rows = table.xpath(".//tr")
+        year = 0
         for row in rows[1:]:
+            index = 0
             params = row.xpath(".//td//text()").extract()
-            title = params[2] + ': ' + row.xpath(".//td//a/@title").extract()[0]
+            if len(params) == 4:
+                index = 2
+                year = int(params[0])    
+            title = params[index] + ': ' + row.xpath(".//td//a/@title").extract()[0]
             coin = CoinItem(
-                year=int(params[0]), country='США', face_value=25,
+                year=year, country='США', face_value=25,
                 currency='центов', theme=title, serie=series
             )
             print(coin)

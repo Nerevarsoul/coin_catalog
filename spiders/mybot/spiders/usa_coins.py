@@ -12,7 +12,7 @@ class StateQuaterCoins(scrapy.Spider):
 
     def parse(self, response):
         series = SerieItem(name='25 центов штаты и территории США', is_active=False, country='США')
-        table = response.xpath("//table(@class, 'st2')")
+        table = response.xpath("//table[@class='st2']")[0]
         rows = table.xpath(".//tr")
         for row in rows:
             items = row.xpath(".//td//a/@title").extract()
@@ -34,7 +34,7 @@ class ParkQuaterCoins(scrapy.Spider):
 
     def parse(self, response):
         series = SerieItem(name='25 центов Прекрасная Америка', is_active=True, country='США')
-        table = response.xpath("//table(@class, 'st')")
+        table = response.xpath("//table[@class='st']")
         rows = table.xpath(".//tr")
         for row in rows:
             params = row.xpath(".//td").extract()

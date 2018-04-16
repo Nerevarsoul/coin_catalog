@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import { coinsBySerie, selectedSerie } from '.coins';
+import { coinsBySerie, selectedSerie } from './coins';
 
 const rootReducer = combineReducers({
   coinsBySerie,

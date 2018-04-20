@@ -5,6 +5,7 @@ django-fsm==2.6.0
 djangorestframework-filters==0.10.2
 social-auth-app-django==2.1.0
 django-dynamic-raw-id==2.3
+django-import-export==1.0.0
 
 django_rq==1.0.1
 django_mptt==0.9.0

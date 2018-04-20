@@ -2,8 +2,10 @@ from django.contrib import admin
 
 from dynamic_raw_id.admin import DynamicRawIDMixin
 from mptt.admin import MPTTModelAdmin
+from import_export.admin import ImportMixin
 
 from .models import *
+from .resources import CatalogCoinResource
 
 
 @admin.register(Serie)
@@ -13,11 +15,12 @@ class SerieAdmin(MPTTModelAdmin):
 
 
 @admin.register(CatalogCoin)
-class CatalogCoinAdmin(DynamicRawIDMixin, admin.ModelAdmin):
+class CatalogCoinAdmin(DynamicRawIDMixin, ImportMixin, admin.ModelAdmin):
     list_display = ('face_value', 'currency', 'year', 'country', 'serie', 'theme', 'mint',)
     list_select_related = ('serie',)
     list_filter = (('serie', admin.RelatedOnlyFieldListFilter), 'country', 'year', 'face_value',)
-    dynamic_raw_id_fields = ('serie',)  
+    dynamic_raw_id_fields = ('serie',)
+    resource_class = CatalogCoinResource
 
 
 @admin.register(Coin)

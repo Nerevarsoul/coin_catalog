@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'scheduler',
     'mptt',
     'dynamic_raw_id',
+    'import_export',
 
     'accounts',
     'core',

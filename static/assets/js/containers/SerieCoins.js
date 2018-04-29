@@ -2,7 +2,7 @@ import React from 'react';
 
 import SerieList from '../components/SerieList';
 import CoinsList from '../components/CoinsList';
-import { fetchSeries, fetchCatalogCoins } from '../utils';
+import { fetchSeries, fetchCatalogCoins } from '../services/api';
 
 
 export default class SerieCoins extends React.Component {

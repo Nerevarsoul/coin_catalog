@@ -5,7 +5,7 @@ import {
 } from '../actions/coins';
 
 
-function selectedSerie(state = null, action) {
+export function selectedSerie(state = null, action) {
   switch (action.type) {
     case SELECT_SERIE:
       return action.serie
@@ -40,7 +40,7 @@ function coins (
   }
 }
 
-function coinsBySerie(state = {}, action) {
+export function coinsBySerie(state = {}, action) {
   switch (action.type) {
     case RECEIVE_COINS:
     case REQUEST_COINS:

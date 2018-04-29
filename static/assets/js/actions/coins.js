@@ -1,4 +1,4 @@
-import { getCoins } from '../utils';
+import { getCoins } from '../services/api';
 
 export const REQUEST_COINS = 'REQUEST_COINS';
 export const RECEIVE_COINS = 'RECEIVE_COINS';

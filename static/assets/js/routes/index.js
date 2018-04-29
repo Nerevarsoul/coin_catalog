@@ -24,4 +24,3 @@ export const RouteWithSubRoutes = (route) => (
     <route.component {...props} routes={route.routes}/>
   )}/>
 )
-

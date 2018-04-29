@@ -5,7 +5,7 @@ import { Header, Grid } from 'semantic-ui-react';
 import SerieList from '../components/SerieList';
 import StatusList from '../components/StatusList';
 import UserCoinsList from '../components/UserCoinsList';
-import { fetchSeries } from '../utils';
+import { fetchSeries } from '../services/api';
 import { fetchCoinsIfNeeded } from '../actions/coins';
 
 

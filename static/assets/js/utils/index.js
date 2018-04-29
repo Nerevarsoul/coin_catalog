@@ -8,8 +8,6 @@ export const removeToken = () => localStorage.removeItem('Token');
 
 
 export const callApi = function(endPoint, params=null, method='GET', payload=null) {
-  console.log(method);
-  console.log(params);
   const options = {
     method: method.toUpperCase(),
     headers: headers,
@@ -25,8 +23,7 @@ export const callApi = function(endPoint, params=null, method='GET', payload=nul
   if (params) {
     url = url + '?' + getQueryString(params)
   }
-  console.log(url);
-
+  
   return fetch(url, options)
     .then(res => res.json())
 }

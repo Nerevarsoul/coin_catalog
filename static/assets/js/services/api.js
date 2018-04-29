@@ -10,11 +10,9 @@ export const fetchCatalogCoins = (serie) => (
 );
 
 export const getCoins = (serie, stat, owner='d3698ffc-abc3-49b2-ac91-77f5273ccc2a') => (
-  callApi('coins/', {'serie__name': serie, 'owner': owner})
-    .then(res => res.json())
+  callApi('coins/', {'catalog_coin__serie__name': serie, 'owner': owner})
 );
 
 export const authPost = (body) => (
-  callApi('auth/api-token-auth/', null, 'POST', data}
-  ).then(res => res.json())
+  callApi('auth/api-token-auth/', null, 'POST', data)
 )

@@ -22,7 +22,7 @@ const Root = () => (
                 <Menu.Item link>
                     Монеты
                     <Menu.Menu>
-                      <Menu.Item link><Link to='/series'>Каталог</Link></Menu.Item>
+                      <Menu.Item link><Link to='/catalogue'>Каталог</Link></Menu.Item>
                       <Menu.Item link><Link to='/coins'>Обменник</Link></Menu.Item>
                       <Menu.Item link><Link to='/coins'>Монеты на обмен</Link></Menu.Item>
                       <Menu.Item link><Link to='/coins'>Монеты в поиске</Link></Menu.Item>

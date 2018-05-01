@@ -8,7 +8,14 @@ from .filters import *
 from .models import *
 from .serializers import *
 
-__all__ = ('CatalogueCoinCreateListView', 'CatalogueCoinDetailView', 'SerieViewSet', 'CoinCreateListView',)
+__all__ = (
+    'CatalogueCoinCreateListView', 'CatalogueCoinDetailView', 'SerieViewSet', 'CoinCreateListView', 'CountryViewSet',
+)
+
+
+class CountryViewSet(ReadOnlyModelViewSet):
+    queryset = Country.objects.all()
+    serializer_class = CountriesListSerializer
 
 
 class SerieViewSet(ReadOnlyModelViewSet):
@@ -36,4 +43,3 @@ class CoinCreateListView(GetListOrCreateSerializerMixin, ListCreateAPIView):
     serializer_class_for_create = CoinSerializer
     filter_backends = (DjangoFilterBackend,)
     filter_fields = ('catalog_coin__serie__name', 'owner', 'status',)
-

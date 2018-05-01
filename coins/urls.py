@@ -7,6 +7,7 @@ from .views import *
 
 router = DefaultRouter()
 router.register(r'series', SerieViewSet)
+router.register(r'countries', CountryViewSet)
 
 
 urlpatterns = [

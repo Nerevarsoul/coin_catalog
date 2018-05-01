@@ -9,7 +9,7 @@ from mptt.models import MPTTModel, TreeForeignKey
 from accounts.models import User
 from .managers import *
 
-__all__ = ('CatalogCoin', 'Coin', 'Serie',)
+__all__ = ('CatalogCoin', 'Coin', 'Serie', 'Country',)
 
 
 class Serie(TimeStampedModel, MPTTModel):
@@ -234,3 +234,12 @@ class Coin(TimeStampedModel):
 
     def __repr__(self):
         return f'Coin({self.id})'
+
+
+class Country(models.Model):
+    name = models.CharField(primary_key=True, max_length=50)
+    flag = models.CharField(max_length=2)
+    union = models.CharField(max_length=20)
+
+    def __str__(self):
+        return f'{self.name}'

@@ -1,11 +1,17 @@
 from rest_framework import serializers
 
-from .models import Coin, CatalogCoin, Serie
+from .models import *
 
 __all__ = (
     'CatalogCoinListSerializer', 'CatalogCoinSerializer', 'SeriesListSerializer', 'CoinListSerializer',
-    'CoinSerializer',
+    'CoinSerializer', 'CountriesListSerializer',
 )
+
+
+class CountriesListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Country
+        fields = ('name', 'flag',)
 
 
 class SeriesListSerializer(serializers.ModelSerializer):

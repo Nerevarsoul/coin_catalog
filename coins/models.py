@@ -201,7 +201,7 @@ class Coin(TimeStampedModel):
     )
     catalog_coin = models.ForeignKey(
         CatalogCoin,
-        related_name='real_coins',
+        related_name='coins',
         on_delete=models.CASCADE, 
         blank=True, 
         null=True

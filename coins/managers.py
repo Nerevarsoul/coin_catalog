@@ -1,17 +1,24 @@
-from django.db import models
+from django.db.models import QuerySet, Manager, Count, Q
 
 __all__ = ('CatalogCoinManager', 'CoinManager', 'SeriesManager',)
 
 
-class CatalogCoinQuerySet(models.QuerySet):
+class CatalogCoinQuerySet(QuerySet):
 
     def list(self):
         return self.select_related('serie').only(
             'id', 'face_value', 'currency', 'country', 'year', 'theme', 'mint', 'serie__name',
         )
 
+    def list_with_coins(self):
+        return self.list().prefetch_related('coins').annotate(
+            collection=Count('coins', filter=Q(coins__status='in_collection')),
+            exchange=Count('coins', filter=Q(coins__status='for_exchange')),
+            wishlist=Count('coins', filter=Q(coins__status='in_wishlist'))
+        )
 
-class CatalogCoinManager(models.Manager):
+
+class CatalogCoinManager(Manager):
 
     def get_queryset(self):
         return CatalogCoinQuerySet(self.model, using=self._db)
@@ -19,8 +26,11 @@ class CatalogCoinManager(models.Manager):
     def list(self):
         return self.get_queryset().list()
 
+    def list_with_coins(self):
+        return self.get_queryset().list_with_coins()
 
-class CoinQuerySet(models.QuerySet):
+
+class CoinQuerySet(QuerySet):
 
     def list(self):
         return self.select_related('catalog_coin', 'catalog_coin__serie', 'owner').only(
@@ -29,7 +39,7 @@ class CoinQuerySet(models.QuerySet):
         )
 
 
-class CoinManager(models.Manager):
+class CoinManager(Manager):
 
     def get_queryset(self):
         return CoinQuerySet(self.model, using=self._db)
@@ -38,13 +48,13 @@ class CoinManager(models.Manager):
         return self.get_queryset().list()
 
 
-class SeriesQuerySet(models.QuerySet):
+class SeriesQuerySet(QuerySet):
 
     def list(self):
         return self.only('name', 'level', 'tree_id', 'is_active',)
 
 
-class SeriesManager(models.Manager):
+class SeriesManager(Manager):
 
     def get_queryset(self):
         return SeriesQuerySet(self.model, using=self._db)

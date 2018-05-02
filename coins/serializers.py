@@ -23,9 +23,15 @@ class SeriesListSerializer(serializers.ModelSerializer):
 class CatalogCoinListSerializer(serializers.ModelSerializer):
     class Meta:
         model = CatalogCoin
-        fields = ('id', 'face_value', 'currency', 'country', 'year', 'theme', 'mint', 'serie',)
+        fields = (
+            'id', 'face_value', 'currency', 'country', 'year', 'theme', 'mint', 'serie', 'collection', 'exchange',
+            'wishlist',
+        )
 
     serie = serializers.SlugRelatedField(slug_field='name', read_only=True)
+    collection = serializers.IntegerField(read_only=True)
+    exchange = serializers.IntegerField(read_only=True)
+    wishlist = serializers.IntegerField(read_only=True)
 
 
 class CatalogCoinSerializer(serializers.ModelSerializer):

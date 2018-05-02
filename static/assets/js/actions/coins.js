@@ -54,5 +54,3 @@ export function fetchCoinsIfNeeded(serie, stat) {
     }
   }
 }
-
-

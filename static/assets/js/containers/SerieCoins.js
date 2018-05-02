@@ -1,8 +1,8 @@
 import React from 'react';
 
-import SerieList from '../components/SerieList';
+import CatalogueFilter from './CatalogueFilter';
 import CoinsList from '../components/CoinsList';
-import { fetchSeries, fetchCatalogCoins } from '../services/api';
+import { fetchCatalogCoins } from '../services/api';
 
 
 export default class SerieCoins extends React.Component {
@@ -10,12 +10,6 @@ export default class SerieCoins extends React.Component {
     super(props);
     this.state = {series: [], coins: []};
     this.loadCatalogueBySerie = this.loadCatalogueBySerie.bind(this)
-  }
-
-  componentDidMount() {
-    fetchSeries().then(
-      res => this.setState({ series: res })
-    )
   }
 
   loadCatalogueBySerie(serie) {
@@ -33,4 +27,3 @@ export default class SerieCoins extends React.Component {
     )
   }
 }
-

@@ -1,8 +1,12 @@
 import { callApi } from '../utils';
 
 
-export const fetchSeries = () => (
-  callApi('series/')
+export const fetchCountries = () => (
+  callApi('countries/')
+);
+
+export const fetchSeries = (country) => (
+  callApi('series/', {'country': country})
 );
 
 export const fetchCatalogCoins = (serie) => (

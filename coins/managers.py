@@ -10,11 +10,11 @@ class CatalogCoinQuerySet(QuerySet):
             'id', 'face_value', 'currency', 'country', 'year', 'theme', 'mint', 'serie__name',
         )
 
-    def list_with_coins(self):
+    def list_with_coins(self, user):
         return self.list().prefetch_related('coins').annotate(
-            collection=Count('coins', filter=Q(coins__status='in_collection')),
-            exchange=Count('coins', filter=Q(coins__status='for_exchange')),
-            wishlist=Count('coins', filter=Q(coins__status='in_wishlist'))
+            collection=Count('coins', filter=Q(coins__status='in_collection', coins__owner=user)),
+            exchange=Count('coins', filter=Q(coins__status='for_exchange', coins__owner=user)),
+            wishlist=Count('coins', filter=Q(coins__status='in_wishlist', coins__owner=user))
         )
 
 
@@ -26,8 +26,8 @@ class CatalogCoinManager(Manager):
     def list(self):
         return self.get_queryset().list()
 
-    def list_with_coins(self):
-        return self.get_queryset().list_with_coins()
+    def list_with_coins(self, user):
+        return self.get_queryset().list_with_coins(user)
 
 
 class CoinQuerySet(QuerySet):

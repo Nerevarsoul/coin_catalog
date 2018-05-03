@@ -25,7 +25,7 @@ class SerieViewSet(ReadOnlyModelViewSet):
 
 
 class CatalogueCoinCreateListView(GetListOrCreateSerializerMixin, ListCreateAPIView):
-    queryset = CatalogCoin.objects.list()
+    queryset = CatalogCoin.objects.list_with_coins()
     serializer_class = CatalogCoinListSerializer
     serializer_class_for_create = CatalogCoinSerializer
     filter_backends = (DjangoFilterBackend,)

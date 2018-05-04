@@ -10,7 +10,7 @@ export const removeToken = () => localStorage.removeItem('Token');
 export const callApi = function(endPoint, params=null, method='GET', payload=null) {
   const options = {
     method: method.toUpperCase(),
-    headers: headers,
+    headers: headers(),
     body: payload ? JSON.stringify(payload) : undefined,
     credentials: 'same-origin',
     mode: 'same-origin',

@@ -34,7 +34,7 @@ class CatalogueCoinCreateListView(GetListOrCreateSerializerMixin, ListCreateAPIV
     def get_queryset(self):
         qs = super().get_queryset()
         user = self.request.user
-        if user:
+        if not user.is_anonymous:
             return qs.list_with_coins(self.request.user)
         return qs.list()
 

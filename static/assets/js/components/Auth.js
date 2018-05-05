@@ -2,8 +2,6 @@ import React from 'react';
 import { Input } from 'semantic-ui-react';
 
 
-
-
 export default class AuthComponent extends React.Component {
   constructor(props) {
     super(props);

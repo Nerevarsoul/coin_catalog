@@ -2,7 +2,7 @@ import React from 'react';
 import { Table } from 'semantic-ui-react';
 
 
-const CoinsList = ({ coins }) => (
+const CoinsList = ({ coins, user }) => (
   <Table celled>
     <Table.Header>
       <Table.Row>
@@ -19,6 +19,13 @@ const CoinsList = ({ coins }) => (
           <Table.Cell>{ coin['year']  }</Table.Cell>
           <Table.Cell> { coin['theme']  } </Table.Cell>
           <Table.Cell> { coin['mint']  }  </Table.Cell>
+          {(() => {
+            if (user) {
+              <Table.Cell>{ coin['collection']  }</Table.Cell>
+              <Table.Cell> { coin['exchange']  } </Table.Cell>
+              <Table.Cell> { coin['wishlist']  }  </Table.Cell>
+            }
+          })()}
         </Table.Row>
       )}
     </Table.Body>

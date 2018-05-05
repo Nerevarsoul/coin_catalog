@@ -2,6 +2,19 @@ import React from 'react';
 import { Table } from 'semantic-ui-react';
 
 
+function renderUser(coin, user) {
+  if (user) {
+    return (
+      <span>
+        <Table.Cell>{ coin['collection'] }</Table.Cell>
+        <Table.Cell>{ coin['exchange'] }</Table.Cell>
+        <Table.Cell>{ coin['wishlist'] }</Table.Cell>
+      </span>
+    )
+  }  
+}
+
+
 const CoinsList = ({ coins, user }) => (
   <Table celled>
     <Table.Header>
@@ -16,16 +29,10 @@ const CoinsList = ({ coins, user }) => (
       {coins.map((coin, index) =>
         <Table.Row key={index}>
           <Table.Cell>{ `${coin['face_value']} ${coin['currency']}` }</Table.Cell>
-          <Table.Cell>{ coin['year']  }</Table.Cell>
-          <Table.Cell> { coin['theme']  } </Table.Cell>
-          <Table.Cell> { coin['mint']  }  </Table.Cell>
-          {(() => {
-            if (user) {
-              <Table.Cell>{ coin['collection']  }</Table.Cell>
-              <Table.Cell> { coin['exchange']  } </Table.Cell>
-              <Table.Cell> { coin['wishlist']  }  </Table.Cell>
-            }
-          })()}
+          <Table.Cell>{ coin['year'] }</Table.Cell>
+          <Table.Cell>{ coin['theme'] }</Table.Cell>
+          <Table.Cell>{ coin['mint'] }</Table.Cell>
+          {renderUser(coin, user)}
         </Table.Row>
       )}
     </Table.Body>

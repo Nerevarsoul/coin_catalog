@@ -10,7 +10,7 @@ import { getToken } from '../utils';
 export default class SerieCoins extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {series: [], coins: [], user: none};
+    this.state = {series: [], coins: [], user: ''};
     this.loadCatalogueBySerie = this.loadCatalogueBySerie.bind(this)
   }
 
@@ -31,7 +31,7 @@ export default class SerieCoins extends React.Component {
     return (
       <div>
         <SerieList series={ this.state.series } func={ this.loadCatalogueBySerie }></SerieList>
-        <CoinsList coins= { this.state.coins, this.state.user }></CoinsList>
+        <CoinsList coins={ this.state.coins } user={ this.state.user }></CoinsList>
       </div>
     )
   }

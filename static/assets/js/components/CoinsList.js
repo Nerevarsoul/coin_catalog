@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table } from 'semantic-ui-react';
+import { Table, Checkbox, Form } from 'semantic-ui-react';
 
 
 function renderBody(coins, user) {
@@ -12,9 +12,25 @@ function renderBody(coins, user) {
             <Table.Cell>{ coin['year'] }</Table.Cell>
             <Table.Cell>{ coin['theme'] }</Table.Cell>
             <Table.Cell>{ coin['mint'] }</Table.Cell>
-            <Table.Cell>{ coin['collection'] }</Table.Cell>
-            <Table.Cell>{ coin['exchange'] }</Table.Cell>
-            <Table.Cell>{ coin['wishlist'] }</Table.Cell>
+            <Form>
+              <Table.Cell>
+                <Form.Field>
+                  <Checkbox value={ coin['collection'] } />
+                </Form.Field>
+              </Table.Cell>
+
+              <Table.Cell>
+                <Form.Field>
+                  <input value={ coin['exchange'] } />
+                </Form.Field>
+              </Table.Cell>
+
+              <Table.Cell>
+                <Form.Field>
+                  <Checkbox value={ coin['wishlist'] } />
+                </Form.Field>
+              </Table.Cell>
+            </Form>
           </Table.Row>
         )}
       </Table.Body>

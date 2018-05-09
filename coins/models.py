@@ -176,7 +176,8 @@ class Coin(TimeStampedModel):
         ('in_collection', 'в коллекции'),
         ('for_exchange', 'на обмен'),
         ('in_wishlist', 'в списке желаний'),
-        ('in_storage', 'в запаснике'), 
+        ('in_storage', 'в запаснике'),
+        ('exchanged', 'обмененно'),
     )
 
     COIN_CONDITION = (

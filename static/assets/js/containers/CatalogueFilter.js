@@ -32,7 +32,7 @@ export default class CatalogueFilter extends React.Component {
               <CountriesList coins= { this.state.countries } func={ this.loadSeriesByCountry }></CountriesList>
             </Grid.Column>
             <Grid.Column>
-              <SerieList series={ this.state.series } func={ this.loadCatalogueBySerie }></SerieList>
+              <SerieList series={ this.state.series } func={ this.props.loadCatalogueBySerie }></SerieList>
             </Grid.Column>
           </Grid.Row>
         </Grid>

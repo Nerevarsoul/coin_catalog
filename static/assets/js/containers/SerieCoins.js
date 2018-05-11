@@ -30,7 +30,7 @@ export default class SerieCoins extends React.Component {
   render() {
     return (
       <div>
-        <SerieList series={ this.state.series } func={ this.loadCatalogueBySerie }></SerieList>
+        <CatalogueFilter func={ this.loadCatalogueBySerie }></CatalogueFilter>
         <CoinsList coins={ this.state.coins } user={ this.state.user }></CoinsList>
       </div>
     )

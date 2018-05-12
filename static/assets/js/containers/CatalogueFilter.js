@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Grid } from 'semantic-ui-react';
+
 import SerieList from '../components/SerieList';
 import CountriesList from '../components/CountriesList';
 import { fetchSeries, fetchCountries } from '../services/api';
@@ -9,7 +11,7 @@ export default class CatalogueFilter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {series: [], countries: []};
-    this.loadSeriesBySerie = this.loadSeriesBySerie.bind(this)
+    this.loadSeriesByCountry = this.loadSeriesByCountry.bind(this)
   }
 
   componentDidMount() {

@@ -69,7 +69,7 @@ class PresidentDollars(scrapy.Spider):
         series = series.save()
         table = response.xpath("//table[@class='st']")[0]
         rows = table.xpath(".//tr")
-        for row in rows:
+        for row in rows[1:]:
             items = row.xpath(".//td")
             year = items[0].xpath(".//text()").extract()[0].strip()
             if year:

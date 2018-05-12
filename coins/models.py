@@ -239,8 +239,8 @@ class Coin(TimeStampedModel):
 
 class Country(models.Model):
     name = models.CharField(primary_key=True, max_length=50)
-    flag = models.CharField(max_length=2)
-    union = models.CharField(max_length=20)
+    flag = models.CharField(max_length=2, blank=True, null=True)
+    union = models.CharField(max_length=20, blank=True, null=True)
 
     def __str__(self):
         return f'{self.name}'

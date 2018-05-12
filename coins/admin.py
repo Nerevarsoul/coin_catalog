@@ -49,3 +49,8 @@ class CoinAdmin(DynamicRawIDMixin, admin.ModelAdmin):
     @staticmethod
     def get_country(instance):
         return instance.catalog_coin.country
+
+
+@admin.register(Country)
+class CountryAdmin(admin.ModelAdmin):
+    pass

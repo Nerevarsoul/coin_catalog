@@ -5,14 +5,15 @@ import { Table, Checkbox, Form } from 'semantic-ui-react';
 function renderBody(coins, user) {
   if (user) {
     return (
-      <Table.Body>
-        {coins.map((coin, index) =>
-          <Table.Row key={index}>
-            <Table.Cell>{ `${coin['face_value']} ${coin['currency']}` }</Table.Cell>
-            <Table.Cell>{ coin['year'] }</Table.Cell>
-            <Table.Cell>{ coin['theme'] }</Table.Cell>
-            <Table.Cell>{ coin['mint'] }</Table.Cell>
-            <Form>
+      <Form>
+        <Table.Body>
+          {coins.map((coin, index) =>
+            <Table.Row key={index}>
+              <Table.Cell>{ `${coin['face_value']} ${coin['currency']}` }</Table.Cell>
+              <Table.Cell>{ coin['year'] }</Table.Cell>
+              <Table.Cell>{ coin['theme'] }</Table.Cell>
+              <Table.Cell>{ coin['mint'] }</Table.Cell>
+
               <Table.Cell>
                 <Form.Field>
                   <Checkbox value={ coin['collection'] } />
@@ -30,10 +31,10 @@ function renderBody(coins, user) {
                   <Checkbox value={ coin['wishlist'] } />
                 </Form.Field>
               </Table.Cell>
-            </Form>
-          </Table.Row>
-        )}
-      </Table.Body>
+            </Table.Row>
+          )}
+        </Table.Body>
+      </Form>
     )
   } else {
     return (

@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'mptt',
     'dynamic_raw_id',
     'import_export',
+    'prettyjson',
 
     'accounts',
     'core',

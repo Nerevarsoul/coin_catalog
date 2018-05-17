@@ -1,8 +1,10 @@
 from django.contrib import admin
+from django.contrib.postgres.fields import JSONField
 
 from dynamic_raw_id.admin import DynamicRawIDMixin
-from mptt.admin import MPTTModelAdmin
 from import_export.admin import ImportMixin
+from mptt.admin import MPTTModelAdmin
+from prettyjson import PrettyJSONWidget
 
 from .models import *
 from .resources import CatalogCoinResource
@@ -25,6 +27,9 @@ class CatalogCoinAdmin(DynamicRawIDMixin, ImportMixin, admin.ModelAdmin):
 
 @admin.register(Coin)
 class CoinAdmin(DynamicRawIDMixin, admin.ModelAdmin):
+    formfield_overrides = {
+        JSONField: {'widget': PrettyJSONWidget(attrs={'initial': 'parsed'})}
+    }
     list_display = ('catalog_coin', 'get_serie', 'get_country', 'owner', 'get_year', 'status', 'get_mint',)
     list_select_related = ('catalog_coin', 'owner', 'catalog_coin__serie',)
     list_filter = (

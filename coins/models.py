@@ -48,6 +48,8 @@ class Serie(TimeStampedModel, MPTTModel):
 
 
 class CatalogCoin(TimeStampedModel):
+    class Meta:
+        unique_together = (('serie', 'theme'),)
     
     id = models.UUIDField(
         primary_key=True, 

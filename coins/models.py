@@ -1,7 +1,8 @@
 import uuid
 
-from django.urls import reverse
+from django.contrib.postgres.fields import JSONField
 from django.db import models
+from django.urls import reverse
 
 from model_utils.models import TimeStampedModel
 from mptt.models import MPTTModel, TreeForeignKey
@@ -229,6 +230,7 @@ class Coin(TimeStampedModel):
         blank=True,
         null=True
     )
+    additional_parameters = JSONField(blank=True, null=True)
 
     objects = CoinManager()
 

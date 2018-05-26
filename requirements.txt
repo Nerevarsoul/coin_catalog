@@ -4,13 +4,13 @@ djangorestframework==3.8.2
 django-fsm==2.6.0
 djangorestframework-filters==0.10.2
 social-auth-app-django==2.1.0
-django-dynamic-raw-id==2.3
+django-dynamic-raw-id==2.4
 django-import-export==1.0.0
 django-prettyjson==0.4.0
 
-django_rq==1.0.1
-django_mptt==0.9.0
-django-rq-scheduler==1.1.1
+django_rq==1.1.0
+django_mptt==1.1.0
+django-rq-scheduler==1.11.0
 rq_scheduler==0.8.1
 
 psycopg2==2.7.3.1

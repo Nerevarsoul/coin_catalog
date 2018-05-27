@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Grid } from 'semantic-ui-react';
+import { Grid, Select } from 'semantic-ui-react';
 
 import SerieList from '../components/SerieList';
 import CountriesList from '../components/CountriesList';

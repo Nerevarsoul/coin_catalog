@@ -16,7 +16,7 @@ export default class CatalogueFilter extends React.Component {
 
   componentDidMount() {
     fetchCountries().then(
-      res => this.setState({ countries: res })
+      res => this.setState({ countries: res.map((country, index) => ({"key": index, "value": country["name"], "text": country["name"]})) })
     )
   }
 
@@ -31,7 +31,7 @@ export default class CatalogueFilter extends React.Component {
         <Grid columns={2} divided>
           <Grid.Row>
             <Grid.Column>
-              <CountriesList coins= { this.state.countries } func={ this.loadSeriesByCountry }></CountriesList>
+              <CountriesList countries= { this.state.countries } func={ this.loadSeriesByCountry }></CountriesList>
             </Grid.Column>
             <Grid.Column>
               <SerieList series={ this.state.series } func={ this.props.loadCatalogueBySerie }></SerieList>

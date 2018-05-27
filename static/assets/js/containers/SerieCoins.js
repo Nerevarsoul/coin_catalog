@@ -33,7 +33,7 @@ export default class SerieCoins extends React.Component {
       <div>
         <CatalogueFilter func={ this.loadCatalogueBySerie }></CatalogueFilter>
         { this.state.user ? <ActionCoinsList coins={ this.state.coins }></ActionCoinsList>
-        : <CoinsList coins={ this.state.coins }></CoinsList>} }
+        : <CoinsList coins={ this.state.coins }></CoinsList> }
       </div>
     )
   }

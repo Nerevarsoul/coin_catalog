@@ -14,7 +14,7 @@ const ActionCoinsList = ({ coins }) => (
           <Table.HeaderCell>В коллекции</Table.HeaderCell>
           <Table.HeaderCell>На обмен</Table.HeaderCell>
           <Table.HeaderCell>Ищу</Table.HeaderCell>
-        </Table.Row>}
+        </Table.Row>
       </Table.Header>
       <Table.Body>
         {coins.map((coin, index) =>

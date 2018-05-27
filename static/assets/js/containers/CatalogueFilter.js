@@ -19,8 +19,8 @@ export default class CatalogueFilter extends React.Component {
     )
   }
 
-  loadSeriesByCountry(country) {
-    fetchSeries(country).then(
+  loadSeriesByCountry(e, country) {
+    fetchSeries(country["value"]).then(
       res => this.setState({ series: res.map((serie, index) => ({"key": index, "value": serie["name"], "text": serie["name"]})) })
     )
   }

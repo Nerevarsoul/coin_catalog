@@ -11,7 +11,7 @@ class ListingSeriesFilter(filters.FilterSet):
 
     class Meta:
         model = Serie
-        fields = ['name']
+        fields = ['name', 'country']
 
     def filter_by_owner(self, qs, name, value):
         if not value:

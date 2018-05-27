@@ -22,7 +22,7 @@ export default class CatalogueFilter extends React.Component {
 
   loadSeriesByCountry(country) {
     fetchCatalogCoins(country).then(
-      res => this.setState({ series: res })
+      res => this.setState({ series: res.map((serie, index) => ({"key": index, "value": serie["name"], "text": serie["name"]})) })
     )
   }
 
@@ -31,10 +31,10 @@ export default class CatalogueFilter extends React.Component {
         <Grid columns={2} divided>
           <Grid.Row>
             <Grid.Column>
-              <CountriesList countries= { this.state.countries } func={ this.loadSeriesByCountry }></CountriesList>
+              <Select placeholder='Select country' options={ this.state.countries } onChange={ loadSeriesByCountry } />
             </Grid.Column>
             <Grid.Column>
-              <SerieList series={ this.state.series } func={ this.props.loadCatalogueBySerie }></SerieList>
+              <Select placeholder='Select series' options={ this.state.series } />
             </Grid.Column>
           </Grid.Row>
         </Grid>

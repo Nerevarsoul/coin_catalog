@@ -3,7 +3,6 @@ import React from 'react';
 import { Grid, Select } from 'semantic-ui-react';
 
 import SerieList from '../components/SerieList';
-import CountriesList from '../components/CountriesList';
 import { fetchSeries, fetchCountries } from '../services/api';
 
 
@@ -21,7 +20,7 @@ export default class CatalogueFilter extends React.Component {
   }
 
   loadSeriesByCountry(country) {
-    fetchCatalogCoins(country).then(
+    fetchSeries(country).then(
       res => this.setState({ series: res.map((serie, index) => ({"key": index, "value": serie["name"], "text": serie["name"]})) })
     )
   }
@@ -31,7 +30,7 @@ export default class CatalogueFilter extends React.Component {
         <Grid columns={2} divided>
           <Grid.Row>
             <Grid.Column>
-              <Select placeholder='Select country' options={ this.state.countries } onChange={ loadSeriesByCountry } />
+              <Select placeholder='Select country' options={ this.state.countries } onChange={ this.loadSeriesByCountry } />
             </Grid.Column>
             <Grid.Column>
               <Select placeholder='Select series' options={ this.state.series } />

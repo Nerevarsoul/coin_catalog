@@ -3,6 +3,7 @@ import React from 'react';
 import CatalogueFilter from './CatalogueFilter';
 import SerieList from '../components/SerieList'
 import CoinsList from '../components/CoinsList';
+import ActionCoinsList from '../components/ActionCoinsList';
 import { fetchCatalogCoins, fetchSeries } from '../services/api';
 import { getToken } from '../utils';
 
@@ -31,7 +32,8 @@ export default class SerieCoins extends React.Component {
     return (
       <div>
         <CatalogueFilter func={ this.loadCatalogueBySerie }></CatalogueFilter>
-        <CoinsList coins={ this.state.coins } user={ this.state.user }></CoinsList>
+        { this.state.user ? <ActionCoinsList coins={ this.state.coins }></ActionCoinsList>
+        : <CoinsList coins={ this.state.coins }></CoinsList>} }
       </div>
     )
   }

@@ -51,7 +51,7 @@ class Serie(TimeStampedModel, MPTTModel):
 
 class CatalogCoin(TimeStampedModel):
     class Meta:
-        unique_together = (('serie', 'theme'),)
+        unique_together = (('serie', 'theme', 'country',),)
     
     id = models.UUIDField(
         primary_key=True, 
@@ -249,6 +249,7 @@ class Country(MPTTModel):
         'self', null=True, blank=True, db_index=True,
         related_name='children', on_delete=models.DO_NOTHING
     )
+    union = models.BooleanField(default=True)
 
     def __str__(self):
         return f'{self.name}'

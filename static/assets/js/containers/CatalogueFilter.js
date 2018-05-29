@@ -33,7 +33,7 @@ export default class CatalogueFilter extends React.Component {
               <Select placeholder='Select country' options={ this.state.countries } onChange={ this.loadSeriesByCountry } />
             </Grid.Column>
             <Grid.Column>
-              <Select placeholder='Select series' options={ this.state.series } />
+              <Select placeholder='Select series' options={ this.state.series } onChange={ () => func(serie['name']) }/>
             </Grid.Column>
           </Grid.Row>
         </Grid>

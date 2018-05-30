@@ -22,8 +22,8 @@ export default class SerieCoins extends React.Component {
     )
   }
 
-  loadCatalogueBySerie(serie) {
-    fetchCatalogCoins(serie).then(
+  loadCatalogueBySerie(e, serie) {
+    fetchCatalogCoins(serie["value"]).then(
       res => this.setState({ coins: res })
     ) 
   }

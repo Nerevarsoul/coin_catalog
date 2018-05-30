@@ -249,7 +249,7 @@ class Country(MPTTModel):
         'self', null=True, blank=True, db_index=True,
         related_name='children', on_delete=models.DO_NOTHING
     )
-    union = models.BooleanField(default=True)
+    union = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.name}'

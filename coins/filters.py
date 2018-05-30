@@ -30,7 +30,7 @@ class ListingSeriesFilter(filters.FilterSet):
             return qs
 
         qs = qs.filter(
-            Q(name=value) |
-            Q(id__in=Country.objects.filter(parent=value).values_list('id', flat=True).distinct())
+            Q(country=value) |
+            Q(country=Country.objects.get(name=value).get_root().name)
         )
         return qs

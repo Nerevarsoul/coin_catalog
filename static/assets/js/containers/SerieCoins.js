@@ -1,10 +1,9 @@
 import React from 'react';
 
 import CatalogueFilter from './CatalogueFilter';
-import SerieList from '../components/SerieList'
 import CoinsList from '../components/CoinsList';
 import ActionCoinsList from '../components/ActionCoinsList';
-import { fetchCatalogCoins, fetchSeries } from '../services/api';
+import { fetchCatalogCoins } from '../services/api';
 import { getToken } from '../utils';
 
 
@@ -17,9 +16,6 @@ export default class SerieCoins extends React.Component {
 
   componentDidMount() {
     this.setState( { user: getToken() } )
-    fetchSeries().then(
-      res => this.setState({ series: res })
-    )
   }
 
   loadCatalogueBySerie(e, serie) {

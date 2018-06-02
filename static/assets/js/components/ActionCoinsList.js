@@ -2,7 +2,7 @@ import React from 'react';
 import { Table, Checkbox, Form } from 'semantic-ui-react';
 
 
-const ActionCoinsList = ({ coins }) => (
+const ActionCoinsList = ({ coins, func }) => (
   <Form>
     <Table celled>
       <Table.Header>
@@ -26,19 +26,19 @@ const ActionCoinsList = ({ coins }) => (
 
             <Table.Cell>
               <Form.Field>
-                <Checkbox value={ coin['collection'] } onChange={ this.props.func } />
+                <Checkbox defaultChecked={ !!coin['collection'] } onChange={ func } />
               </Form.Field>
             </Table.Cell>
 
             <Table.Cell>
               <Form.Field>
-                <input value={ coin['exchange'] } onChange={ this.props.func } />
+                <input defaultValue={ coin['exchange'] } onChange={ func } />
               </Form.Field>
             </Table.Cell>
 
             <Table.Cell>
               <Form.Field>
-                <Checkbox value={ coin['wishlist'] } onChange={ this.props.func } />
+                <Checkbox defaultChecked={ !!coin['wishlist'] } onChange={ func } />
               </Form.Field>
             </Table.Cell>
           </Table.Row>

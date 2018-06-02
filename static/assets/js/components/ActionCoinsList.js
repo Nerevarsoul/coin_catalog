@@ -26,19 +26,19 @@ const ActionCoinsList = ({ coins }) => (
 
             <Table.Cell>
               <Form.Field>
-                <Checkbox value={ coin['collection'] } />
+                <Checkbox value={ coin['collection'] } onChange={ this.props.func } />
               </Form.Field>
             </Table.Cell>
 
             <Table.Cell>
               <Form.Field>
-                <input value={ coin['exchange'] } />
+                <input value={ coin['exchange'] } onChange={ this.props.func } />
               </Form.Field>
             </Table.Cell>
 
             <Table.Cell>
               <Form.Field>
-                <Checkbox value={ coin['wishlist'] } />
+                <Checkbox value={ coin['wishlist'] } onChange={ this.props.func } />
               </Form.Field>
             </Table.Cell>
           </Table.Row>

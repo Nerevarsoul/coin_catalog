@@ -24,11 +24,15 @@ export default class SerieCoins extends React.Component {
     ) 
   }
 
+  onChangeCoin(e, coin) {
+    console.log(coin);
+  }
+
   render() {
     return (
       <div>
         <CatalogueFilter func={ this.loadCatalogueBySerie }></CatalogueFilter>
-        { this.state.user ? <ActionCoinsList coins={ this.state.coins }></ActionCoinsList>
+        { this.state.user ? <ActionCoinsList coins={ this.state.coins } func={ this.onChangeCoin } ></ActionCoinsList>
         : <CoinsList coins={ this.state.coins }></CoinsList> }
       </div>
     )

@@ -9,8 +9,8 @@ export const fetchSeries = (country) => (
   callApi('series/', {'country': country})
 );
 
-export const fetchCatalogCoins = (serie) => (
-  callApi('catalogue/', {'serie__name': serie})
+export const fetchCatalogCoins = (serie, page) => (
+  callApi('catalogue/', {'serie__name': serie, 'page': page})
 );
 
 export const getCoins = (serie, stat, owner='d3698ffc-abc3-49b2-ac91-77f5273ccc2a') => (

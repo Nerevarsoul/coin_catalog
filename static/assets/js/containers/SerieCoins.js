@@ -13,26 +13,27 @@ export default class SerieCoins extends React.Component {
   constructor(props) {
     super(props);
     this.state = {series: [], coins: [], user: '', selectedSerie: '', activePage: 1};
-    this.loadCatalogueBySerie = this.loadCatalogueBySerie.bind(this)
+    this.loadCatalogue = this.loadCatalogue.bind(this);
+    this.selectSerie = this.selectSerie.bind(this);
+    this.selectPage = this.selectPage.bind(this);
   }
 
   componentDidMount() {
-    this.setState( { user: getToken() } )
+    this.setState( { user: getToken() } );
   }
 
   selectSerie(e, serie) {
-    this.setState( { selectedSerie: serie["value"] } )
-    this.loadCatalogue()
+    this.setState( { selectedSerie: serie["value"] } );
+    this.loadCatalogue(serie["value"], this.state.activePage);
   }
 
   selectPage(e, page) {
-    console.log(page);
-    this.setState( { activePage: page["value"] } )
-    this.loadCatalogue()
+    this.setState( { activePage: page["activePage"] } );
+    this.loadCatalogue(this.state.selectedSerie, page["activePage"])
   }
 
-  loadCatalogue() {
-    fetchCatalogCoins(this.selectedSerie, this.ActivePage).then(
+  loadCatalogue(serie, page) {
+    fetchCatalogCoins(serie, page).then(
       res => this.setState({ coins: res })
     ) 
   }
@@ -44,10 +45,10 @@ export default class SerieCoins extends React.Component {
   render() {
     return (
       <div>
-        <CatalogueFilter func={ this.loadCatalogue }></CatalogueFilter>
+        <CatalogueFilter func={ this.selectSerie }></CatalogueFilter>
         { this.state.user ? <ActionCoinsList coins={ this.state.coins } func={ this.onChangeCoin } ></ActionCoinsList>
         : <CoinsList coins={ this.state.coins }></CoinsList> }
-        <Pagination defaultActivePage={1} activePage={this.state.ActivePage} totalPages={10} onPageChange={  }/>
+        <Pagination defaultActivePage={1} activePage={this.state.ActivePage} totalPages={10} onPageChange={ this.selectPage  }/>
       </div>
     )
   }

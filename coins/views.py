@@ -1,5 +1,6 @@
 from rest_framework.viewsets import ReadOnlyModelViewSet
 from rest_framework.generics import ListCreateAPIView, RetrieveAPIView
+from rest_framework.pagination import PageNumberPagination
 
 from django_filters.rest_framework import DjangoFilterBackend
 
@@ -28,6 +29,7 @@ class CatalogueCoinCreateListView(GetListOrCreateSerializerMixin, ListCreateAPIV
     queryset = CatalogCoin.objects.all()
     serializer_class = CatalogCoinListSerializer
     serializer_class_for_create = CatalogCoinSerializer
+    pagination_class = PageNumberPagination
     filter_backends = (DjangoFilterBackend,)
     filter_fields = ('serie__name',)
 
@@ -37,7 +39,7 @@ class CatalogueCoinCreateListView(GetListOrCreateSerializerMixin, ListCreateAPIV
         if not user.is_anonymous:
             return qs.list_with_coins(self.request.user)
         return qs.list()
-
+    
 
 class CatalogueCoinDetailView(RetrieveAPIView):
     queryset = CatalogCoin.objects.all()

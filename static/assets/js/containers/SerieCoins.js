@@ -12,7 +12,7 @@ import { getToken } from '../utils';
 export default class SerieCoins extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {series: [], coins: [], user: '', selectedSerie: '', activePage: 1};
+    this.state = {series: [], coins: [], user: '', selectedSerie: '', activePage: 1, count: 0};
     this.loadCatalogue = this.loadCatalogue.bind(this);
     this.selectSerie = this.selectSerie.bind(this);
     this.selectPage = this.selectPage.bind(this);
@@ -34,7 +34,7 @@ export default class SerieCoins extends React.Component {
 
   loadCatalogue(serie, page) {
     fetchCatalogCoins(serie, page).then(
-      res => this.setState({ coins: res })
+      res => this.setState({ coins: res['results'], count: res['count'] })
     ) 
   }
 
@@ -48,7 +48,9 @@ export default class SerieCoins extends React.Component {
         <CatalogueFilter func={ this.selectSerie }></CatalogueFilter>
         { this.state.user ? <ActionCoinsList coins={ this.state.coins } func={ this.onChangeCoin } ></ActionCoinsList>
         : <CoinsList coins={ this.state.coins }></CoinsList> }
-        <Pagination defaultActivePage={1} activePage={this.state.ActivePage} totalPages={10} onPageChange={ this.selectPage  }/>
+        { this.state.count ? 
+          <Pagination defaultActivePage={1} activePage={this.state.ActivePage} totalPages={Math.ceil(this.state.count / 100)} onPageChange={ this.selectPage  }/>
+        : ''}
       </div>
     )
   }

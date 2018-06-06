@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 
 import Auth from '../components/Auth';
-import SerieCoins from '../containers/SerieCoins'; 
+import CatalogueCoins from '../containers/CatalogueCoins';
 import UserCoins from '../containers/UserCoins';
 
 export const routes = [

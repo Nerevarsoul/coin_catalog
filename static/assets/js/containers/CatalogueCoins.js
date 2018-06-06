@@ -9,7 +9,7 @@ import { fetchCatalogCoins } from '../services/api';
 import { getToken } from '../utils';
 
 
-export default class SerieCoins extends React.Component {
+export default class CatalogueCoins extends React.Component {
   constructor(props) {
     super(props);
     this.state = {series: [], coins: [], user: '', selectedSerie: '', activePage: 1, count: 0};

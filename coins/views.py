@@ -1,5 +1,5 @@
 from rest_framework.viewsets import ReadOnlyModelViewSet
-from rest_framework.generics import ListCreateAPIView, RetrieveAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveAPIView, ListAPIView
 from rest_framework.pagination import PageNumberPagination
 
 from django_filters.rest_framework import DjangoFilterBackend
@@ -44,6 +44,15 @@ class CatalogueCoinCreateListView(GetListOrCreateSerializerMixin, ListCreateAPIV
 class CatalogueCoinDetailView(RetrieveAPIView):
     queryset = CatalogCoin.objects.all()
     serializer_class = CatalogCoinSerializer
+
+
+class SerieCoinView(ListAPIView):
+    queryset = CatalogCoin.objects.all()
+    serializer_class = CatalogCoinListSerializer
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        return qs.serie('country')
 
 
 class CoinCreateListView(GetListOrCreateSerializerMixin, ListCreateAPIView):

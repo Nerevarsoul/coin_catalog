@@ -23,6 +23,11 @@ urlpatterns = [
         name='coins'
     ),
     path(
+        'coin-by-series/',
+        SerieCoinView.as_view(),
+        name='coin-by-series'
+    ),
+    path(
         'catalogue/<slug:slug>/',
         CatalogueCoinDetailView.as_view(),
         name='catalogue_detail_coins'

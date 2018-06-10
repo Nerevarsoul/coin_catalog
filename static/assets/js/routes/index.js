@@ -4,14 +4,19 @@ import { Route } from 'react-router-dom';
 import Auth from '../components/Auth';
 import CatalogueCoins from '../containers/CatalogueCoins';
 import UserCoins from '../containers/UserCoins';
+import SerieCoins from '../containers/SerieCoins';
 
 export const routes = [
   { path: '/catalogue',
-    component: SerieCoins
+    component: CatalogueCoins
   },
   {
     path: '/coins',
     component: UserCoins
+  },
+  {
+    path: '/series',
+    component: SerieCoins
   },
   {
     path: '/auth',

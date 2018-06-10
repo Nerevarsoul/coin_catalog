@@ -11,6 +11,7 @@ from .serializers import *
 
 __all__ = (
     'CatalogueCoinCreateListView', 'CatalogueCoinDetailView', 'SerieViewSet', 'CoinCreateListView', 'CountryViewSet',
+    'SerieCoinView',
 )
 
 

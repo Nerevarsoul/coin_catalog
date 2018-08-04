@@ -6,7 +6,7 @@ const SerieCoinsTables = ({ coins, nominals, countries }) => (
     <Table.Header>
       <Table.Row>
         <Table.HeaderCell> Страна / номинал </Table.HeaderCell>
-        {nominals.map((nominal, index)
+        {nominals.map((nominal, index) =>
           <Table.HeaderCell> { nominal } </Table.HeaderCell>
         )}
       </Table.Row>
@@ -15,7 +15,7 @@ const SerieCoinsTables = ({ coins, nominals, countries }) => (
       {countries.map((country, index) =>
         <Table.Row key={index}>
           <Table.Cell> { country } </Table.Cell>
-          {nominals.map((nominal, index)
+          {nominals.map((nominal, index) =>
             <Table.Cell> { coins[country][nominal] } </Table.Cell>
           )}
         </Table.Row>

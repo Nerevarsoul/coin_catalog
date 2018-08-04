@@ -15,7 +15,7 @@ export default class CatalogueCoins extends React.Component {
 
   componentDidMount() {
     fetchSerieCoins().then(
-      this.setState( { coins: res } );
+      this.setState( { coins: res } )
     )
   }
 

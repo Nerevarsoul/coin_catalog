@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input } from 'semantic-ui-react';
+import { Form, Input } from 'semantic-ui-react';
 
 
 export default class AuthComponent extends React.Component {
@@ -12,7 +12,9 @@ export default class AuthComponent extends React.Component {
   }
 
   handleChange(event) {
-    this.setState([event.target.name]: event.target.value);
+    console.log(this.state);
+    this.setState({[event.target.name]: event.target.value});
+    console.log(this.state);
   }
 
   handleSubmit(event) {
@@ -23,11 +25,24 @@ export default class AuthComponent extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <Input placeholder='Введите логин...' name='login' value={this.state.login} onChange={this.handleChange} />
-        <Input placeholder='Введите пароль...' name='password' value={this.state.password} onChange={this.handleChange} />
-      </form>
+      <Form onSubmit={this.handleSubmit}>
+        <Form.Field>
+            <input placeholder='Введите логин...'
+                   type="text"
+                   name="login"
+                   value={this.state.login}
+                   onChange={this.handleChange} />
+        </Form.Field>
+        <Form.Field>
+            <input placeholder='Введите пароль...'
+                   type="password"
+                   name="password"
+                   value={this.state.password}
+                   onChange={this.handleChange} />
+        </Form.Field>
+      </Form>
     );
   }
+
 
 }

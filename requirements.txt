@@ -9,8 +9,8 @@ django-import-export==1.0.0
 django-prettyjson==0.4.0
 
 django_rq==1.1.0
-django_mptt==1.1.0
-django-rq-scheduler==1.11.0
+django_mptt==0.9.0
+django-rq-scheduler==1.0.1
 rq_scheduler==0.8.1
 
 psycopg2==2.7.3.1

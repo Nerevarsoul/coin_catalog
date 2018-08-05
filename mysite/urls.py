@@ -6,7 +6,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('admin/dynamic_raw_id/', include('dynamic_raw_id.urls')),
-    path('auth/', include('accounts.urls')),
+    path('api/auth/', include('accounts.urls')),
     path('django-rq/', include('django_rq.urls')),
     path('api/', include('coins.urls')),
     path('', include('core.urls')),

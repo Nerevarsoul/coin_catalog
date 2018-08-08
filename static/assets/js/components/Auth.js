@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Button } from 'semantic-ui-react';
 
 import { authPost } from '../services/api';
-import { setToken } from '../utils';
+import { Login } from '../utils/auth';
 
 export default class AuthComponent extends React.Component {
   constructor(props) {
@@ -20,7 +20,7 @@ export default class AuthComponent extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     authPost(this.state).then(
-      res => setToken(res['Token']),
+      res => Login(res['Token'], this.state.username),
       err => console.log(err)
     )
   }

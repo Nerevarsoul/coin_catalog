@@ -1,6 +1,6 @@
 import 'whatwg-fetch';
 
-import { getToken } from '.auth';
+import { getToken } from './auth';
 
 const API_URL = 'http://185.12.95.205:8000/api';
 

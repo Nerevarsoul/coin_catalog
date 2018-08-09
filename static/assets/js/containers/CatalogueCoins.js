@@ -6,7 +6,7 @@ import CatalogueFilter from './CatalogueFilter';
 import CoinsList from '../components/CoinsList';
 import ActionCoinsList from '../components/ActionCoinsList';
 import { fetchCatalogCoins } from '../services/api';
-import { getToken } from '../utils';
+import { getToken } from '../utils/auth';
 
 
 export default class CatalogueCoins extends React.Component {

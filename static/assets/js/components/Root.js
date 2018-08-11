@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { Container, Menu, Grid } from 'semantic-ui-react';
 
-import { CoinMenu } from './Menu';
+import CoinMenu from './CoinMenu';
 import { routes, RouteWithSubRoutes } from '../routes';
 
 
@@ -12,7 +12,7 @@ const Root = () => (
         <Grid>
           <Grid.Row>
             <Grid.Column width={3}>
-              <CoinMenu>
+              <CoinMenu></CoinMenu>
             </Grid.Column>
             <Grid.Column width={13}>
               {routes.map((route, index) => (

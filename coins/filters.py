@@ -1,4 +1,4 @@
-import rest_framework_filters as filters
+from django_filters import rest_framework as filters
 from django.db.models import Q
 
 from .models import Coin, Serie, Country
@@ -26,6 +26,7 @@ class ListingSeriesFilter(filters.FilterSet):
         return qs
 
     def filter_by_country(self, qs, name, value):
+        print(1111111111111111111111111)
         if not value:
             return qs
 

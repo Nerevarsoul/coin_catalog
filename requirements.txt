@@ -2,8 +2,6 @@ Django==2.1.1
 django-debug-toolbar==1.9.1
 djangorestframework==3.8.2
 django-fsm==2.6.0
-djangorestframework-filters==0.10.2
-# before update djangorestframework-filters
 django-filter==2.0.0
 social-auth-app-django==2.1.0
 django-dynamic-raw-id==2.4

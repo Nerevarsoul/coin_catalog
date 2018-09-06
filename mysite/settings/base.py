@@ -32,6 +32,7 @@ INSTALLED_APPS = (
 
     'rest_framework',
     'rest_framework.authtoken',
+    'django_filters',
     'social_django',
     'django_rq',
     'scheduler',

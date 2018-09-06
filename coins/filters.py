@@ -26,7 +26,6 @@ class ListingSeriesFilter(filters.FilterSet):
         return qs
 
     def filter_by_country(self, qs, name, value):
-        print(1111111111111111111111111)
         if not value:
             return qs
 

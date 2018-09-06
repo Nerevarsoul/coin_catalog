@@ -13,7 +13,7 @@ django_mptt==0.9.1
 django-rq-scheduler==1.1.1
 rq_scheduler==0.8.3
 
-psycopg2==2.7.3.1
+psycopg2==2.7.5
 
 Pillow==5.2.0
 

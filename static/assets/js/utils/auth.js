@@ -4,7 +4,7 @@ export const removeToken = () => localStorage.removeItem('Token');
 
 export const getUsername = () => {
   if (getToken()) {
-    localStorage.getItem('Username');
+    return localStorage.getItem('Username');
   }
 }
 export const setUsername = (value) => localStorage.setItem('Username', value);

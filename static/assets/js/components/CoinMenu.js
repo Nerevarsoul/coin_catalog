@@ -16,13 +16,16 @@ export default class CoinMenu extends React.Component {
         {
         this.state.username ?
         <Menu.Item link>
+            {this.state.username}
+            <Menu.Item link><Link to='/test'>Мой кабинет</Link></Menu.Item>
+        </Menu.Item>
+        :
+        <Menu.Item link>
           <Menu.Menu>
             <Menu.Item link><Link to='/registration'>Регистрация</Link></Menu.Item>
             <Menu.Item link><Link to='/auth'>Войти</Link></Menu.Item>
           </Menu.Menu>
         </Menu.Item>
-        :
-        <Menu.Item link><Link to='/test'>Мой кабинет</Link></Menu.Item>
         }
         <Menu.Item link>
             Монеты

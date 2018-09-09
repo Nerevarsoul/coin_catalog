@@ -3,7 +3,7 @@ export const setToken = (value) => localStorage.setItem('Token', value);
 export const removeToken = () => localStorage.removeItem('Token');
 
 export const getUsername = () => {
-  if (getToken) {
+  if (getToken()) {
     localStorage.getItem('Username');
   }
 }

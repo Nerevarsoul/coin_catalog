@@ -35,7 +35,6 @@ export const headers = function () {
   if (token) {
     headers['Authorization'] = `Token ${token}`
   };
-
   return headers
 };
 

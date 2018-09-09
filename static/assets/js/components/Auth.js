@@ -20,7 +20,7 @@ export default class AuthComponent extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     authPost(this.state).then(
-      res => Login(res['Token'], this.state.username),
+      res => Login(res['token'], this.state.username),
       err => console.log(err)
     )
   }

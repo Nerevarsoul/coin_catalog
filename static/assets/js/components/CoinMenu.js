@@ -2,12 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Menu} from 'semantic-ui-react';
 
-import { getUsername } from '../utils/auth';
+import { getUsername, Logout } from '../utils/auth';
 
 export default class CoinMenu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {username: getUsername()};
+  }
+
+  logoutHandle() {
+    Logout()
+    this.setState({username: null);
   }
 
   render() {
@@ -18,6 +23,7 @@ export default class CoinMenu extends React.Component {
         <Menu.Item link>
             {this.state.username}
             <Menu.Item link><Link to='/test'>Мой кабинет</Link></Menu.Item>
+            <Menu.Item onClick={this.logoutHandle}>Выйти</Menu.Item>
         </Menu.Item>
         :
         <Menu.Item link>

@@ -12,7 +12,7 @@ export default class CoinMenu extends React.Component {
 
   logoutHandle() {
     Logout()
-    this.setState({username: null);
+    this.setState({username: null});
   }
 
   render() {

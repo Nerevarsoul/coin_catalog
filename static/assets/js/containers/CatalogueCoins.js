@@ -38,8 +38,11 @@ export default class CatalogueCoins extends React.Component {
     ) 
   }
 
-  onChangeCoin(e, coin) {
-    console.log(coin);
+  onChangeCoin(e, coinState, coinId) {
+    if (coinState !== 'exchange' || e.target.value) {
+      console.log(coinState);
+      console.log(coinId);
+    }
   }
 
   render() {

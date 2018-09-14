@@ -1,8 +1,7 @@
 from rest_framework.viewsets import ReadOnlyModelViewSet
 from rest_framework.generics import ListCreateAPIView, RetrieveAPIView, ListAPIView
 from rest_framework.pagination import PageNumberPagination
-
-from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.permissions import IsAuthenticated
 
 from core.views import GetListOrCreateSerializerMixin
 from .filters import *
@@ -56,6 +55,7 @@ class SerieCoinView(ListAPIView):
 
 
 class CoinCreateListView(GetListOrCreateSerializerMixin, ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
     queryset = Coin.objects.list() 
     serializer_class = CoinListSerializer
     serializer_class_for_create = CoinSerializer

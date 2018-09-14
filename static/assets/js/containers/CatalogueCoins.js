@@ -5,7 +5,7 @@ import { Pagination } from 'semantic-ui-react';
 import CatalogueFilter from './CatalogueFilter';
 import CoinsList from '../components/CoinsList';
 import ActionCoinsList from '../components/ActionCoinsList';
-import { fetchCatalogCoins } from '../services/api';
+import { fetchCatalogCoins, addCoin } from '../services/api';
 import { getToken } from '../utils/auth';
 
 
@@ -40,8 +40,9 @@ export default class CatalogueCoins extends React.Component {
 
   onChangeCoin(e, coinState, coinId) {
     if (coinState !== 'exchange' || e.target.value) {
-      console.log(coinState);
-      console.log(coinId);
+      addCoin(coinId, coinState).then(
+        res => console.log(res)
+      )
     }
   }
 

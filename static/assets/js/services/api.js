@@ -13,7 +13,11 @@ export const fetchCatalogCoins = (serie, page) => (
   callApi('catalogue/', {'serie__name': serie, 'page': page})
 );
 
-export const getCoins = (serie, stat, owner='d3698ffc-abc3-49b2-ac91-77f5273ccc2a') => (
+export const addCoin = (coinId, status) => (
+  callApi('coins/', {'catalogue_coin': coinId, 'status': status}, 'POST')
+);
+
+export const getCoins = (serie, owner) => (
   callApi('coins/', {'catalog_coin__serie__name': serie, 'owner': owner})
 );
 

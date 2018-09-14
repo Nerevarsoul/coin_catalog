@@ -61,5 +61,7 @@ class CoinCreateListView(GetListOrCreateSerializerMixin, ListCreateAPIView):
     serializer_class_for_create = CoinSerializer
     filter_fields = ('catalog_coin__serie__name', 'owner', 'status',)
 
-    def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+    def post(self, request, *args, **kwargs):
+        request.data.update(owner=self.request.user.id)
+        return super().create(request, *args, **kwargs)
+    

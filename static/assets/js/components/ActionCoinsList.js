@@ -26,19 +26,19 @@ const ActionCoinsList = ({ coins, func }) => (
 
             <Table.Cell>
               <Form.Field>
-                <Checkbox defaultChecked={ !!coin['collection'] } onChange={ (e) => func(e, 'collection', coin['id']) } />
+                <Checkbox defaultChecked={ !!coin['collection'] } onChange={ (e) => func(e, 'in_collection', coin['id']) } />
               </Form.Field>
             </Table.Cell>
 
             <Table.Cell>
               <Form.Field>
-                <input defaultValue={ coin['exchange'] } onChange={ (e) => func(e, 'exchange', coin['id']) } />
+                <input defaultValue={ coin['exchange'] } onChange={ (e) => func(e, 'for_exchange', coin['id']) } />
               </Form.Field>
             </Table.Cell>
 
             <Table.Cell>
               <Form.Field>
-                <Checkbox defaultChecked={ !!coin['wishlist'] } onChange={ (e) => func(e, 'wishlist', coin['id']) } />
+                <Checkbox defaultChecked={ !!coin['wishlist'] } onChange={ (e) => func(e, 'in_wishlist', coin['id']) } />
               </Form.Field>
             </Table.Cell>
           </Table.Row>

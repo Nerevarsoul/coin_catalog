@@ -14,7 +14,7 @@ export const fetchCatalogCoins = (serie, page) => (
 );
 
 export const addCoin = (coinId, status) => (
-  callApi('coins/', {'catalogue_coin': coinId, 'status': status}, 'POST')
+  callApi('coins/', null, 'POST', {'catalog_coin': coinId, 'status': status})
 );
 
 export const getCoins = (serie, owner) => (

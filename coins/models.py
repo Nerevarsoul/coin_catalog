@@ -207,9 +207,7 @@ class Coin(TimeStampedModel):
     catalog_coin = models.ForeignKey(
         CatalogCoin,
         related_name='coins',
-        on_delete=models.CASCADE, 
-        blank=True, 
-        null=True
+        on_delete=models.CASCADE,
     )
     image = models.ImageField(
         upload_to='coin_images',

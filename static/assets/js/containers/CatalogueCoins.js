@@ -38,19 +38,23 @@ export default class CatalogueCoins extends React.Component {
     ) 
   }
 
-  onChangeCoin(e, data, coinState, coinId) {
-    if (coinState !== 'exchange' && data.checked ) {
+  onCheckCoin(e, data, coinState, coinId) {
+    if (data.checked ) {
       addCoin(coinId, coinState).then(
         res => console.log(res)
       )
     }
   }
 
+  onInputCoin(e, coinId) {
+    console.log(e);
+  }
+
   render() {
     return (
       <div>
         <CatalogueFilter func={ this.selectSerie }></CatalogueFilter>
-        { this.state.user ? <ActionCoinsList coins={ this.state.coins } func={ this.onChangeCoin } ></ActionCoinsList>
+        { this.state.user ? <ActionCoinsList coins={ this.state.coins } handleCheck={ this.onCheckCoin } handleInput={ this.onInputCoin  }></ActionCoinsList>
         : <CoinsList coins={ this.state.coins }></CoinsList> }
         { this.state.count ? 
           <Pagination defaultActivePage={1} activePage={this.state.ActivePage} totalPages={Math.ceil(this.state.count / 100)} onPageChange={ this.selectPage  }/>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Checkbox, Form } from 'semantic-ui-react';
+import { Table, Checkbox, Form, Input } from 'semantic-ui-react';
 
 
 const ActionCoinsList = ({ coins, handleCheck, handleInput }) => (
@@ -31,9 +31,7 @@ const ActionCoinsList = ({ coins, handleCheck, handleInput }) => (
             </Table.Cell>
 
             <Table.Cell>
-              <Form.Field>
-                <input defaultValue={ coin['exchange'] } onChange={ (e) => handleInput(e, coin['id']) } />
-              </Form.Field>
+              <Input defaultValue={ coin['exchange'] } onChange={ (e, data) => handleInput(e, data, coin['id']) } />
             </Table.Cell>
 
             <Table.Cell>

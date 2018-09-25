@@ -46,8 +46,9 @@ export default class CatalogueCoins extends React.Component {
     }
   }
 
-  onInputCoin(e, coinId) {
+  onInputCoin(e, data, coinId) {
     console.log(e);
+    console.log(data);
   }
 
   render() {

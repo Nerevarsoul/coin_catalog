@@ -17,10 +17,10 @@ class CatalogCoinQuerySet(QuerySet):
             wishlist=Count('coins', filter=Q(coins__status='in_wishlist', coins__owner=user))
         )
 
-    def serie(self, field):
-        return self.only(
-            'id', 'face_value', 'currency', 'theme', field,
-        ).distinct()
+    def series_list(self, serie):
+        return self.select_related('serie').filter(serie=serie).only(
+            'id', 'face_value', 'currency', 'country', 'year', 'theme', 'mint', 'serie__name',
+        ).distinct('crause_number')
 
 
 class CatalogCoinManager(Manager):
@@ -34,8 +34,8 @@ class CatalogCoinManager(Manager):
     def list_with_coins(self, user):
         return self.get_queryset().list_with_coins(user)
 
-    def serie(self):
-        return self.get_queryset().serie()
+    def series_list(self, serie):
+        return self.get_queryset().series_list(serie)
 
 
 class CoinQuerySet(QuerySet):

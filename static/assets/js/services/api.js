@@ -13,8 +13,8 @@ export const fetchCatalogCoins = (serie, page) => (
   callApi('catalogue/', {'serie__name': serie, 'page': page})
 );
 
-export const addCoin = (coinId, status) => (
-  callApi('coins/', null, 'POST', {'catalog_coin': coinId, 'status': status})
+export const addCoin = (data) => (
+  callApi('coins/', null, 'POST', data)
 );
 
 export const getCoins = (serie, owner) => (

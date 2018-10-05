@@ -4,7 +4,7 @@ import { SerieCoinsTable } from '../components/SerieCoinsTable'
 import { fetchSerieCoins } from '../services/api';
 
 
-export default class CatalogueCoins extends React.Component {
+export default class SerieCoins extends React.Component {
   constructor(props) {
     super(props);
     this.state = {nominals: [], coins: [], countries: []};

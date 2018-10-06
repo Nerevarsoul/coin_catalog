@@ -63,34 +63,16 @@ class CoinCreateListView(GetListOrCreateSerializerMixin, ListCreateAPIView):
     serializer_class_for_create = CoinSerializer
     filter_fields = ('catalog_coin__serie__name', 'owner', 'status',)
 
-    def post(self, request, *args, **kwargs):
-        request.data.update(owner=self.request.user.id)
-        return super().create(request, *args, **kwargs)
-
     def create(self, request, *args, **kwargs):
-        count = request.data.pop('count', None)
-        if count:
-            count = self.get_count(count, request.data['catalog_coin'], request.data['status'])
-            if count:
-                serializer = self.get_multiple_data(request, count)
-            else:
-                return Response({'error': 1}, status=status.HTTP_400_BAD_REQUEST)
+        many = False
+        if isinstance(request.data, list):
+            many = True
+            for coin in request.data:
+                coin.update(owner=self.request.user.id)
         else:
-            serializer = self.get_serializer(data=request.data)
+            request.data.update(owner=self.request.user.id)
+        serializer = self.get_serializer(data=request.data, many=many)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-
-    def get_count(self, count, catalog_coin, coin_status):
-        db_count = Coin.objects.filter(
-            owner=self.request.user.id, catalog_coin=catalog_coin, status=coin_status
-        ).count()
-        return count - db_count if count - db_count > 0 else 0
-
-    def get_multiple_data(self, request, count):
-        if count > 1:
-            data = [request.data] * count
-            return self.get_serializer(data=data, many=True)
-        else:
-            return self.get_serializer(data=request.data)

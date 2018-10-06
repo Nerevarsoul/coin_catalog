@@ -47,11 +47,27 @@ export default class CatalogueCoins extends React.Component {
   }
 
   onInputCoin(e, data, coinId) {
-    if (data['value'] && data['value']-data['defaultValue'] > 0  ) {
-      addCoin({'catalog_coin': coinId, 'count': parseInt(data['value'])}).then(
-        res => console.log(res)      
-      )
+    if (data['value']) {
+      let value = data['value']-data['defaultValue'];
+    } else {
+      console.log('error');
+      return
     }
+    let data = {'catalog_coin': coinId, 'status': 'for_exchange'};
+    if (value < 1) {
+      console.log('error');
+      return
+    }
+    if (value > 1) {
+      let new_data = []
+      for (let i = 0; i < value; i++) {
+        new_data.append(data);
+      }
+      data = new_data;
+    }
+    addCoin(data).then(
+      res => console.log(res)
+    )
   }
 
   render() {

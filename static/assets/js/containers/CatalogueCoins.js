@@ -47,8 +47,9 @@ export default class CatalogueCoins extends React.Component {
   }
 
   onInputCoin(e, data, coinId) {
-    if (data['value']) {
-      let value = data['value']-data['defaultValue'];
+    let value = data['value'];
+    if (value) {
+      value = data['value']-data['defaultValue'];
     } else {
       console.log('error');
       return
@@ -61,7 +62,7 @@ export default class CatalogueCoins extends React.Component {
     if (value > 1) {
       let list_data = []
       for (let i = 0; i < value; i++) {
-        list_data.append(query_data);
+        list_data.push(query_data);
       }
       query_data = list_data;
     }

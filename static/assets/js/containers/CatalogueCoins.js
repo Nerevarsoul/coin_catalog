@@ -53,19 +53,19 @@ export default class CatalogueCoins extends React.Component {
       console.log('error');
       return
     }
-    let data = {'catalog_coin': coinId, 'status': 'for_exchange'};
+    let query_data = {'catalog_coin': coinId, 'status': 'for_exchange'};
     if (value < 1) {
       console.log('error');
       return
     }
     if (value > 1) {
-      let new_data = []
+      let list_data = []
       for (let i = 0; i < value; i++) {
-        new_data.append(data);
+        list_data.append(query_data);
       }
-      data = new_data;
+      query_data = list_data;
     }
-    addCoin(data).then(
+    addCoin(query_data).then(
       res => console.log(res)
     )
   }

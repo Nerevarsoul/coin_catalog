@@ -35,6 +35,7 @@
     "package.json": "^2.0.1",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
+    "react-notification-system": "^0.2.17",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "redux": "^3.7.2",

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Pagination } from 'semantic-ui-react';
+import { NotificationSystem } from 'react-notification-system';
 
 import CatalogueFilter from './CatalogueFilter';
 import CoinsList from '../components/CoinsList';
@@ -16,6 +17,7 @@ export default class CatalogueCoins extends React.Component {
     this.loadCatalogue = this.loadCatalogue.bind(this);
     this.selectSerie = this.selectSerie.bind(this);
     this.selectPage = this.selectPage.bind(this);
+    _notificationSystem: null;
   }
 
   componentDidMount() {
@@ -41,7 +43,13 @@ export default class CatalogueCoins extends React.Component {
   onCheckCoin(e, data, coinState, coinId) {
     if (data.checked ) {
       addCoin({'catalog_coin': coinId, 'status': coinState}).then(
-        res => console.log(res)
+        res => {
+          console.log(res);
+          this._notificationSystem.addNotification({
+            message: 'Монета успешно добавлена',
+            level: 'success'
+          });
+        }
       )
     }
   }
@@ -67,13 +75,20 @@ export default class CatalogueCoins extends React.Component {
       query_data = list_data;
     }
     addCoin(query_data).then(
-      res => console.log(res)
+      res => {
+        console.log(res);
+        this._notificationSystem.addNotification({
+            message: 'Монета успешно добавлена',
+            level: 'success'
+          });
+      }
     )
   }
 
   render() {
     return (
       <div>
+        <NotificationSystem ref="notificationSystem" />
         <CatalogueFilter func={ this.selectSerie }></CatalogueFilter>
         { this.state.user ? <ActionCoinsList coins={ this.state.coins } handleCheck={ this.onCheckCoin } handleInput={ this.onInputCoin  }></ActionCoinsList>
         : <CoinsList coins={ this.state.coins }></CoinsList> }

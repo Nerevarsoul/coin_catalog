@@ -182,6 +182,7 @@ class Coin(TimeStampedModel):
         ('in_wishlist', 'в списке желаний'),
         ('in_storage', 'в запаснике'),
         ('exchanged', 'обмененно'),
+        ('deleted', 'удаленно'),
     )
 
     COIN_CONDITION = (

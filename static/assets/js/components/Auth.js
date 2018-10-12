@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Button } from 'semantic-ui-react';
+import { NotificationSystem } from 'react-notification-system';
 
 import { authPost } from '../services/api';
 import { Login } from '../utils/auth';
@@ -11,6 +12,7 @@ export default class AuthComponent extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    _notificationSystem: null;
   }
 
   handleChange(event) {
@@ -21,7 +23,13 @@ export default class AuthComponent extends React.Component {
     event.preventDefault();
     authPost(this.state).then(
       res => Login(res['token'], this.state.username),
-      err => console.log(err)
+      err => {
+        console.log(err);
+        this._notificationSystem.addNotification({
+            message: 'Ошибка логина',
+            level: 'error'
+        });
+      }
     )
   }
 
@@ -46,6 +54,5 @@ export default class AuthComponent extends React.Component {
       </Form>
     );
   }
-
 
 }

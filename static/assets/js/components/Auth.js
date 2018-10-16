@@ -4,12 +4,14 @@ import { Form, Button } from 'semantic-ui-react';
 import { NotificationSystem } from 'react-notification-system';
 
 import { authPost } from '../services/api';
+import { login } from '../actions/auth';
 import { Login } from '../utils/auth';
 
 class AuthComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {username: '', password: ''};
+    this.state = {username: props.username, password: ''};
+    loginAction = props.loginAction;
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,16 +24,7 @@ class AuthComponent extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    authPost(this.state).then(
-      res => Login(res['token'], this.state.username),
-      err => {
-        console.log(err);
-        this._notificationSystem.addNotification({
-            message: 'Ошибка логина',
-            level: 'error'
-        });
-      }
-    )
+    this.props.loginAction(username, password)
   }
 
   render() {
@@ -58,6 +51,12 @@ class AuthComponent extends React.Component {
 
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    loginAction: username => dispatch(login(username, password)),
+  }
+}
+
 const mapStateToProps = store => {
   console.log(store)
   return {
@@ -65,4 +64,4 @@ const mapStateToProps = store => {
   }
 }
 
-export default connect(mapStateToProps)(AuthComponent)
+export default connect(mapStateToProps, mapDispatchToProps)(AuthComponent)

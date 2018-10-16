@@ -1,30 +1,25 @@
-import { authPost } from '../utils';
+import { authPost } from '../services/api';
+import { Login } from '../utils/auth';
 
 export const REQUEST_AUTH = 'REQUEST_AUTH';
 export const FAILURE_AUTH = 'FAILURE_AUTH';
 export const SUCCESS_AUTH = 'SUCCESS_AUTH';
 
 
-function requestAuth() {
-  return {
-    type: REQUEST_AUTH
-  }
-}
-
-
-function receiveAuth(json) {
-  return {
-    type: SUCCESS_AUTH,
-    token: json,
-    receivedAt: Date.now()
-  }
-}
-
-
-function login(password, username) {
+function login(username, password) {
   return dispatch => {
-    dispatch(requestAuth())
-    return authPost({'password': password, 'username': username})
-      .then(json => dispatch(receiveAuth(json)))
+    dispatch(REQUEST_AUTH)
+    authPost({'username': username, 'password': password}).then(
+      res => {
+        Login(res['token'], data["username"]);
+        dispatch({
+          type: SUCCESS_AUTH,
+          payload: data["username"]
+        })
+      },
+      err => {
+        console.log(err);
+      }
+    )
   }
 }

@@ -1,11 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Form, Button } from 'semantic-ui-react';
 import { NotificationSystem } from 'react-notification-system';
 
 import { authPost } from '../services/api';
 import { Login } from '../utils/auth';
 
-export default class AuthComponent extends React.Component {
+class AuthComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {username: '', password: ''};
@@ -56,3 +57,12 @@ export default class AuthComponent extends React.Component {
   }
 
 }
+
+const mapStateToProps = store => {
+  console.log(store)
+  return {
+    username: store.username,
+  }
+}
+
+export default connect(mapStateToProps)(AuthComponent)

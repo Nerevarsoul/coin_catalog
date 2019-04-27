@@ -1,6 +1,5 @@
 *.pyc
 mysite/secret.py
-*/migrations/*
 db.sqlite3
 .idea/
 node_modules/

@@ -1,7 +1,7 @@
 //require our dependencies
-var path = require('path')
-var webpack = require('webpack')
-var BundleTracker = require('webpack-bundle-tracker')
+let path = require('path');
+let webpack = require('webpack');
+let BundleTracker = require('webpack-bundle-tracker');
 
 module.exports = {
     //the base directory (absolute path) for resolving the entry option
@@ -86,4 +86,8 @@ module.exports = {
 //        },
         extensions: ['.js', '.jsx']
     }
-}
+
+    // scripts: {
+    //     "./node_modules/.bin/webpack --config webpack.config.js"
+    // }
+};

@@ -16,7 +16,7 @@ rq_scheduler==0.9
 
 psycopg2-binary==2.8.2
 
-Pillow==5.2.0
+Pillow==7.1.0
 
 Scrapy==1.6
 scrapy-djangoitem==1.1.1

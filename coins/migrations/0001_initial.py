@@ -66,22 +66,6 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='Country',
-            fields=[
-                ('name', models.CharField(max_length=50, primary_key=True, serialize=False)),
-                ('flag', models.CharField(blank=True, max_length=2, null=True)),
-                ('union', models.BooleanField(default=False)),
-                ('lft', models.PositiveIntegerField(db_index=True, editable=False)),
-                ('rght', models.PositiveIntegerField(db_index=True, editable=False)),
-                ('tree_id', models.PositiveIntegerField(db_index=True, editable=False)),
-                ('level', models.PositiveIntegerField(db_index=True, editable=False)),
-                ('parent', mptt.fields.TreeForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.DO_NOTHING, related_name='children', to='coins.Country')),
-            ],
-            options={
-                'abstract': False,
-            },
-        ),
-        migrations.CreateModel(
             name='Coin',
             fields=[
                 ('created', model_utils.fields.AutoCreatedField(default=django.utils.timezone.now, editable=False, verbose_name='created')),
@@ -91,7 +75,6 @@ class Migration(migrations.Migration):
                 ('image', models.ImageField(blank=True, null=True, upload_to='coin_images')),
                 ('status', models.CharField(choices=[('in_collection', 'в коллекции'), ('for_exchange', 'на обмен'), ('in_wishlist', 'в списке желаний'), ('in_storage', 'в запаснике'), ('exchanged', 'обмененно'), ('deleted', 'удаленно')], default='in_collection', max_length=20)),
                 ('source', models.CharField(blank=True, max_length=250, null=True)),
-                ('additional_parameters', django.contrib.postgres.fields.jsonb.JSONField(blank=True, null=True)),
                 ('catalog_coin', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='coins', to='coins.CatalogCoin')),
                 ('owner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='coins', to=settings.AUTH_USER_MODEL)),
             ],

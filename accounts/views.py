@@ -13,7 +13,7 @@ from rest_framework.permissions import AllowAny
 
 from requests.exceptions import HTTPError
 from social_core.exceptions import AuthException
-from social_core.utils import get_strategy, parse_qs, user_is_authenticated
+from social_core.utils import get_strategy
 from social_django.utils import psa, STORAGE
 
 from .serializers import UserTokenSerializer, OAuth2InputSerializer

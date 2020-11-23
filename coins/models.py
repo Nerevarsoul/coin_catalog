@@ -230,7 +230,6 @@ class Coin(TimeStampedModel):
         blank=True,
         null=True
     )
-    additional_parameters = JSONField(blank=True, null=True)
 
     objects = CoinManager()
 

@@ -1,18 +1,18 @@
-Django==3.12
-django-debug-toolbar==1.9.1
-djangorestframework==3.12.1
+Django==3.1.3
+django-debug-toolbar==3.1.1
+djangorestframework==3.12.2
 django-fsm==2.6.0
-django-filter==2.1.0
+django-filter==2.4.0
 social-auth-app-django==2.1.0
-django-dynamic-raw-id==2.5
-django-import-export==1.2.0
-django-model-utils==3.1.2
+django-dynamic-raw-id==2.7
+django-import-export==2.4.0
+django-model-utils==4.0.0
 django-rq-scheduler==1.1.3
 django-prettyjson==0.4.1
 
-django_rq==2.0
-django_mptt==0.9.1
-rq_scheduler==0.9
+django_rq==2.4.0
+django_mptt==0.11.0
+rq_scheduler==0.10.0
 
 psycopg2-binary==2.8.2
 

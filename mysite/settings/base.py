@@ -32,7 +32,6 @@ INSTALLED_APPS = (
     'django_filters',
     'social_django',
     'django_rq',
-    'scheduler',
     'mptt',
     'dynamic_raw_id',
     'import_export',

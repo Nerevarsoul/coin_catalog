@@ -40,7 +40,6 @@ INSTALLED_APPS = (
     'accounts',
     'core',
     'coins',
-    'spiders',
 )
 
 MIDDLEWARE = (

@@ -14,9 +14,9 @@ django_rq==2.4.0
 django_mptt==0.11.0
 rq_scheduler==0.10.0
 
-psycopg2-binary==2.8.2
+psycopg2-binary==2.9.1
 
-Pillow==5.2.0
+Pillow==8.2.0
 
 Scrapy==1.6
 scrapy-djangoitem==1.1.1

@@ -18,7 +18,7 @@ psycopg2-binary==2.9.1
 
 Pillow==8.2.0
 
-Scrapy==1.6
+Scrapy==2.6.2
 scrapy-djangoitem==1.1.1
 
 gunicorn==20.1.0
